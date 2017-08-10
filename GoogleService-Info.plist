@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1060623482708-42r048sb5nsi5agg92v71n3f2lp4erj1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1060623482708-42r048sb5nsi5agg92v71n3f2lp4erj1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAciYtHmuz1pFv7OuXnX8LYXdEL1mMbNTA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1060623482708</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kuni.ios</string>
+	<key>PROJECT_ID</key>
+	<string>kuni-13cb1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kuni-13cb1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1060623482708:ios:3a0313c1b24510b9</string>
+	<key>DATABASE_URL</key>
+	<string>https://kuni-13cb1.firebaseio.com</string>
+</dict>
+</plist>
