@@ -20,14 +20,12 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {        
         super.viewDidLoad()
-        
         password.delegate = self
         
     }
     
     // Signup Form
     @IBAction func signUp(_ sender: UIButton) {
-        print("Registrando datos")
         let params: Parameters = [
             "nombre" : name.text!,
             "apaterno": firstName.text!,
@@ -39,25 +37,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             "idPerfil" : 2
         ]        
         if validateFields() {
-        let request = Alamofire.request(KuniRouter.registerUser(parameters: params))
-            .validate()
-            .responseJSON { response in
-                Debug.printDebugInfo(response: response)
-
-                switch response.result {
-                case .success(let JSON):
-                    print("Validation Successful")
-                    print(JSON)
-
-                case .failure(let error):
-                    if let data = response.data {
-                        let json = String(data: data, encoding: String.Encoding.utf8)
-                        print("Failure Response: \(JSON(json!))")
-                    }
-                    debugPrint(error)
-                }
-        }
-        debugPrint(request)
+            let auth = AuthManager.sharedInstance
+            auth.signUp(params: params, ref: self)
         }
     }
 

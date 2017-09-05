@@ -7,39 +7,77 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-class Session {
-//    var access_token: String = "access_token"
-//    var token_type: String = "token_type"
-//    var refresh_token: String = "refresh_token"
-//    var expires_in: Int = 0
-//    var scope: String = "scope"
-//    var username: String = "username"
-//    var idUsuario:Int = 0
-//    
-    init(){}
+class Session: NSObject {
+    /// The shared instance of the KuniAuth.
+    static let sharedInstance: Session = Session()
     
-    static func setValue(value: Any?, key: String) {
+    private override init() {
+        super.init()
+        
+    }
+    
+    func setValue(value: Any?, key: String) {
         UserDefaults.standard.set(value, forKey: key)
         UserDefaults.standard.synchronize()
     }
     
     
-    static func getValue(key: String) -> Any? {
+    func getValue(key: String) -> Any? {
         return UserDefaults.standard.value(forKey: key)
     }
-
-    static func setData(token_type:String, refresh_token: String, access_token: String, expires_in: Int, scope: String, username: String) {
+    
+    func getValueAsString(value: String) -> String {
+        if let access = getValue(key: value) {
+            return "\(access)"
+        }
+        return ""
+    }
+    
+    func addUsername(data: JSON, username: String) -> JSON {
+        var json = data
+        json["username"] = JSON(username)
+        return json
+    }
+    
+    func removeData(){
         let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "access_token")
+        defaults.removeObject(forKey: "token_type")
+        defaults.removeObject(forKey: "expires_in")
+        defaults.removeObject(forKey: "refresh_token")
+        defaults.removeObject(forKey: "scope")
+        defaults.removeObject(forKey: "idUsuario")
+        defaults.removeObject(forKey: "username")
+        defaults.synchronize()
+    }
+    
+    func setData(data: JSON) {
+        let defaults = UserDefaults.standard
+        if  let access_token = data["access_token"].string,
+            let token_type = data["token_type"].string,
+            let expires_in = data["expires_in"].int,
+            let refresh_token = data["refresh_token"].string,
+            let scope = data["scope"].string,
+            let idUsuario = data["idUsuario"].int,
+            let username = data["username"].string {
+            defaults.set(access_token, forKey: "access_token")
+            defaults.set(token_type, forKey: "token_type")
+            defaults.set(expires_in, forKey: "expires_in")
+            defaults.set(refresh_token, forKey: "refresh_token")
+            defaults.set(scope, forKey: "scope")
+            defaults.set(idUsuario, forKey: "idUsuario")
+            defaults.set(username, forKey: "username")
+            
+            defaults.synchronize()
+        } else {
+            return
+        }
         
-        defaults.set(token_type, forKey: "token_type")
-        defaults.set(refresh_token, forKey: "refresh_token")
-        defaults.set(access_token, forKey: "access_token")
-        defaults.set(expires_in, forKey: "expires_in")
-        defaults.set(scope, forKey: "scope")
-        defaults.set(username, forKey: "username")
-        
-        UserDefaults.standard.synchronize()
+        print("\n")
+        print(data)
+        print("\n")
     }
     
 }

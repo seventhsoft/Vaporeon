@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5878F0E7E5D349B391911F69 /* Pods_Kuni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B22D021199AAB769E164D /* Pods_Kuni.framework */; };
+		651375541F55EE660034AC08 /* ContestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651375531F55EE660034AC08 /* ContestManager.swift */; };
 		651549E91F362AD000650E4C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651549E81F362AD000650E4C /* HomeController.swift */; };
 		651549EB1F3645DC00650E4C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651549EA1F3645DC00650E4C /* ProfileController.swift */; };
 		651549ED1F3645EE00650E4C /* RewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651549EC1F3645EE00650E4C /* RewardsController.swift */; };
 		651549EF1F36489300650E4C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651549EE1F36489300650E4C /* Session.swift */; };
 		651549F11F364DE100650E4C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651549F01F364DE100650E4C /* MainNavigationController.swift */; };
 		6542D7121F2823E6005EB323 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542D7111F2823E6005EB323 /* Extensions.swift */; };
+		654396B71F3E332500DC947F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654396B61F3E332500DC947F /* AuthManager.swift */; };
 		656412BB1F1D35690020DB54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656412BA1F1D35690020DB54 /* GoogleService-Info.plist */; };
 		657D06A01F2C30D50016A14F /* TermsAndConditions.html in Resources */ = {isa = PBXBuildFile; fileRef = 657D069F1F2C30D50016A14F /* TermsAndConditions.html */; };
 		657D06A21F2C5CFE0016A14F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06A11F2C5CFE0016A14F /* RegisterController.swift */; };
@@ -21,24 +23,42 @@
 		657D06B21F2E95320016A14F /* LostPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06B11F2E95320016A14F /* LostPasswordController.swift */; };
 		657D06B41F2EC4B10016A14F /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06B31F2EC4B10016A14F /* Validators.swift */; };
 		657D06B61F2F81B50016A14F /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06B51F2F81B50016A14F /* Form.swift */; };
+		658456D01F4BDD6B00A127CD /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658456CF1F4BDD6B00A127CD /* EditProfileController.swift */; };
 		65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9B0041F28EE8A0028D360 /* LoginController.swift */; };
 		65C9B0071F2A0C210028D360 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9B0061F2A0C210028D360 /* User.swift */; };
 		65C9B0091F2BA4CB0028D360 /* TermsAndConditionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9B0081F2BA4CB0028D360 /* TermsAndConditionsController.swift */; };
+		65CBAD011F4787930083DD95 /* MyRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD001F4787930083DD95 /* MyRewardsController.swift */; };
+		65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD021F4787ED0083DD95 /* ContestRewardsController.swift */; };
+		65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD041F47A0680083DD95 /* DashboardController.swift */; };
+		65CBAD091F47DAAD0083DD95 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD081F47DAAD0083DD95 /* Level.swift */; };
+		65CBAD0C1F47F2270083DD95 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD0B1F47F2270083DD95 /* Page.swift */; };
+		65CBAD0F1F47F24A0083DD95 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD0E1F47F24A0083DD95 /* PageCell.swift */; };
+		65CBAD111F47F7AA0083DD95 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */; };
+		65CBAD131F48D9830083DD95 /* LegalsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD121F48D9830083DD95 /* LegalsController.swift */; };
+		65CBAD151F48DDE10083DD95 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD141F48DDE10083DD95 /* SettingsController.swift */; };
 		65D86C471F15B3B4005501CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D86C461F15B3B4005501CF /* AppDelegate.swift */; };
 		65D86C491F15B3B4005501CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D86C481F15B3B4005501CF /* ViewController.swift */; };
 		65D86C4C1F15B3B4005501CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4A1F15B3B4005501CF /* Main.storyboard */; };
 		65D86C4E1F15B3B4005501CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4D1F15B3B4005501CF /* Assets.xcassets */; };
 		65D86C511F15B3B4005501CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4F1F15B3B4005501CF /* LaunchScreen.storyboard */; };
+		65EBE2901F4049FC004715A2 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE28F1F4049FC004715A2 /* FacebookManager.swift */; };
+		65EBE2931F417533004715A2 /* DLHamburguerContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */; };
+		65EBE2951F417543004715A2 /* DLHamburguerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */; };
+		65EBE2971F417554004715A2 /* DLHamburguerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2961F417554004715A2 /* DLHamburguerViewController.swift */; };
+		65EBE2991F417770004715A2 /* HomeRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2981F417770004715A2 /* HomeRootController.swift */; };
+		65EBE29C1F4179BB004715A2 /* HomeMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE29B1F4179BB004715A2 /* HomeMenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		63DE74B1429783EB44A75FCC /* Pods-Kuni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuni.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kuni/Pods-Kuni.release.xcconfig"; sourceTree = "<group>"; };
+		651375531F55EE660034AC08 /* ContestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestManager.swift; sourceTree = "<group>"; };
 		651549E81F362AD000650E4C /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		651549EA1F3645DC00650E4C /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		651549EC1F3645EE00650E4C /* RewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsController.swift; sourceTree = "<group>"; };
 		651549EE1F36489300650E4C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		651549F01F364DE100650E4C /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		6542D7111F2823E6005EB323 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		654396B61F3E332500DC947F /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		656412BA1F1D35690020DB54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		657D069F1F2C30D50016A14F /* TermsAndConditions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsAndConditions.html; sourceTree = "<group>"; };
 		657D06A11F2C5CFE0016A14F /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
@@ -47,9 +67,19 @@
 		657D06B11F2E95320016A14F /* LostPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostPasswordController.swift; sourceTree = "<group>"; };
 		657D06B31F2EC4B10016A14F /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		657D06B51F2F81B50016A14F /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
+		658456CF1F4BDD6B00A127CD /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		65C9B0041F28EE8A0028D360 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		65C9B0061F2A0C210028D360 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65C9B0081F2BA4CB0028D360 /* TermsAndConditionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsController.swift; sourceTree = "<group>"; };
+		65CBAD001F4787930083DD95 /* MyRewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRewardsController.swift; sourceTree = "<group>"; };
+		65CBAD021F4787ED0083DD95 /* ContestRewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestRewardsController.swift; sourceTree = "<group>"; };
+		65CBAD041F47A0680083DD95 /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
+		65CBAD081F47DAAD0083DD95 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		65CBAD0B1F47F2270083DD95 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		65CBAD0E1F47F24A0083DD95 /* PageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
+		65CBAD121F48D9830083DD95 /* LegalsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalsController.swift; sourceTree = "<group>"; };
+		65CBAD141F48DDE10083DD95 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		65D86C431F15B3B4005501CF /* Kuni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kuni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D86C461F15B3B4005501CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D86C481F15B3B4005501CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +87,12 @@
 		65D86C4D1F15B3B4005501CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65D86C501F15B3B4005501CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65D86C521F15B3B4005501CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65EBE28F1F4049FC004715A2 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerContainerViewController.swift; sourceTree = "<group>"; };
+		65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerNavigationController.swift; sourceTree = "<group>"; };
+		65EBE2961F417554004715A2 /* DLHamburguerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerViewController.swift; sourceTree = "<group>"; };
+		65EBE2981F417770004715A2 /* HomeRootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRootController.swift; sourceTree = "<group>"; };
+		65EBE29B1F4179BB004715A2 /* HomeMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMenuController.swift; sourceTree = "<group>"; };
 		C1E6FACB7B04F607D7ACDA93 /* Pods-Kuni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kuni/Pods-Kuni.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B22D021199AAB769E164D /* Pods_Kuni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kuni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,11 +129,10 @@
 		6542D7101F2823C9005EB323 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				65EBE2911F417507004715A2 /* Menu */,
 				6542D7111F2823E6005EB323 /* Extensions.swift */,
-				657D06AE1F2E7E040016A14F /* Router.swift */,
 				657D06B31F2EC4B10016A14F /* Validators.swift */,
 				657D06B51F2F81B50016A14F /* Form.swift */,
-				651549EE1F36489300650E4C /* Session.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -111,10 +146,24 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		658FD4831F53A3CB0018FF6B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				654396B61F3E332500DC947F /* AuthManager.swift */,
+				657D06AE1F2E7E040016A14F /* Router.swift */,
+				65EBE28F1F4049FC004715A2 /* FacebookManager.swift */,
+				651549EE1F36489300650E4C /* Session.swift */,
+				651375531F55EE660034AC08 /* ContestManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		65AE9BFC1F25C18300D67B02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				65C9B0061F2A0C210028D360 /* User.swift */,
+				65CBAD081F47DAAD0083DD95 /* Level.swift */,
+				65CBAD0B1F47F2270083DD95 /* Page.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -122,16 +171,56 @@
 		65AE9BFD1F25C18900D67B02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				65C9B0041F28EE8A0028D360 /* LoginController.swift */,
+				65CBACFF1F475E460083DD95 /* Dashboard */,
+				65CBACFE1F475E0B0083DD95 /* Login */,
+				65CBACFD1F475DEB0083DD95 /* Profile */,
+				65CBACFC1F475DE30083DD95 /* Rewards */,
+				65EBE29A1F417786004715A2 /* Home */,
 				65C9B0081F2BA4CB0028D360 /* TermsAndConditionsController.swift */,
-				657D06A11F2C5CFE0016A14F /* RegisterController.swift */,
-				657D06B11F2E95320016A14F /* LostPasswordController.swift */,
-				651549E81F362AD000650E4C /* HomeController.swift */,
-				651549EA1F3645DC00650E4C /* ProfileController.swift */,
-				651549EC1F3645EE00650E4C /* RewardsController.swift */,
 				651549F01F364DE100650E4C /* MainNavigationController.swift */,
+				65CBAD121F48D9830083DD95 /* LegalsController.swift */,
+				65CBAD141F48DDE10083DD95 /* SettingsController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		65CBACFC1F475DE30083DD95 /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				651549EC1F3645EE00650E4C /* RewardsController.swift */,
+				65CBAD001F4787930083DD95 /* MyRewardsController.swift */,
+				65CBAD021F4787ED0083DD95 /* ContestRewardsController.swift */,
+			);
+			name = Rewards;
+			sourceTree = "<group>";
+		};
+		65CBACFD1F475DEB0083DD95 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				651549EA1F3645DC00650E4C /* ProfileController.swift */,
+				658456CF1F4BDD6B00A127CD /* EditProfileController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		65CBACFE1F475E0B0083DD95 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				65C9B0041F28EE8A0028D360 /* LoginController.swift */,
+				657D06A11F2C5CFE0016A14F /* RegisterController.swift */,
+				657D06B11F2E95320016A14F /* LostPasswordController.swift */,
+				65CBAD0E1F47F24A0083DD95 /* PageCell.swift */,
+				65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		65CBACFF1F475E460083DD95 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				65CBAD041F47A0680083DD95 /* DashboardController.swift */,
+			);
+			name = Dashboard;
 			sourceTree = "<group>";
 		};
 		65D86C3A1F15B3B4005501CF = {
@@ -159,6 +248,7 @@
 				657D06AD1F2E44E20016A14F /* Kuni.entitlements */,
 				657D06AA1F2D26AB0016A14F /* Storyboards */,
 				6542D7101F2823C9005EB323 /* Helpers */,
+				658FD4831F53A3CB0018FF6B /* Managers */,
 				65AE9BFD1F25C18900D67B02 /* Controller */,
 				65AE9BFC1F25C18300D67B02 /* Model */,
 				656412BA1F1D35690020DB54 /* GoogleService-Info.plist */,
@@ -168,6 +258,26 @@
 				65D86C521F15B3B4005501CF /* Info.plist */,
 			);
 			path = Kuni;
+			sourceTree = "<group>";
+		};
+		65EBE2911F417507004715A2 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */,
+				65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */,
+				65EBE2961F417554004715A2 /* DLHamburguerViewController.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		65EBE29A1F417786004715A2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				651549E81F362AD000650E4C /* HomeController.swift */,
+				65EBE2981F417770004715A2 /* HomeRootController.swift */,
+				65EBE29B1F4179BB004715A2 /* HomeMenuController.swift */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +315,7 @@
 				TargetAttributes = {
 					65D86C421F15B3B4005501CF = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 27JSQJ4HB8;
+						DevelopmentTeam = P93XMCTDMP;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -301,21 +411,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65EBE2931F417533004715A2 /* DLHamburguerContainerViewController.swift in Sources */,
 				65D86C491F15B3B4005501CF /* ViewController.swift in Sources */,
+				651375541F55EE660034AC08 /* ContestManager.swift in Sources */,
+				65EBE2971F417554004715A2 /* DLHamburguerViewController.swift in Sources */,
+				65CBAD091F47DAAD0083DD95 /* Level.swift in Sources */,
 				65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */,
+				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
+				65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */,
 				651549F11F364DE100650E4C /* MainNavigationController.swift in Sources */,
+				65CBAD151F48DDE10083DD95 /* SettingsController.swift in Sources */,
+				65CBAD111F47F7AA0083DD95 /* OnboardingController.swift in Sources */,
 				6542D7121F2823E6005EB323 /* Extensions.swift in Sources */,
+				65EBE2901F4049FC004715A2 /* FacebookManager.swift in Sources */,
 				657D06B41F2EC4B10016A14F /* Validators.swift in Sources */,
 				657D06AF1F2E7E040016A14F /* Router.swift in Sources */,
 				651549EF1F36489300650E4C /* Session.swift in Sources */,
+				65EBE29C1F4179BB004715A2 /* HomeMenuController.swift in Sources */,
 				651549EB1F3645DC00650E4C /* ProfileController.swift in Sources */,
+				654396B71F3E332500DC947F /* AuthManager.swift in Sources */,
+				65EBE2951F417543004715A2 /* DLHamburguerNavigationController.swift in Sources */,
 				657D06A21F2C5CFE0016A14F /* RegisterController.swift in Sources */,
+				65CBAD0C1F47F2270083DD95 /* Page.swift in Sources */,
+				65CBAD131F48D9830083DD95 /* LegalsController.swift in Sources */,
+				65CBAD0F1F47F24A0083DD95 /* PageCell.swift in Sources */,
 				657D06B21F2E95320016A14F /* LostPasswordController.swift in Sources */,
 				65C9B0091F2BA4CB0028D360 /* TermsAndConditionsController.swift in Sources */,
+				65EBE2991F417770004715A2 /* HomeRootController.swift in Sources */,
+				658456D01F4BDD6B00A127CD /* EditProfileController.swift in Sources */,
 				651549E91F362AD000650E4C /* HomeController.swift in Sources */,
 				65C9B0071F2A0C210028D360 /* User.swift in Sources */,
 				65D86C471F15B3B4005501CF /* AppDelegate.swift in Sources */,
 				651549ED1F3645EE00650E4C /* RewardsController.swift in Sources */,
+				65CBAD011F4787930083DD95 /* MyRewardsController.swift in Sources */,
 				657D06B61F2F81B50016A14F /* Form.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 27JSQJ4HB8;
+				DEVELOPMENT_TEAM = P93XMCTDMP;
 				INFOPLIST_FILE = Kuni/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;
@@ -461,7 +589,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 27JSQJ4HB8;
+				DEVELOPMENT_TEAM = P93XMCTDMP;
 				INFOPLIST_FILE = Kuni/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;

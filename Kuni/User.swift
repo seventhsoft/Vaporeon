@@ -9,8 +9,26 @@
 import Foundation
 
 struct User {
-    let id: Int
-    let username: String
-    let email: String
+    var id: Int?
+    var username: String?
+    var email: String?
+    var name: String?
+    var last_name: String?
+    var access_token: String?
+    var refresh_token: String?
+    var expires_in: Int?
+}
+
+class UserManager: NSObject {
+    static let sharedInstance: UserManager = UserManager()
+    
+    var current: User?
+    
+    private override init(){
+        super.init()
+        
+
+    }
+    
     
 }

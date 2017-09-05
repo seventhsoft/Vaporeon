@@ -14,19 +14,17 @@ enum KuniRouter: URLRequestConvertible {
     case registerUser(parameters: Parameters)
     case closeSession(parameters: Parameters)
     case lostPassword(parameters: Parameters)
+    case getProfile
+    case loadConcurso(parameters: Parameters)
 
     static let baseURLString = "http://api.juegakuni.com.mx/lfs"    
 
     var method: HTTPMethod {
         switch self {
-        case .loginUser:
+        case .loginUser,.registerUser, .closeSession, .lostPassword:
             return .post
-        case .registerUser:
-            return .post
-        case .closeSession:
-            return .post
-        case .lostPassword:
-            return .post
+        case .getProfile, .loadConcurso:
+            return .get
         }
     }
     
@@ -40,6 +38,10 @@ enum KuniRouter: URLRequestConvertible {
             return "/tokens/revokeRefreshToken/\(token)"
         case .lostPassword:
             return "/usuarios/recuperar/password"
+        case .getProfile:
+            return "/usuarios/perfil"
+        case .loadConcurso:
+            return "/lfs/jugador/concurso"
         }
     }
     
@@ -49,8 +51,7 @@ enum KuniRouter: URLRequestConvertible {
         case .loginUser:
             hcontainer = [ "Authorization": "Basic bW9iaWxlQ2xpZW50OnNlY3JldE1vYmlsZQ==",
                            "Content-type": "application/x-www-form-urlencoded"]
-        case .registerUser,
-             .lostPassword:
+        case .registerUser, .lostPassword, .getProfile:
             hcontainer = [ "Content-type": "application/json; charset=utf-8" ]
         default:
             hcontainer = [ "Content-type": "application/x-www-form-urlencoded" ]
@@ -65,14 +66,21 @@ enum KuniRouter: URLRequestConvertible {
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
-        urlRequest.allHTTPHeaderFields = headers
+        
+        switch self {
+        case .loadConcurso:
+            urlRequest.allHTTPHeaderFields = headers
+            let param = Session.sharedInstance.getValueAsString(value: "access_token")
+            urlRequest.addValue("Authorization", forHTTPHeaderField: "Bearer \(param)")
+        default:
+            urlRequest.allHTTPHeaderFields = headers
+        }
         
         let encoding: ParameterEncoding = {
             switch self {
-            case .loginUser:
+            case .loginUser, .loadConcurso:
                 return URLEncoding.default
-            case .registerUser,
-                 .lostPassword:
+            case .registerUser, .lostPassword, .getProfile:
                 return JSONEncoding.default
             default:
                 return JSONEncoding.default
@@ -83,6 +91,7 @@ enum KuniRouter: URLRequestConvertible {
         case .loginUser(let parameters),
              .registerUser(let parameters),
              .lostPassword(let parameters),
+             .loadConcurso(let parameters),
              .closeSession(let parameters):
             urlRequest = try encoding.encode(urlRequest, with: parameters)
         default:
@@ -91,6 +100,5 @@ enum KuniRouter: URLRequestConvertible {
         
         return urlRequest
     
-    }
-
+    }    
 }

@@ -8,11 +8,16 @@
 
 
 import UIKit
+import FBSDKLoginKit
 
 class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(rgb: 0xFC4B4A)
+        
+        if FBSDKAccessToken.current() != nil {
+        
+        }
         
         if isLoggedIn() {
             perform(#selector(showHomeController), with: nil, afterDelay: 0.01)
@@ -27,7 +32,7 @@ class MainNavigationController: UINavigationController {
 
     func showHomeController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let settingVC = storyboard.instantiateViewController(withIdentifier: "HomeNavigation") as! UINavigationController
+        let settingVC = storyboard.instantiateViewController(withIdentifier: "HomeRootController")
         self.present(settingVC, animated: true, completion: {
             UIApplication.shared.keyWindow?.rootViewController = settingVC
         })
@@ -36,7 +41,7 @@ class MainNavigationController: UINavigationController {
     
     func showLoginController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let settingVC = storyboard.instantiateViewController(withIdentifier: "LoginNavigation") as! UINavigationController
+        let settingVC = storyboard.instantiateViewController(withIdentifier: "OnboardingNavigation") as! UINavigationController
         self.present(settingVC, animated: true, completion: {
             UIApplication.shared.keyWindow?.rootViewController = settingVC
         })
