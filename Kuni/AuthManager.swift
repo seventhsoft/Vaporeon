@@ -131,10 +131,11 @@ class AuthManager: NSObject {
         Alamofire.request(KuniRouter.getProfile)
             .validate()
             .responseJSON { response in
-                Debug.printDebugInfo(response: response)
+                //Debug.printDebugInfo(response: response)
                 switch response.result {
                 case .success:
-                    
+                    print(response)
+                    print("Carga exitosa del perfil")
                     break
                 case .failure(let error):
                     if let data = response.data {

@@ -66,15 +66,17 @@ enum KuniRouter: URLRequestConvertible {
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
-        
-        switch self {
-        case .loadConcurso:
-            urlRequest.allHTTPHeaderFields = headers
-            let param = Session.sharedInstance.getValueAsString(value: "access_token")
-            urlRequest.addValue("Authorization", forHTTPHeaderField: "Bearer \(param)")
-        default:
-            urlRequest.allHTTPHeaderFields = headers
-        }
+        urlRequest.allHTTPHeaderFields = headers
+//        
+//        switch self {
+//        case .loadConcurso, .getProfile:
+//            urlRequest.allHTTPHeaderFields = headers
+//            let param = Session.sharedInstance.getValueAsString(value: "access_token")
+//            urlRequest.setValue("Bearer \(param)", forHTTPHeaderField: "Authorization")
+//
+//        default:
+//            urlRequest.allHTTPHeaderFields = headers
+//        }
         
         let encoding: ParameterEncoding = {
             switch self {

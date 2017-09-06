@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3697FB7C1F5F5866009C7506 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3697FB7B1F5F5866009C7506 /* OAuthManager.swift */; };
 		5878F0E7E5D349B391911F69 /* Pods_Kuni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B22D021199AAB769E164D /* Pods_Kuni.framework */; };
 		651375541F55EE660034AC08 /* ContestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651375531F55EE660034AC08 /* ContestManager.swift */; };
 		651549E91F362AD000650E4C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651549E81F362AD000650E4C /* HomeController.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3697FB7B1F5F5866009C7506 /* OAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		63DE74B1429783EB44A75FCC /* Pods-Kuni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuni.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kuni/Pods-Kuni.release.xcconfig"; sourceTree = "<group>"; };
 		651375531F55EE660034AC08 /* ContestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestManager.swift; sourceTree = "<group>"; };
 		651549E81F362AD000650E4C /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				65EBE28F1F4049FC004715A2 /* FacebookManager.swift */,
 				651549EE1F36489300650E4C /* Session.swift */,
 				651375531F55EE660034AC08 /* ContestManager.swift */,
+				3697FB7B1F5F5866009C7506 /* OAuthManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -315,7 +318,7 @@
 				TargetAttributes = {
 					65D86C421F15B3B4005501CF = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = P93XMCTDMP;
+						DevelopmentTeam = 27JSQJ4HB8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -365,9 +368,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kuni/Pods-Kuni-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIconFont.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -380,13 +396,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kuni-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFB57BA3620B3F1C471B08B6 /* [CP] Copy Pods Resources */ = {
@@ -426,6 +445,7 @@
 				65EBE2901F4049FC004715A2 /* FacebookManager.swift in Sources */,
 				657D06B41F2EC4B10016A14F /* Validators.swift in Sources */,
 				657D06AF1F2E7E040016A14F /* Router.swift in Sources */,
+				3697FB7C1F5F5866009C7506 /* OAuthManager.swift in Sources */,
 				651549EF1F36489300650E4C /* Session.swift in Sources */,
 				65EBE29C1F4179BB004715A2 /* HomeMenuController.swift in Sources */,
 				651549EB1F3645DC00650E4C /* ProfileController.swift in Sources */,
@@ -572,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = P93XMCTDMP;
+				DEVELOPMENT_TEAM = 27JSQJ4HB8;
 				INFOPLIST_FILE = Kuni/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;
@@ -589,7 +609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = P93XMCTDMP;
+				DEVELOPMENT_TEAM = 27JSQJ4HB8;
 				INFOPLIST_FILE = Kuni/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;

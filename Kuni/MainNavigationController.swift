@@ -9,6 +9,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
 
 class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
@@ -20,6 +21,25 @@ class MainNavigationController: UINavigationController {
         }
         
         if isLoggedIn() {
+            
+            let baseURLString = KuniRouter.baseURLString
+            let access = Session.sharedInstance.getValueAsString(value: "access_token")
+            let refresh = Session.sharedInstance.getValueAsString(value: "refresh_token")
+            
+            let oauthHandler = OAuth2Handler(
+                clientID: "mobileClient",
+                baseURLString: baseURLString,
+                accessToken: access,
+                refreshToken: refresh
+            )
+            
+            let sessionManager = SessionManager()
+            sessionManager.adapter = oauthHandler
+            sessionManager.retrier = oauthHandler
+            print("Estableciendo el manejador de sesión")
+            print("Access:  \(access)")
+            print("Refresh: \(refresh)")
+            
             perform(#selector(showHomeController), with: nil, afterDelay: 0.01)
         } else {
             perform(#selector(showLoginController), with: nil, afterDelay: 0.01)
