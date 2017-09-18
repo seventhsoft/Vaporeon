@@ -48,7 +48,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         loadLevels()
         
         collectionView?.alwaysBounceVertical = true
-        collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        collectionView?.backgroundColor = UIColor(rgb: 0xEFEFF4)
         collectionView?.register(LevelCell.self, forCellWithReuseIdentifier: cellId)
         self.navigationItem.leftBarButtonItem = addMenuButton()
         

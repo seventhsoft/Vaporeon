@@ -318,7 +318,7 @@
 				TargetAttributes = {
 					65D86C421F15B3B4005501CF = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 27JSQJ4HB8;
+						DevelopmentTeam = P93XMCTDMP;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -592,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 27JSQJ4HB8;
+				DEVELOPMENT_TEAM = P93XMCTDMP;
 				INFOPLIST_FILE = Kuni/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;
@@ -609,7 +609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 27JSQJ4HB8;
+				DEVELOPMENT_TEAM = P93XMCTDMP;
 				INFOPLIST_FILE = Kuni/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;

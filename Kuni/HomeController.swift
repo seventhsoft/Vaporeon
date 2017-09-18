@@ -18,14 +18,14 @@ class HomeController: UITabBarController {
         let navBar = self.navigationController?.navigationBar
         navBar?.tintColor = .white
         navBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navBar?.barTintColor = UIColor(rgb: 0xFC4B4A)
-        navBar?.backgroundColor = UIColor(rgb: 0xFC4B4A)
+        navBar?.barTintColor = UIColor(rgb: 0x1F8689)
+        navBar?.backgroundColor = UIColor(rgb: 0x1F8689)
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = false
         
-        self.tabBar.tintColor = UIColor(rgb: 0xFC4B4A)
-        
-        
+        self.tabBar.tintColor = UIColor(rgb: 0xCF368E)
+        self.tabBar.backgroundColor = UIColor(rgb: 0xFFFFFF)
+    
         let dashboardNav = setViewController(viewController: DashboardController(collectionViewLayout: UICollectionViewFlowLayout()), title: "KUNI", tabTitle: "Inicio", iconCode: "ios-home")
         let rewardsNav = setViewController(viewController: RewardsController(), title: "Premios", tabTitle: "Premios", iconCode: "trophy")
         let profileNav = setViewController(viewController: ProfileController(), title: "Perfil", tabTitle: "Perfil", iconCode: "person")
@@ -33,7 +33,7 @@ class HomeController: UITabBarController {
         
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
-        topBorder.backgroundColor = UIColor(rgb: 0xFC4B4A).cgColor
+        topBorder.backgroundColor = UIColor(rgb: 0xD0D0D0).cgColor
         
         tabBar.layer.addSublayer(topBorder)
         tabBar.isTranslucent = false
@@ -46,10 +46,10 @@ class HomeController: UITabBarController {
         viewController.tabBarItem.icon(from: .Ionicon, code: iconCode, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
         viewController.tabBarItem.title = tabTitle
         let nav = UINavigationController(rootViewController: viewController)
-        nav.navigationBar.tintColor = .white
-        nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        nav.navigationBar.barTintColor = UIColor(rgb: 0xFC4B4A)
-        nav.navigationBar.backgroundColor = UIColor(rgb: 0xFC4B4A)
+        nav.navigationBar.tintColor = UIColor(rgb: 0xCF368E)
+        nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(rgb: 0xCF368E)]
+        nav.navigationBar.barTintColor = UIColor(rgb: 0xFFFFFF)
+        nav.navigationBar.backgroundColor = UIColor(rgb: 0xFFFFFF)
         nav.navigationBar.shadowImage = UIImage()
         nav.navigationBar.isTranslucent = false
         return nav
@@ -70,6 +70,7 @@ class HomeController: UITabBarController {
         
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,6 +78,7 @@ class HomeController: UITabBarController {
         
         // Show the navigation bar on other view controllers
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
 }
