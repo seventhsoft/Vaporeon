@@ -64,7 +64,10 @@ class ProfileController: UITableViewController, UIPopoverPresentationControllerD
     
     func fetchProfileData(){
         let auth = AuthManager.sharedInstance
-        auth.getProfile()
+        auth.getProfile() { responseObject, error in
+            print("responseObject = \(responseObject); error = \(error)")
+            return
+        }
     }
     
     // MARK: Navigation Functions

@@ -36,9 +36,11 @@ class AuthManager: NSObject {
     }
     
     func login( params: Parameters, ref: LoginController) {
-        let request = Alamofire.request(KuniRouter.loginUser(parameters: params))
+        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
+        let request = sessionManager.request(KuniRouter.loginUser(parameters: params))
             .validate()
             .responseJSON { response in
+                let _ = sessionManager // retain
                 Debug.printDebugInfo(response: response)
                 switch response.result {
                 case .success(let data):
@@ -71,9 +73,11 @@ class AuthManager: NSObject {
     
     
     func signUp( params: Parameters, ref: UIViewController){
-        let request = Alamofire.request(KuniRouter.registerUser(parameters: params))
+        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
+        let request = sessionManager.request(KuniRouter.registerUser(parameters: params))
             .validate()
             .responseData { response in
+                let _ = sessionManager // retain
                 switch response.result {
                 case .success(let JSON):
                     print(JSON)
@@ -100,9 +104,11 @@ class AuthManager: NSObject {
     }
     
     func lostPassword( params: Parameters, ref: UIViewController){
-        Alamofire.request(KuniRouter.lostPassword(parameters: params))
+        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
+        sessionManager.request(KuniRouter.lostPassword(parameters: params))
             .validate()
             .responseString { response in
+                let _ = sessionManager // retain
                 Debug.printDebugInfo(response: response)
                 switch response.result {
                 case .success:
@@ -127,18 +133,25 @@ class AuthManager: NSObject {
     
     }
     
-    func getProfile(){
-        Alamofire.request(KuniRouter.getProfile)
+    
+    func getProfile(completionHandler: @escaping (NSDictionary?, Error?) -> ()) {
+        fetchProfile(completionHandler: completionHandler)
+    }
+    
+    
+    func fetchProfile(completionHandler: @escaping (NSDictionary?, Error?) -> ()) {
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.request(KuniRouter.getProfile)
             .validate()
             .responseJSON { response in
-                //Debug.printDebugInfo(response: response)
+//                print("REQUEST = \(response.request?.allHTTPHeaderFields)")
+//                print("REQUEST = \(response.request?.httpBody)")
                 switch response.result {
-                case .success:
-                    print(response)
-                    print("Carga exitosa del perfil")
+                case .success(let data):
+                    completionHandler(data as? NSDictionary, nil)
                     break
                 case .failure(let error):
-                    if let data = response.data {
+                    if let data = response.data {                                                
                         let json = String(data: data, encoding: String.Encoding.utf8)
                         print("Failure Response: \(json!)")
                     }

@@ -82,10 +82,9 @@ class OAuth2Handler: RequestAdapter, RequestRetrier {
     
     private func refreshTokens(completion: @escaping RefreshCompletion) {
         guard !isRefreshing else { return }
-        
         isRefreshing = true
         
-        let urlString = "\(baseURLString)/tokens/revokeRefreshToken/\(refreshToken)"
+        let urlString = "\(baseURLString)/lft/oauth/token"
         
         let parameters: [String: Any] = [
             "access_token": accessToken,
