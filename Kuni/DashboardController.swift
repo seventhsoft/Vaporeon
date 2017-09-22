@@ -13,45 +13,20 @@ private let cellId = "cellId"
 class DashboardController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var levels = [Level]()
+    var contestData:ContestData?
+    var gamerLevel:GamerLevel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let item1 = Level()
-        item1.name = "Nivel 1"
-        item1.number = 1
-        item1.recompensasDisponibles = 22
-        item1.series = 6
-        item1.seriesJugador = 6
-        item1.tieneRecompensa = true
-
-        let item2 = Level()
-        item2.name = "Nivel 2"
-        item2.number = 2
-        item2.recompensasDisponibles = 22
-        item2.series = 6
-        item2.seriesJugador = 6
-        item2.tieneRecompensa = true
-        
-        let item3 = Level()
-        item3.name = "Nivel 3"
-        item3.number = 3
-        item3.recompensasDisponibles = 22
-        item3.series = 6
-        item3.seriesJugador = 6
-        item3.tieneRecompensa = true
-        
-        levels.append(item1)
-        levels.append(item2)
-        levels.append(item3)
-        
         loadLevels()
         
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor(rgb: 0xEFEFF4)
         collectionView?.register(LevelCell.self, forCellWithReuseIdentifier: cellId)
         self.navigationItem.leftBarButtonItem = addMenuButton()
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -66,7 +41,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: ((view.frame.width-48)/2), height: 120)
+        return CGSize(width: ((view.frame.width-48)/2), height: 140)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -91,8 +66,55 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     func loadLevels(){
-        
-    
+        ContestManager.sharedInstance.getContestData() { data, error in
+            if let contest = data["concurso"].dictionary {
+                if let activo = contest["activo"]?.bool,
+                    let finicio = contest["fechaInicio"]?.int,
+                    let ffin = contest["fechaFin"]?.int,
+                    let id = contest["idConcurso"]?.int {
+                    self.contestData?.activo = activo
+                    self.contestData?.fechaFin = finicio
+                    self.contestData?.fechaInicio = ffin
+                    self.contestData?.idConcurso = id
+                }
+            }
+            
+            if let jugador = data["jugadorNivel"].dictionary {
+                if let idJugadorNivel = jugador["idJugadorNivel"]?.int,
+                    let serieActual = jugador["serieActual"]?.int,
+                    let dNivel = jugador["dNivel"]?.int {
+                    self.gamerLevel?.idJugadorNivel = idJugadorNivel
+                    self.gamerLevel?.serieActual = serieActual
+                    self.gamerLevel?.dNivel = dNivel
+                }
+            }
+            
+            if let levels = data["niveles"].array {
+                for level in levels {
+                    let item = Level()
+                    if let id = level["nivel"].int,
+                        let rewards = level["recompensasDisponibles"].int,
+                        let series = level["series"].int,
+                        let gamerSeries = level["seriesJugador"].int,
+                        let hasReward = level["tieneRecompensa"].bool,
+                        let dNivel = data["jugadorNivel"]["dNivel"].int {
+                        item.number = id
+                        item.name = "Nivel \(id)"
+                        item.recompensasDisponibles = rewards
+                        item.series = series
+                        item.seriesJugador = gamerSeries
+                        item.tieneRecompensa = hasReward
+                        item.isActive = (id <= dNivel) ? true : false
+                    }
+                    self.levels.append(item)
+                }
+            }
+
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+            return
+        }
     }
     
 }
@@ -100,17 +122,39 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
 class LevelCell: UICollectionViewCell {
     var level: Level? {
         didSet {
-            if let name = level?.name {
-                let attributedText = NSMutableAttributedString(string: String(name),
-                    attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)])
-                attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white , range: NSRange(location: 0, length: (String(name)?.characters.count)!))
-                nameLabel.attributedText = attributedText
+
+            if let name = level?.name,
+                let levelNumber = level?.number,
+                let seriesJugador = level?.seriesJugador,
+                let series = level?.series,
+                let active = level?.isActive {
+                
+                var imgURL = "http://images.juegakuni.com.mx/images/bg_lv\(levelNumber)_unstarted.png"
+                if active {
+                    imgURL = "http://images.juegakuni.com.mx/images/bg_lv\(levelNumber)_started.png"
+                    nameLabel.textColor = .white
+                    levelNumberLabel.textColor = .white
+                    rewardsLabel.textColor = .white
+                }
+                
+                let bgView = UIImageView()
+                bgView.layer.masksToBounds = true
+                bgView.layer.cornerRadius = 8
+                bgView.downloadedFrom(link: imgURL, contentMode: .scaleAspectFill)
+                self.backgroundView = bgView
+                
+                levelNumberLabel.text = "\(seriesJugador)/\(series)"
+                nameLabel.text = name
             }
             
-            if let levelNumber = level?.number {
-                levelNumberLabel.text = String(levelNumber)
+            if let hasRewards = level?.tieneRecompensa {
+                if hasRewards {
+                    if let rewards = level?.recompensasDisponibles {
+                        print("¡Aquí hay \(rewards) premios!")
+                        rewardsLabel.text = "¡Aquí hay \(rewards) premios!"
+                    }
+                }
             }
-            
         }
     }
     
@@ -127,24 +171,30 @@ class LevelCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        return label
+    }()
+    
+    let rewardsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
     let levelNumberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.textColor = .black
         label.numberOfLines = 0
         return label
     }()
     
     func setupViews() {
         backgroundColor = .clear
-        let bgView = UIImageView()
-        bgView.layer.masksToBounds = true
-        bgView.layer.cornerRadius = 8
-        bgView.downloadedFrom(link: "http://images.juegakuni.com.mx/images/bg_lv1_started.png", contentMode: .scaleAspectFill)
-        backgroundView = bgView
-        
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowOffset = CGSize(width: 1.0, height: 0.8)
         layer.shadowRadius = 6.0
@@ -152,16 +202,19 @@ class LevelCell: UICollectionViewCell {
         layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
         
         addSubview(nameLabel)
+        addSubview(rewardsLabel)
         addSubview(levelNumberLabel)
 
-        addConstraintsWithFormat("V:|-10-[v0(16)]-10-[v1]-10-|", views: nameLabel,levelNumberLabel)
+        addConstraintsWithFormat("V:|-10-[v0(16)]-4-[v1(12)]-55-[v2]-10-|", views: nameLabel, rewardsLabel, levelNumberLabel)
         addConstraintsWithFormat("H:|[v0]|", views: nameLabel)
+        addConstraintsWithFormat("H:|[v0]|", views: rewardsLabel)
+        addConstraintsWithFormat("H:|-10-[v0]-10-|", views: levelNumberLabel)
+
     }
 }
 
 
 extension UIView {
-    
     func addConstraintsWithFormat(_ format: String, views: UIView...) {
         var viewsDictionary = [String: UIView]()
         for (index, view) in views.enumerated() {

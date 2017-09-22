@@ -69,8 +69,10 @@ class HomeMenuController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // MARK: - Navigation
-    func logout() {
+    private func logout() {
         UserDefaults.standard.setIsLoggedIn(value: false)
+        let auth = AuthManager.sharedInstance
+        auth.logout()
         perform(#selector(showLoginController), with: nil, afterDelay: 0.01)
     }
     

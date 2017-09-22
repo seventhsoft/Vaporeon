@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct User {
     var id: Int?
@@ -26,9 +27,24 @@ class UserManager: NSObject {
     
     private override init(){
         super.init()
-        
-
     }
     
     
+}
+
+class Profile {
+    var id: Int
+    var username: String
+    var email: String
+    var name: String
+    var last_name: String
+    
+    init(dictionary: JSON) {
+        self.id = dictionary["idUsuario"].intValue
+        self.username = dictionary["usuario"].stringValue
+        self.email = dictionary["persona"]["correo"].stringValue
+        self.name = dictionary["persona"]["nombre"].stringValue
+        self.last_name = dictionary["persona"]["apaterno"].stringValue
+        
+    }
 }

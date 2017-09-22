@@ -9,11 +9,12 @@
 import UIKit
 import SwiftIconFont
 
-class ProfileController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class ProfileController: UITableViewController, EditProfileDelegate  {
     
     let sections = "Datos generales"
     let items = ["Nombre", "Apellidos", "Correo electrónico"]
-    let icons = [""]
+    var profile:Profile?
+    let icons = ["user", "user", "envelope"]
 
     convenience init() {
         self.init(style: .grouped)
@@ -25,8 +26,10 @@ class ProfileController: UITableViewController, UIPopoverPresentationControllerD
         self.navigationItem.leftBarButtonItem = addMenuButton()
         self.navigationItem.rightBarButtonItem = addEditButton()
         self.tableView.tableFooterView = UIView(frame: .zero)
-        fetchProfileData()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
+        getProfileData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,11 +51,29 @@ class ProfileController: UITableViewController, UIPopoverPresentationControllerD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "Cell")
 
-//        cell.textLabel?.text = "io:person \(items[indexPath.row])"
-//        cell.textLabel?.parseIcon()
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = "fa:\(icons[indexPath.row]) \(items[indexPath.row])"
+        cell.textLabel?.textAlignment = .left
+        cell.textLabel?.parseIcon()
         cell.textLabel?.numberOfLines = 0
-        cell.detailTextLabel?.text = "Detalle"
+        
+        if let nombre = self.profile?.name {
+            if items[indexPath.row] == "Nombre" {
+                cell.detailTextLabel?.text = nombre
+            }
+        }
+
+        if let apellidos = self.profile?.last_name {
+            if items[indexPath.row] == "Apellidos" {
+                cell.detailTextLabel?.text = apellidos
+            }
+        }
+        
+        if let email = self.profile?.email {
+            if items[indexPath.row] == "Correo electrónico" {
+                cell.detailTextLabel?.text = email
+            }
+        }
+        
         return cell
     }
     
@@ -60,15 +81,6 @@ class ProfileController: UITableViewController, UIPopoverPresentationControllerD
         return sections
     }
     
-    // MARK: Load Data Functions
-    
-    func fetchProfileData(){
-        let auth = AuthManager.sharedInstance
-        auth.getProfile() { responseObject, error in
-            print("responseObject = \(responseObject); error = \(error)")
-            return
-        }
-    }
     
     // MARK: Navigation Functions
     
@@ -86,13 +98,26 @@ class ProfileController: UITableViewController, UIPopoverPresentationControllerD
     
     func showEditProfile(_ sender: AnyObject){
         let editProfile = EditProfileController()
-        
+        editProfile.delegate = self
         let navigationController = UINavigationController(rootViewController: editProfile)
         navigationController.modalPresentationStyle = .overFullScreen
-        
         self.present(navigationController, animated: true, completion: nil)
     }
 
+    func getProfileData(){
+        AuthManager.sharedInstance.getProfile() { item, error in
+            self.profile = item
+            self.tableView.reloadData()
+            return
+        }
+    }
+    
+    // Reloading data after user save in the Edit VC
+    func userSaveProfileData(resp: Bool) {
+        if(resp){
+            getProfileData()
+        }
+    }
     
     func showMenu() {
         self.findHamburguerViewController()?.showMenuViewController()

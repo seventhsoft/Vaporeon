@@ -8,12 +8,20 @@
 
 import UIKit
 import SwiftIconFont
+import Alamofire
+
+
+protocol EditProfileDelegate {
+    func userSaveProfileData(resp: Bool)
+}
 
 class EditProfileController: UITableViewController {
     
     let sections = "Datos generales"
+    var profile:Profile?
     let items = ["Nombre", "Apellidos", "Correo electrónico"]
-    let icons = ["ti:badge","ti:badge","ti:email"]
+    let icons = ["user", "user", "envelope"]
+    var delegate: EditProfileDelegate? = nil
     
     convenience init() {
         self.init(style: .grouped)
@@ -45,7 +53,12 @@ class EditProfileController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.register(customCell.self, forCellReuseIdentifier: "CustomCell")
         
-        fetchProfileData()
+        // Fetch profile data
+        AuthManager.sharedInstance.getProfile() { item, error in
+            self.profile = item
+            self.tableView.reloadData()
+            return
+        }
     }
     
     func dismissDialog(){
@@ -53,7 +66,30 @@ class EditProfileController: UITableViewController {
     }
     
     func saveData(){
-    
+        if(delegate != nil) {
+            var params: Parameters = [:]
+            
+            for section in 0...self.tableView.numberOfSections - 1 {
+                for row in 0...self.tableView.numberOfRows(inSection: section) - 1 {
+                    let cell = self.tableView.cellForRow(at: NSIndexPath(row: row, section: section) as IndexPath) as! customCell
+                    switch cell.tag {
+                    case 0: params["nombre"] = cell.textfield.text!; break
+                    case 1: params["apaterno"] = cell.textfield.text!; break
+                    default: break
+                    }
+                }
+            }
+            
+            AuthManager.sharedInstance.setProfile(params: params){  resp, error in
+                if(resp){
+                    self.delegate?.userSaveProfileData(resp: true)
+                    self.dismissDialog()
+                } else {
+                    print("Ocurrió un error actualizando los datos :/")
+                }
+            }
+        }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,10 +111,30 @@ class EditProfileController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! customCell
-        cell.label = "\(icons[indexPath.row]) \(items[indexPath.row])"
-        cell.data = "Data"
+        cell.label = "fa:\(icons[indexPath.row]) \(items[indexPath.row])"
         
-
+        if let nombre = self.profile?.name {
+            if items[indexPath.row] == "Nombre" {
+                cell.data = nombre
+                cell.tag = 0
+            }
+        }
+        
+        if let apellidos = self.profile?.last_name {
+            if items[indexPath.row] == "Apellidos" {
+                cell.data = apellidos
+                cell.tag = 1
+            }
+        }
+        
+        if let email = self.profile?.email {
+            if items[indexPath.row] == "Correo electrónico" {
+                cell.data = email
+                cell.tag = 2
+                cell.textfield.isUserInteractionEnabled = false
+            }
+        }
+        
         return cell
     }
     
@@ -95,14 +151,6 @@ class EditProfileController: UITableViewController {
 //        tableView.deselectRow(at: indexPath, animated: true)
 //    }
     
-
-    
-    // MARK: Load Data Functions
-    
-    func fetchProfileData(){
-        
-        
-    }
     
 }
 
@@ -113,6 +161,7 @@ class customCell: UITableViewCell, UITextFieldDelegate {
             profileLabel.text = label
             profileLabel.parseIcon()
         }
+        
     }
     
     var data: String? {
@@ -124,9 +173,9 @@ class customCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         textfield.delegate = self
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -141,13 +190,13 @@ class customCell: UITableViewCell, UITextFieldDelegate {
         label.text = "This is the profile label"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textAlignment = .right
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
     
     
-    private let textfield: UITextField = {
+    let textfield: UITextField = {
         let text = UITextField()
         text.placeholder = "Texto a ingresar"
         text.font = UIFont.systemFont(ofSize: 13)
@@ -168,7 +217,7 @@ class customCell: UITableViewCell, UITextFieldDelegate {
         profileLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         profileLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         profileLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8).isActive = true
-        profileLabel.widthAnchor.constraint(equalToConstant: 110).isActive = true
+        profileLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         
         addSubview(textfield)
         textfield.leftAnchor.constraint(equalTo: profileLabel.rightAnchor, constant: 8).isActive = true

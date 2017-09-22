@@ -7,13 +7,31 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomeRootController: DLHamburguerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Session Manager
+        let baseURLString = KuniRouter.baseURLString
+        let access = Session.sharedInstance.getValueAsString(value: "access_token")
+        let refresh = Session.sharedInstance.getValueAsString(value: "refresh_token")
         
-        // Do any additional setup after loading the view.
+        let oauthHandler = OAuth2Handler(
+            clientID: "mobileClient",
+            baseURLString: baseURLString,
+            accessToken: access,
+            refreshToken: refresh
+        )
+        
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.adapter = oauthHandler
+        sessionManager.retrier = oauthHandler
+        print("Sesion manager: ")
+        print("Access:  \(access)")
+        print("Refresh: \(refresh)")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

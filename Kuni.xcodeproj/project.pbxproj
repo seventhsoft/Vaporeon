@@ -31,7 +31,7 @@
 		65CBAD011F4787930083DD95 /* MyRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD001F4787930083DD95 /* MyRewardsController.swift */; };
 		65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD021F4787ED0083DD95 /* ContestRewardsController.swift */; };
 		65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD041F47A0680083DD95 /* DashboardController.swift */; };
-		65CBAD091F47DAAD0083DD95 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD081F47DAAD0083DD95 /* Level.swift */; };
+		65CBAD091F47DAAD0083DD95 /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD081F47DAAD0083DD95 /* Contest.swift */; };
 		65CBAD0C1F47F2270083DD95 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD0B1F47F2270083DD95 /* Page.swift */; };
 		65CBAD0F1F47F24A0083DD95 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD0E1F47F24A0083DD95 /* PageCell.swift */; };
 		65CBAD111F47F7AA0083DD95 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */; };
@@ -76,7 +76,7 @@
 		65CBAD001F4787930083DD95 /* MyRewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRewardsController.swift; sourceTree = "<group>"; };
 		65CBAD021F4787ED0083DD95 /* ContestRewardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestRewardsController.swift; sourceTree = "<group>"; };
 		65CBAD041F47A0680083DD95 /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
-		65CBAD081F47DAAD0083DD95 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		65CBAD081F47DAAD0083DD95 /* Contest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
 		65CBAD0B1F47F2270083DD95 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		65CBAD0E1F47F24A0083DD95 /* PageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				65C9B0061F2A0C210028D360 /* User.swift */,
-				65CBAD081F47DAAD0083DD95 /* Level.swift */,
+				65CBAD081F47DAAD0083DD95 /* Contest.swift */,
 				65CBAD0B1F47F2270083DD95 /* Page.swift */,
 			);
 			name = Model;
@@ -434,7 +434,7 @@
 				65D86C491F15B3B4005501CF /* ViewController.swift in Sources */,
 				651375541F55EE660034AC08 /* ContestManager.swift in Sources */,
 				65EBE2971F417554004715A2 /* DLHamburguerViewController.swift in Sources */,
-				65CBAD091F47DAAD0083DD95 /* Level.swift in Sources */,
+				65CBAD091F47DAAD0083DD95 /* Contest.swift in Sources */,
 				65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */,
 				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
 				65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */,
@@ -590,10 +590,12 @@
 			baseConfigurationReference = C1E6FACB7B04F607D7ACDA93 /* Pods-Kuni.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P93XMCTDMP;
 				INFOPLIST_FILE = Kuni/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -607,10 +609,12 @@
 			baseConfigurationReference = 63DE74B1429783EB44A75FCC /* Pods-Kuni.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Kuni/Kuni.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P93XMCTDMP;
 				INFOPLIST_FILE = Kuni/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lfs.kuni.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";

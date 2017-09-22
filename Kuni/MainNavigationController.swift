@@ -15,30 +15,10 @@ class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(rgb: 0xFC4B4A)
-        
+        print("In main navigation")
         if FBSDKAccessToken.current() != nil {
         
-        }
-        
-        // Session Manager
-        let baseURLString = KuniRouter.baseURLString
-        let access = Session.sharedInstance.getValueAsString(value: "access_token")
-        let refresh = Session.sharedInstance.getValueAsString(value: "refresh_token")
-        
-        let oauthHandler = OAuth2Handler(
-            clientID: "mobileClient",
-            baseURLString: baseURLString,
-            accessToken: access,
-            refreshToken: refresh
-        )
-        
-        let sessionManager = Alamofire.SessionManager.default
-        sessionManager.adapter = oauthHandler
-        sessionManager.retrier = oauthHandler
-        print("Sesion manager: ")
-        print("Access:  \(access)")
-        print("Refresh: \(refresh)")
-        
+        }                
         
         if isLoggedIn() {
             perform(#selector(showHomeController), with: nil, afterDelay: 0.01)

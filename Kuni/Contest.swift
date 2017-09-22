@@ -15,4 +15,18 @@ class Level {
     var seriesJugador: Int?
     var tieneRecompensa: Bool?
     var recompensasDisponibles: Int?
+    var isActive: Bool?
+}
+
+class ContestData {
+    var idConcurso: Int?
+    var fechaInicio: Int?
+    var fechaFin: Int?
+    var activo: Bool?
+}
+
+class GamerLevel {
+    var idJugadorNivel: Int?
+    var serieActual: Int?
+    var dNivel: Int?
 }

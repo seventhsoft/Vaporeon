@@ -84,26 +84,33 @@ class OAuth2Handler: RequestAdapter, RequestRetrier {
         guard !isRefreshing else { return }
         isRefreshing = true
         
-        let urlString = "\(baseURLString)/lft/oauth/token"
+        print("Generating new refreshing token from retrier...")
         
+        let urlString = "\(baseURLString)/lft/oauth/token"
+
         let parameters: [String: Any] = [
             "access_token": accessToken,
             "refresh_token": refreshToken,
-            "client_id": clientID,
-            "grant_type": "password"
+            "grant_type": "refresh_token"
         ]
         
         sessionManager.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { [weak self] response in
                 guard let strongSelf = self else { return }
-                
                 if
                     let json = response.result.value as? [String: Any],
                     let accessToken = json["access_token"] as? String,
-                    let refreshToken = json["refresh_token"] as? String
-                {
+                    let refreshToken = json["refresh_token"] as? String {
+                    print("Retrier exitoso, estableciendo datos...")
+                    
+                    let sessionData = Session.sharedInstance
+                    sessionData.setValue(value: "access_token", key: accessToken)
+                    sessionData.setValue(value: "refresh_token", key: refreshToken)
+                    print(sessionData.getValue(key: "access_token") as! String)
+                    print(sessionData.getValue(key: "refresh_token") as! String)
                     completion(true, accessToken, refreshToken)
                 } else {
+                    print("Fail to retrier :/")
                     completion(false, nil, nil)
                 }
                 

@@ -1,6 +1,56 @@
 {
   "images" : [
     {
+      "orientation" : "portrait",
+      "idiom" : "iphone",
+      "filename" : "iphone_non_retina1x.png",
+      "extent" : "full-screen",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "iphone",
+      "filename" : "iphone_non_retina2x.png",
+      "extent" : "full-screen",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "iphone",
+      "filename" : "iphone_non_retina3x.png",
+      "extent" : "full-screen",
+      "subtype" : "retina4",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "filename" : "iPad Non-Retina (1x)-2.png",
+      "extent" : "to-status-bar",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "filename" : "iPad Non-Retina (1x)-1.png",
+      "extent" : "full-screen",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "filename" : "iPad Non-Retina (1x)@2x-1.png",
+      "extent" : "to-status-bar",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "filename" : "iPad Non-Retina (1x)@2x.png",
+      "extent" : "full-screen",
+      "scale" : "2x"
+    },
+    {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "736h",
@@ -21,6 +71,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "iphone_non_retina2x-1.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
@@ -37,6 +88,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
+      "filename" : "iPad Non-Retina (1x).png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "1x"
@@ -44,7 +96,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
-      "filename" : "kuni_splash_1536x2048.png",
+      "filename" : "iPad Retina (2x).png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"

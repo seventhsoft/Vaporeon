@@ -26,7 +26,7 @@ class AuthManager: NSObject {
     
     /// The shared instance of the KuniAuth.
     static let sharedInstance: AuthManager = AuthManager()
-
+    private let defaultManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
     
     // MARK: - Initializers
     
@@ -65,10 +65,6 @@ class AuthManager: NSObject {
                 }
         }
         debugPrint(request)
-    }
-    
-    func logout(){
-        
     }
     
     
@@ -125,30 +121,72 @@ class AuthManager: NSObject {
         }
     }
     
-    private func revokeToken(){
+    func logout(){
+        revokeToken()
+        revokeRefreshToken()
+        Session.sharedInstance.removeData()
+        print("Closing session, removing data")
+    }
     
+    private func revokeToken(){
+        let access = Session.sharedInstance.getValueAsString(value: "access_token")
+        let params: Parameters = [ "token": access ]
+        
+        defaultManager.request(KuniRouter.refreshToken(parameters: params))
+            .validate()
+            .responseString { response in
+                print("Revoque token.")
+                switch response.result {
+                case .success:
+                    print("Revoque token done.")
+                    break
+                case .failure(let error):
+                    if let data = response.data {
+                        let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Failure Response: \(json!)")
+                    }
+                    debugPrint(error)
+                }
+        }
     }
     
     private func revokeRefreshToken(){
-    
+        let refresh = Session.sharedInstance.getValueAsString(value: "refresh_token")
+        let params: Parameters = [ "token": refresh ]
+        
+        defaultManager.request(KuniRouter.refreshToken(parameters: params))
+            .validate()
+            .responseString { response in
+                print("Refresh token.")
+                switch response.result {
+                case .success:
+                    print("Refresh token done.")
+                    break
+                case .failure(let error):
+                    if let data = response.data {
+                        let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Failure Response: \(json!)")
+                    }
+                    debugPrint(error)
+                }
+        }
     }
     
-    
-    func getProfile(completionHandler: @escaping (NSDictionary?, Error?) -> ()) {
+    // Completion handler to getProfile
+    func getProfile(completionHandler: @escaping (Profile, Error?) -> ()) {
         fetchProfile(completionHandler: completionHandler)
     }
     
     
-    func fetchProfile(completionHandler: @escaping (NSDictionary?, Error?) -> ()) {
+    private func fetchProfile(completionHandler: @escaping (Profile, Error?) -> ()) {
         let sessionManager = Alamofire.SessionManager.default
         sessionManager.request(KuniRouter.getProfile)
             .validate()
             .responseJSON { response in
-//                print("REQUEST = \(response.request?.allHTTPHeaderFields)")
-//                print("REQUEST = \(response.request?.httpBody)")
                 switch response.result {
                 case .success(let data):
-                    completionHandler(data as? NSDictionary, nil)
+                    let profile = Profile(dictionary: JSON(data))
+                    completionHandler(profile, nil)
                     break
                 case .failure(let error):
                     if let data = response.data {                                                
@@ -156,6 +194,30 @@ class AuthManager: NSObject {
                         print("Failure Response: \(json!)")
                     }
                     debugPrint(error)
+                }
+        }
+    }
+    
+    func setProfile(params: Parameters, completionHandler: @escaping (Bool, Error?) -> ()) {
+        submitProfile(params: params, completionHandler: completionHandler)
+    }
+    
+    private func submitProfile(params: Parameters, completionHandler: @escaping (Bool, Error?) -> ()) {
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.request(KuniRouter.setProfile(parameters: params))
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    completionHandler(true, nil)
+                    break
+                case .failure(let error):
+                    if let data = response.data {
+                        let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Failure Response: \(json!)")
+                    }
+                    debugPrint(error)
+                    completionHandler(false, nil)
                 }
         }
     }

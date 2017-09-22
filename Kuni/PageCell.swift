@@ -48,7 +48,7 @@ class PageCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .center
-        iv.backgroundColor = .green
+        iv.backgroundColor = .white
         iv.image = UIImage(named: "page1")
         iv.clipsToBounds = true
         return iv

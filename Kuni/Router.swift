@@ -12,19 +12,23 @@ import Alamofire
 enum KuniRouter: URLRequestConvertible {
     case loginUser(parameters: Parameters)
     case registerUser(parameters: Parameters)
+    case refreshToken(parameters: Parameters)
     case closeSession(parameters: Parameters)
     case lostPassword(parameters: Parameters)
     case getProfile
-    case loadConcurso(parameters: Parameters)
+    case setProfile(parameters: Parameters)
+    case loadConcurso
 
     static let baseURLString = "http://api.juegakuni.com.mx/lfs"    
 
     var method: HTTPMethod {
         switch self {
-        case .loginUser,.registerUser, .closeSession, .lostPassword:
+        case .loginUser, .registerUser, .refreshToken, .closeSession, .lostPassword:
             return .post
         case .getProfile, .loadConcurso:
             return .get
+        case .setProfile:
+            return .put
         }
     }
     
@@ -34,14 +38,18 @@ enum KuniRouter: URLRequestConvertible {
             return "/oauth/token"
         case .registerUser:
             return "/usuarios"
-        case .closeSession(let token):
+        case .refreshToken(let token):
             return "/tokens/revokeRefreshToken/\(token)"
+        case .closeSession(let token):
+            return "/oauth/token/revokeById/\(token)"
         case .lostPassword:
             return "/usuarios/recuperar/password"
         case .getProfile:
             return "/usuarios/perfil"
+        case .setProfile:
+            return "/usuarios"
         case .loadConcurso:
-            return "/lfs/jugador/concurso"
+            return "/jugador/concurso"
         }
     }
     
@@ -51,7 +59,7 @@ enum KuniRouter: URLRequestConvertible {
         case .loginUser:
             hcontainer = [ "Authorization": "Basic bW9iaWxlQ2xpZW50OnNlY3JldE1vYmlsZQ==",
                            "Content-type": "application/x-www-form-urlencoded"]
-        case .registerUser, .lostPassword, .getProfile:
+        case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso:
             hcontainer = [ "Content-type": "application/json; charset=utf-8" ]
         default:
             hcontainer = [ "Content-type": "application/x-www-form-urlencoded" ]
@@ -67,22 +75,12 @@ enum KuniRouter: URLRequestConvertible {
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         urlRequest.allHTTPHeaderFields = headers
-//        
-//        switch self {
-//        case .loadConcurso, .getProfile:
-//            urlRequest.allHTTPHeaderFields = headers
-//            let param = Session.sharedInstance.getValueAsString(value: "access_token")
-//            urlRequest.setValue("Bearer \(param)", forHTTPHeaderField: "Authorization")
-//
-//        default:
-//            urlRequest.allHTTPHeaderFields = headers
-//        }
-        
+
         let encoding: ParameterEncoding = {
             switch self {
-            case .loginUser, .loadConcurso:
+            case .loginUser:
                 return URLEncoding.default
-            case .registerUser, .lostPassword, .getProfile:
+            case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso:
                 return JSONEncoding.default
             default:
                 return JSONEncoding.default
@@ -93,7 +91,8 @@ enum KuniRouter: URLRequestConvertible {
         case .loginUser(let parameters),
              .registerUser(let parameters),
              .lostPassword(let parameters),
-             .loadConcurso(let parameters),
+             .setProfile(let parameters),
+             .refreshToken(let parameters),
              .closeSession(let parameters):
             urlRequest = try encoding.encode(urlRequest, with: parameters)
         default:

@@ -40,7 +40,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
         pc.pageIndicatorTintColor = .lightGray
-        pc.currentPageIndicatorTintColor = UIColor(red: 247/255, green: 154/255, blue: 27/255, alpha: 1)
+        pc.currentPageIndicatorTintColor = UIColor(rgb: 0x8FBA47)
         pc.numberOfPages = self.pages.count
         return pc
     }()
@@ -49,7 +49,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Siguiente", for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(UIColor(rgb: 0x9B9B9B), for: .normal)
         button.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         return button
     }()
