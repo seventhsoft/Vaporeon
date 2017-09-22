@@ -28,11 +28,11 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     let loginCellId = "loginCellId"
     
     let pages: [Page] = {
-        let firstPage = Page(title: "Share a great listen", message: "It's free to send your books to the people in your life. Every recipient's first book is on us.", imageName: "Onboarding1")
+        let firstPage = Page(title: "", message: "¡Bienvenido a Kuni, el juego donde pones a prueba tus conocimientos!", imageName: "Onboarding1")
         
-        let secondPage = Page(title: "Send from your library", message: "Tap the More menu next to any book. Choose \"Send this Book\"", imageName: "Onboarding2")
+        let secondPage = Page(title: "", message: "Aquí encontrarás preguntas de deportes, historia, entretenimiento, arte y mucho más.", imageName: "Onboarding2")
         
-        let thirdPage = Page(title: "Send from the player", message: "Tap the More menu in the upper corner. Choose \"Send this Book\"", imageName: "Onboarding3")
+        let thirdPage = Page(title: "", message: "En cada nivel podrás encontrar increibles premios. ¡Empieza ya¡", imageName: "Onboarding3")
         
         return [firstPage, secondPage, thirdPage]
     }()
