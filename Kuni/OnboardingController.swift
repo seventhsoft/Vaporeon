@@ -29,9 +29,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     
     let pages: [Page] = {
         let firstPage = Page(title: "", message: "¡Bienvenido a Kuni, el juego donde pones a prueba tus conocimientos!", imageName: "Onboarding1")
-        
-        let secondPage = Page(title: "", message: "Aquí encontrarás preguntas de deportes, historia, entretenimiento, arte y mucho más.", imageName: "Onboarding2")
-        
+        let secondPage = Page(title: "", message: "Aquí encontrarás preguntas de deportes, historia, entretenimiento, arte y mucho más.", imageName: "Onboarding2")        
         let thirdPage = Page(title: "", message: "En cada nivel podrás encontrar increibles premios. ¡Empieza ya¡", imageName: "Onboarding3")
         
         return [firstPage, secondPage, thirdPage]
@@ -48,8 +46,11 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     
     lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Siguiente", for: .normal)
-        button.setTitleColor(UIColor(rgb: 0x9B9B9B), for: .normal)
+        let attributedText = NSMutableAttributedString(string: "Siguiente",
+                                                       attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold),
+                                                                    NSForegroundColorAttributeName: UIColor(rgb: 0x9B9B9B) ]
+        )
+        button.setAttributedTitle(attributedText, for: .normal)
         button.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         return button
     }()
@@ -64,7 +65,6 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
         //second last page
         if pageControl.currentPage == pages.count - 1 {
             moveControlConstraintsOffScreen()
-            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
@@ -91,7 +91,6 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
         view.addSubview(nextButton)
         
         pageControlBottomAnchor = pageControl.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)[1]
-        
         nextButtonTopAnchor = nextButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 50).first
         
         //use autolayout instead
@@ -103,13 +102,11 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     
     fileprivate func observeKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name: .UIKeyboardWillShow, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: .UIKeyboardWillHide, object: nil)
     }
     
     func keyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             
         }, completion: nil)
@@ -117,7 +114,6 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     
     func keyboardShow() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
             let y: CGFloat = UIDevice.current.orientation.isLandscape ? -100 : -50
             self.view.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height)
             
@@ -175,9 +171,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         //        print(UIDevice.current.orientation.isLandscape)
-        
         collectionView.collectionViewLayout.invalidateLayout()
-        
         let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
         //scroll to indexPath after the rotation is going
         DispatchQueue.main.async {
@@ -189,16 +183,16 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Show the navigation bar on other view controllers
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func sendToLogin(){

@@ -28,12 +28,12 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Transparent Navigation Bar
-        let navBar = self.navigationController?.navigationBar
-        navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navBar?.shadowImage = UIImage()
-        navBar?.isTranslucent = true
+
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "LoginImage")?.draw(in: self.view.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
         
         password.delegate = self     
     }
@@ -65,11 +65,27 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     
     @IBAction func showContestRules(_ sender: UIButton) {
         //Using a view controller
-        let vc = TermsAndConditionsController();
-        vc.modalTransitionStyle = .coverVertical
-        present(vc, animated: true, completion: nil)
+        let vc = ContestAndPrivacyController()
+        vc.file = "ContestRules"
+        vc.dialogTitle = "Bases del concurso"
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.present(navigationController, animated: true, completion: nil)
     }
 
+    @IBAction func showPrivacityPolicy(_ sender: UIButton) {
+        //Using a view controller
+        let vc = ContestAndPrivacyController()
+        vc.file = "PrivacityPolicy"
+        vc.dialogTitle = "Politica de privacidad"
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.present(navigationController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     // Validate fields
     func validateFields() -> Bool {
         // Create and configure Form
@@ -108,6 +124,21 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
         formItems = [emailItem, passwordItem]
         return formItems
     
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func sendToHome(){

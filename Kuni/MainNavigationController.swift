@@ -14,8 +14,8 @@ import Alamofire
 class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(rgb: 0xFC4B4A)
-        print("In main navigation")
+        view.backgroundColor = .white
+
         if FBSDKAccessToken.current() != nil {
         
         }                

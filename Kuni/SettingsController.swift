@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsController: UITableViewController {
     
-    let items = ["Notificaciones", "Sonidos"]
+    let items = ["Notificaciones", "Sonidos", "Cambiar contraseña"]
     
     convenience init() {
         self.init(style: .grouped)
