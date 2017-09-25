@@ -18,6 +18,7 @@ enum KuniRouter: URLRequestConvertible {
     case getProfile
     case setProfile(parameters: Parameters)
     case loadConcurso
+    case loadSerie(parameters: Parameters)
 
     static let baseURLString = "http://api.juegakuni.com.mx/lfs"    
 
@@ -25,7 +26,7 @@ enum KuniRouter: URLRequestConvertible {
         switch self {
         case .loginUser, .registerUser, .refreshToken, .closeSession, .lostPassword:
             return .post
-        case .getProfile, .loadConcurso:
+        case .getProfile, .loadConcurso, .loadSerie:
             return .get
         case .setProfile:
             return .put
@@ -50,7 +51,10 @@ enum KuniRouter: URLRequestConvertible {
             return "/usuarios"
         case .loadConcurso:
             return "/jugador/concurso"
+        case .loadSerie:
+            return "/concurso/serie"
         }
+        
     }
     
     var headers: HTTPHeaders {
@@ -78,7 +82,7 @@ enum KuniRouter: URLRequestConvertible {
 
         let encoding: ParameterEncoding = {
             switch self {
-            case .loginUser:
+            case .loginUser, .loadSerie:
                 return URLEncoding.default
             case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso:
                 return JSONEncoding.default
@@ -92,6 +96,7 @@ enum KuniRouter: URLRequestConvertible {
              .registerUser(let parameters),
              .lostPassword(let parameters),
              .setProfile(let parameters),
+             .loadSerie(let parameters),
              .refreshToken(let parameters),
              .closeSession(let parameters):
             urlRequest = try encoding.encode(urlRequest, with: parameters)

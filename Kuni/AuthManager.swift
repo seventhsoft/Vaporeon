@@ -125,7 +125,6 @@ class AuthManager: NSObject {
         revokeToken()
         revokeRefreshToken()
         Session.sharedInstance.removeData()
-        print("Closing session, removing data")
     }
     
     private func revokeToken(){
@@ -135,7 +134,6 @@ class AuthManager: NSObject {
         defaultManager.request(KuniRouter.refreshToken(parameters: params))
             .validate()
             .responseString { response in
-                print("Revoque token.")
                 switch response.result {
                 case .success:
                     print("Revoque token done.")
@@ -157,7 +155,6 @@ class AuthManager: NSObject {
         defaultManager.request(KuniRouter.refreshToken(parameters: params))
             .validate()
             .responseString { response in
-                print("Refresh token.")
                 switch response.result {
                 case .success:
                     print("Refresh token done.")

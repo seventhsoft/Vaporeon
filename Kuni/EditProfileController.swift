@@ -29,13 +29,12 @@ class EditProfileController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Transparent Navigation Bar
+        
         let navBar = self.navigationController?.navigationBar
-        navBar?.tintColor = .white
-        navBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navBar?.barTintColor = UIColor(rgb: 0xFC4B4A)
-        navBar?.backgroundColor = UIColor(rgb: 0xFC4B4A)
+        navBar?.tintColor = UIColor(rgb: 0xE81A8D)
+        navBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(rgb: 0xE81A8D) ]
+        navBar?.barTintColor = .white
+        navBar?.backgroundColor = .white
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = false
         

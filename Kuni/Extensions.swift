@@ -56,6 +56,16 @@ extension UIView {
     }
     
 }
+public extension UIView {
+    public func pin(to view: UIView) {
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+    }
+}
 
 extension UIView {
     
@@ -267,4 +277,11 @@ extension UserDefaults {
     }
     
     
+}
+
+extension UICollectionView {
+    func indexPathForView(view: AnyObject) -> NSIndexPath? {
+        let originInCollectioView = self.convert(CGPoint.zero, from: (view as! UIView))
+        return self.indexPathForItem(at: originInCollectioView)! as NSIndexPath
+    }
 }

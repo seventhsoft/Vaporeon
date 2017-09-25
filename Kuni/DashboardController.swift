@@ -10,7 +10,7 @@ import UIKit
 
 private let cellId = "cellId"
 
-class DashboardController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class DashboardController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SerieModalDelegate {
     
     var levels = [Level]()
     var contestData:ContestData?
@@ -21,6 +21,10 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         
         loadLevels()
         
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightHeavy),
+            NSForegroundColorAttributeName : UIColor(rgb: 0xE81A8D)
+        ]
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.alwaysBounceVertical = true
@@ -35,10 +39,25 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let levelCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LevelCell
-        levelCell.level = levels[indexPath.item]        
+        levelCell.level = levels[indexPath.item]
         return levelCell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let element = levels[indexPath.item]
+        if let isActive = element.isActive {
+            if isActive {
+                let sc = SerieController()
+                if let idJugador = gamerLevel?.idJugadorNivel {
+                    sc.idJugadorNivel = idJugador
+                }
+                sc.delegate = self
+                let nc = UINavigationController(rootViewController: sc)
+                nc.modalPresentationStyle = .fullScreen
+                self.present(nc, animated: true, completion: nil)
+            }
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: ((view.frame.width-48)/2), height: 140)
@@ -48,11 +67,20 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         return UIEdgeInsetsMake(16, 16, 16, 16)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         collectionView?.collectionViewLayout.invalidateLayout()
     }
     
+    func serieDialogCanceled(){
+
+        collectionView?.reloadData()
+        
+    }
     
     // MARK: - Complement Functions
     func addMenuButton() -> UIBarButtonItem {
@@ -68,25 +96,29 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     func loadLevels(){
         ContestManager.sharedInstance.getContestData() { data, error in
             if let contest = data["concurso"].dictionary {
+                let contestDataObj = ContestData()
                 if let activo = contest["activo"]?.bool,
                     let finicio = contest["fechaInicio"]?.int,
                     let ffin = contest["fechaFin"]?.int,
                     let id = contest["idConcurso"]?.int {
-                    self.contestData?.activo = activo
-                    self.contestData?.fechaFin = finicio
-                    self.contestData?.fechaInicio = ffin
-                    self.contestData?.idConcurso = id
+                    contestDataObj.activo = activo
+                    contestDataObj.fechaFin = finicio
+                    contestDataObj.fechaInicio = ffin
+                    contestDataObj.idConcurso = id
                 }
+                self.contestData = contestDataObj
             }
             
             if let jugador = data["jugadorNivel"].dictionary {
+                let gamerLevelObj = GamerLevel()
                 if let idJugadorNivel = jugador["idJugadorNivel"]?.int,
                     let serieActual = jugador["serieActual"]?.int,
                     let dNivel = jugador["dNivel"]?.int {
-                    self.gamerLevel?.idJugadorNivel = idJugadorNivel
-                    self.gamerLevel?.serieActual = serieActual
-                    self.gamerLevel?.dNivel = dNivel
+                    gamerLevelObj.idJugadorNivel = idJugadorNivel
+                    gamerLevelObj.serieActual = serieActual
+                    gamerLevelObj.dNivel = dNivel
                 }
+                self.gamerLevel = gamerLevelObj
             }
             
             if let levels = data["niveles"].array {
@@ -109,7 +141,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
                     self.levels.append(item)
                 }
             }
-
+            
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
             }
@@ -128,7 +160,7 @@ class LevelCell: UICollectionViewCell {
                 let seriesJugador = level?.seriesJugador,
                 let series = level?.series,
                 let active = level?.isActive {
-                
+
                 var imgURL = "http://images.juegakuni.com.mx/images/bg_lv\(levelNumber)_unstarted.png"
                 if active {
                     imgURL = "http://images.juegakuni.com.mx/images/bg_lv\(levelNumber)_started.png"
@@ -150,7 +182,6 @@ class LevelCell: UICollectionViewCell {
             if let hasRewards = level?.tieneRecompensa {
                 if hasRewards {
                     if let rewards = level?.recompensasDisponibles {
-                        print("¡Aquí hay \(rewards) premios!")
                         rewardsLabel.text = "¡Aquí hay \(rewards) premios!"
                     }
                 }
@@ -195,11 +226,11 @@ class LevelCell: UICollectionViewCell {
     
     func setupViews() {
         backgroundColor = .clear
-        layer.shadowColor = UIColor.darkGray.cgColor
-        layer.shadowOffset = CGSize(width: 1.0, height: 0.8)
-        layer.shadowRadius = 6.0
-        layer.shadowOpacity = 0.8
-        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: -1, height: 1)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.4
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 3).cgPath
         
         addSubview(nameLabel)
         addSubview(rewardsLabel)

@@ -38,11 +38,14 @@
 		65CBAD111F47F7AA0083DD95 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */; };
 		65CBAD131F48D9830083DD95 /* LegalsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD121F48D9830083DD95 /* LegalsController.swift */; };
 		65CBAD151F48DDE10083DD95 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CBAD141F48DDE10083DD95 /* SettingsController.swift */; };
+		65CE9CCF1F76E5E800E239EA /* SerieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE9CCE1F76E5E800E239EA /* SerieController.swift */; };
 		65D86C471F15B3B4005501CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D86C461F15B3B4005501CF /* AppDelegate.swift */; };
 		65D86C491F15B3B4005501CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D86C481F15B3B4005501CF /* ViewController.swift */; };
 		65D86C4C1F15B3B4005501CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4A1F15B3B4005501CF /* Main.storyboard */; };
 		65D86C4E1F15B3B4005501CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4D1F15B3B4005501CF /* Assets.xcassets */; };
 		65D86C511F15B3B4005501CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4F1F15B3B4005501CF /* LaunchScreen.storyboard */; };
+		65E6C47B1F78802E0019A8D4 /* MaterialCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C47A1F78802E0019A8D4 /* MaterialCard.swift */; };
+		65E6C47D1F7889920019A8D4 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C47C1F7889920019A8D4 /* QuestionController.swift */; };
 		65EBE2901F4049FC004715A2 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE28F1F4049FC004715A2 /* FacebookManager.swift */; };
 		65EBE2931F417533004715A2 /* DLHamburguerContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */; };
 		65EBE2951F417543004715A2 /* DLHamburguerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */; };
@@ -84,6 +87,7 @@
 		65CBAD101F47F7AA0083DD95 /* OnboardingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		65CBAD121F48D9830083DD95 /* LegalsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalsController.swift; sourceTree = "<group>"; };
 		65CBAD141F48DDE10083DD95 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		65CE9CCE1F76E5E800E239EA /* SerieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieController.swift; sourceTree = "<group>"; };
 		65D86C431F15B3B4005501CF /* Kuni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kuni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D86C461F15B3B4005501CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D86C481F15B3B4005501CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		65D86C4D1F15B3B4005501CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65D86C501F15B3B4005501CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65D86C521F15B3B4005501CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65E6C47A1F78802E0019A8D4 /* MaterialCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialCard.swift; sourceTree = "<group>"; };
+		65E6C47C1F7889920019A8D4 /* QuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		65EBE28F1F4049FC004715A2 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerContainerViewController.swift; sourceTree = "<group>"; };
 		65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerNavigationController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 				6542D7111F2823E6005EB323 /* Extensions.swift */,
 				657D06B31F2EC4B10016A14F /* Validators.swift */,
 				657D06B51F2F81B50016A14F /* Form.swift */,
+				65E6C47A1F78802E0019A8D4 /* MaterialCard.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -176,6 +183,7 @@
 		65AE9BFD1F25C18900D67B02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				65CE9CCD1F76E5C900E239EA /* Contest */,
 				65CBACFF1F475E460083DD95 /* Dashboard */,
 				65CBACFE1F475E0B0083DD95 /* Login */,
 				65CBACFD1F475DEB0083DD95 /* Profile */,
@@ -226,6 +234,15 @@
 				65CBAD041F47A0680083DD95 /* DashboardController.swift */,
 			);
 			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		65CE9CCD1F76E5C900E239EA /* Contest */ = {
+			isa = PBXGroup;
+			children = (
+				65CE9CCE1F76E5E800E239EA /* SerieController.swift */,
+				65E6C47C1F7889920019A8D4 /* QuestionController.swift */,
+			);
+			name = Contest;
 			sourceTree = "<group>";
 		};
 		65D86C3A1F15B3B4005501CF = {
@@ -439,9 +456,11 @@
 				651375541F55EE660034AC08 /* ContestManager.swift in Sources */,
 				65EBE2971F417554004715A2 /* DLHamburguerViewController.swift in Sources */,
 				65CBAD091F47DAAD0083DD95 /* Contest.swift in Sources */,
+				65E6C47D1F7889920019A8D4 /* QuestionController.swift in Sources */,
 				65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */,
 				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
 				65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */,
+				65CE9CCF1F76E5E800E239EA /* SerieController.swift in Sources */,
 				651549F11F364DE100650E4C /* MainNavigationController.swift in Sources */,
 				65CBAD151F48DDE10083DD95 /* SettingsController.swift in Sources */,
 				65CBAD111F47F7AA0083DD95 /* OnboardingController.swift in Sources */,
@@ -463,6 +482,7 @@
 				65C9B0091F2BA4CB0028D360 /* ContestAndPrivacyController.swift in Sources */,
 				65EBE2991F417770004715A2 /* HomeRootController.swift in Sources */,
 				658456D01F4BDD6B00A127CD /* EditProfileController.swift in Sources */,
+				65E6C47B1F78802E0019A8D4 /* MaterialCard.swift in Sources */,
 				651549E91F362AD000650E4C /* HomeController.swift in Sources */,
 				65C9B0071F2A0C210028D360 /* User.swift in Sources */,
 				65D86C471F15B3B4005501CF /* AppDelegate.swift in Sources */,

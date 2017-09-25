@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - Contest Models
+
 class Level {
     var name: String?
     var number: Int?
@@ -29,4 +31,30 @@ class GamerLevel {
     var idJugadorNivel: Int?
     var serieActual: Int?
     var dNivel: Int?
+}
+
+// MARK: - Game models
+
+class Serie {
+    var tiempo: Int?
+    var questions = [Question]()
+    var banner: String?
+}
+
+class Question {
+    var idPregunta: Int?
+    var descripcion: String?
+    var ruta: String?
+    var clase: String?
+    var banner: String?
+    var activo: Bool?
+    var respuestas = [Answer]()
+}
+
+class Answer {
+    var idRespuesta: Int?
+    var descripcion: String?
+    var orden: Int?
+    var correcta: Bool?
+    var activo:Bool?
 }

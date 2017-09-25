@@ -522,8 +522,8 @@
                                     <fragment content="KUNI">
                                         <attributes>
                                             <color key="NSColor" red="0.75271546840000003" green="0.24559773500000001" blue="0.54909658429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" size="26" name="SFProDisplay-Bold"/>
-                                            <font key="NSOriginalFont" size="26" name="SFProDisplay-Bold"/>
+                                            <font key="NSFont" metaFont="system" size="26"/>
+                                            <font key="NSOriginalFont" metaFont="system" size="26"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
