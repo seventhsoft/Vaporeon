@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3641FC9F1F79516300AE1252 /* Contest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3641FC9E1F79516300AE1252 /* Contest.storyboard */; };
+		3641FCA11F79567B00AE1252 /* DialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641FCA01F79567B00AE1252 /* DialogController.swift */; };
 		3697FB7C1F5F5866009C7506 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3697FB7B1F5F5866009C7506 /* OAuthManager.swift */; };
 		36AB952B1F75F466000E963A /* PrivacityPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = 36AB952A1F75F466000E963A /* PrivacityPolicy.html */; };
 		5878F0E7E5D349B391911F69 /* Pods_Kuni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B22D021199AAB769E164D /* Pods_Kuni.framework */; };
@@ -55,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3641FC9E1F79516300AE1252 /* Contest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contest.storyboard; sourceTree = "<group>"; };
+		3641FCA01F79567B00AE1252 /* DialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogController.swift; sourceTree = "<group>"; };
 		3697FB7B1F5F5866009C7506 /* OAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		36AB952A1F75F466000E963A /* PrivacityPolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacityPolicy.html; sourceTree = "<group>"; };
 		63DE74B1429783EB44A75FCC /* Pods-Kuni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuni.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kuni/Pods-Kuni.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			children = (
 				65D86C4F1F15B3B4005501CF /* LaunchScreen.storyboard */,
 				65D86C4A1F15B3B4005501CF /* Main.storyboard */,
+				3641FC9E1F79516300AE1252 /* Contest.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			children = (
 				65CE9CCE1F76E5E800E239EA /* SerieController.swift */,
 				65E6C47C1F7889920019A8D4 /* QuestionController.swift */,
+				3641FCA01F79567B00AE1252 /* DialogController.swift */,
 			);
 			name = Contest;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				656412BB1F1D35690020DB54 /* GoogleService-Info.plist in Resources */,
 				65D86C4E1F15B3B4005501CF /* Assets.xcassets in Resources */,
 				65D86C4C1F15B3B4005501CF /* Main.storyboard in Resources */,
+				3641FC9F1F79516300AE1252 /* Contest.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +488,7 @@
 				657D06B21F2E95320016A14F /* LostPasswordController.swift in Sources */,
 				65C9B0091F2BA4CB0028D360 /* ContestAndPrivacyController.swift in Sources */,
 				65EBE2991F417770004715A2 /* HomeRootController.swift in Sources */,
+				3641FCA11F79567B00AE1252 /* DialogController.swift in Sources */,
 				658456D01F4BDD6B00A127CD /* EditProfileController.swift in Sources */,
 				65E6C47B1F78802E0019A8D4 /* MaterialCard.swift in Sources */,
 				651549E91F362AD000650E4C /* HomeController.swift in Sources */,

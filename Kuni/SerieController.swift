@@ -410,6 +410,7 @@ class SerieController: UIViewController {
     func endSerie() {
         serieEnded = true
         print("Serie terminada")
+        showEndedSerieDialog()
         //viewFeddback.isHidden = false
         
         //viewFeddback.backgroundColor = UIColor.white
@@ -420,7 +421,13 @@ class SerieController: UIViewController {
         //feedbackButton.setTitle("Refazer", for: UIControlState())
     }
     
-
+    func showEndedSerieDialog(){
+        let dialog = DialogController()
+        dialog.message = "¡Terminaste la serie!"
+        dialog.imageName = "serieImage"
+        dialog.modalPresentationStyle = .fullScreen
+        self.present(dialog, animated: true, completion: nil)
+    }
     
     
     //MARK: - Custom Function
