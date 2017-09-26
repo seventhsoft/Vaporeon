@@ -14,7 +14,7 @@ protocol SerieModalDelegate {
     func serieDialogCanceled()
 }
 
-class SerieController: UIViewController {
+class SerieController: UIViewController, DialogModalDelegate {
     
     var delegate: SerieModalDelegate? = nil
     var idJugadorNivel: Int?
@@ -272,7 +272,7 @@ class SerieController: UIViewController {
         
         //Constraints
         main.anchorWithConstantsToTop(classView.topAnchor, left: classView.leftAnchor, bottom: classView.bottomAnchor, right: classView.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
-        container.heightAnchor.constraint(equalTo: classView.heightAnchor, multiplier: 0.3).isActive = true
+        container.heightAnchor.constraint(equalTo: classView.heightAnchor, multiplier: 0.4).isActive = true
     }
     
     func startSerie(){
@@ -351,8 +351,9 @@ class SerieController: UIViewController {
                 responseDescription.text = item.descripcion
                 classDescription.text = serie.questions[currentQuestion].clase
                 self.getClassImage() { image, error in
+                    let usedImage = (error == false) ? image : UIImage(named: "defaultClassImage")
                     UIGraphicsBeginImageContext(self.backgroundClass.frame.size)
-                    image.draw(in: self.backgroundClass.bounds)
+                    usedImage?.draw(in: self.backgroundClass.bounds)
                     let otherImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
                     UIGraphicsEndImageContext()
                     self.backgroundClass.backgroundColor = UIColor(patternImage: otherImage)
@@ -382,7 +383,7 @@ class SerieController: UIViewController {
     func fetchClassImage(completionHandler: @escaping (UIImage, Bool?) -> ()) {
         if let serie = self.serie {
             let imgPath = serie.questions[currentQuestion].ruta
-            let link = "http://images.juegakuni.com.mx/images/clase/103.jpg"
+            let link = "http://images.juegakuni.com.mx/images/clase/\(imgPath!)"
             guard let url = URL(string: link) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard
@@ -390,9 +391,12 @@ class SerieController: UIViewController {
                     let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                     let data = data, error == nil,
                     let image = UIImage(data: data)
-                    else { return }
+                    else {
+                        completionHandler(UIImage(), true)
+                        return
+                }
                 DispatchQueue.main.async() { () -> Void in
-                    completionHandler(image, nil)
+                    completionHandler(image, false)
                 }
             }.resume()
         }
@@ -425,15 +429,27 @@ class SerieController: UIViewController {
         let dialog = DialogController()
         dialog.message = "¡Terminaste la serie!"
         dialog.imageName = "serieImage"
+        dialog.delegate = self
         dialog.modalPresentationStyle = .fullScreen
         self.present(dialog, animated: true, completion: nil)
+    }
+    
+    func dialogSerieClosed(showDashboard:Bool){
+        if(showDashboard){
+            print("Hay que ir al dashboard!")
+            dismissDialog()
+        } else {
+            print("Pasar a siguiente serie desde fin de serie")
+        }
     }
     
     
     //MARK: - Custom Function
     
     func dismissDialog(){
+        print("Dejando el dialogo deserie para ir al dashbiard")
         if(delegate != nil) {
+            print("Verificando delegado de dialogo de serie")
             self.delegate?.serieDialogCanceled()
             self.dismiss(animated: true, completion: nil)
         }
