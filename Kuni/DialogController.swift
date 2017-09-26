@@ -49,6 +49,7 @@ class DialogController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setMessageData()
+        
         //Main Stack View
         let container   = UIStackView()
         container.axis  = .vertical
@@ -62,7 +63,7 @@ class DialogController: UIViewController {
         buttons.axis  = .horizontal
         buttons.distribution  = .fillEqually
         buttons.alignment = .fill
-        buttons.spacing   = 20
+        buttons.spacing   = 22
         buttons.addArrangedSubview(btnDashboard)
         buttons.addArrangedSubview(btnNextSerie)
         buttons.translatesAutoresizingMaskIntoConstraints = false
@@ -71,20 +72,24 @@ class DialogController: UIViewController {
         main.axis = .vertical
         main.distribution = .equalSpacing
         main.alignment = .fill
-        main.spacing = 20
         main.addArrangedSubview(container)
         main.addArrangedSubview(buttons)
         main.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(main)
-        view.backgroundColor = .orange
+        if let image = imageName {
+            UIGraphicsBeginImageContext(self.view.frame.size)
+            UIImage(named: image)?.draw(in: self.view.bounds)
+            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
         
         //Constraints
-        main.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
-        container.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: buttons.topAnchor, right: view.rightAnchor)
-        buttons.anchorWithConstantsToTop(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
-        
-        
+        main.anchorWithConstantsToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
+        container.anchorToTop(main.topAnchor, left: main.leftAnchor, bottom: main.topAnchor, right: main.rightAnchor)
+        container.heightAnchor.constraint(equalTo: main.heightAnchor, multiplier: 0.3).isActive = true
+        buttons.anchorToTop(nil, left: main.leftAnchor, bottom: main.bottomAnchor, right: main.rightAnchor)
     }
     
     func setMessageData(){
