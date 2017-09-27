@@ -283,6 +283,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         classView.isHidden = true
         showQuestion(0)
         setClassView()
+        
     }
     
     func showQuestion(_ questionId : Int) -> Void {
@@ -415,14 +416,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         serieEnded = true
         print("Serie terminada")
         showEndedSerieDialog()
-        //viewFeddback.isHidden = false
-        
-        //viewFeddback.backgroundColor = UIColor.white
-        //feedbackText.textColor = UIColor.black
-        
-        
-        //feedbackText.text = "Sua pontuação \(round(grade))"
-        //feedbackButton.setTitle("Refazer", for: UIControlState())
+        classView.isHidden = true
     }
     
     func showEndedSerieDialog(){
@@ -435,11 +429,11 @@ class SerieController: UIViewController, DialogModalDelegate {
     }
     
     func dialogSerieClosed(showDashboard:Bool){
-        if(showDashboard){
-            print("Hay que ir al dashboard!")
-            dismissDialog()
-        } else {
-            print("Pasar a siguiente serie desde fin de serie")
+        if(!showDashboard){
+            if let idGamer = idJugadorNivel {
+                getSerieData(id: idGamer)
+                startSerie()
+            }
         }
     }
     
@@ -447,9 +441,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     //MARK: - Custom Function
     
     func dismissDialog(){
-        print("Dejando el dialogo deserie para ir al dashbiard")
         if(delegate != nil) {
-            print("Verificando delegado de dialogo de serie")
             self.delegate?.serieDialogCanceled()
             self.dismiss(animated: true, completion: nil)
         }

@@ -97,7 +97,6 @@ class DialogController: UIViewController {
         if let message = self.message {
             lblMessage.text = message
         }
-        
         if let fileBackgroundName = self.imageName {
             imageName = fileBackgroundName
         }
@@ -114,7 +113,12 @@ class DialogController: UIViewController {
     func dismissDialog(dashboard:Bool){
         if(delegate != nil) {
             self.delegate?.dialogSerieClosed(showDashboard: dashboard)
-            self.dismiss(animated: true, completion: nil)
+            let pvc = self.presentingViewController
+            self.dismiss(animated: true, completion: {
+                if(dashboard){
+                    pvc?.presentingViewController?.dismiss(animated: true, completion: {})
+                }
+            })
         }
     }
     
