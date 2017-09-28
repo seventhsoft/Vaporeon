@@ -20,6 +20,7 @@ class DialogController: UIViewController {
     lazy var btnDashboard: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
+        button.cornerRadius = 4
         button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
         button.addTarget(self, action: #selector(goToDashboard(_:)), for: .touchUpInside)
         button.setTitle("Ir al tablero", for: UIControlState())
@@ -30,6 +31,7 @@ class DialogController: UIViewController {
     lazy var btnNextSerie: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(rgb: 0x97BA52)
+        button.cornerRadius = 4
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(nextSerie(_:)), for: .touchUpInside)
         button.setTitle("Siguiente serie", for: UIControlState())
@@ -113,12 +115,11 @@ class DialogController: UIViewController {
     func dismissDialog(dashboard:Bool){
         if(delegate != nil) {
             self.delegate?.dialogSerieClosed(showDashboard: dashboard)
-            let pvc = self.presentingViewController
-            self.dismiss(animated: true, completion: {
-                if(dashboard){
-                    pvc?.presentingViewController?.dismiss(animated: true, completion: {})
-                }
-            })
+            if(dashboard){
+                let pvc = self.presentingViewController
+                pvc?.presentingViewController?.dismiss(animated: false, completion: {})
+            }
+            self.dismiss(animated: true, completion: {})
         }
     }
     

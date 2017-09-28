@@ -15,14 +15,15 @@ protocol SerieModalDelegate {
 }
 
 class SerieController: UIViewController, DialogModalDelegate {
-    
+    // MARK: - Context variables
     var delegate: SerieModalDelegate? = nil
     var idJugadorNivel: Int?
     var serie: Serie?
     var currentQuestion = 0
     var serieEnded = false
     var score = 0
-
+    
+    // MARK: - Context View
     private lazy var backgroundView: UIView = {
         let bgView = UIView()
         bgView.backgroundColor = UIColor(rgb: 0x3CBBBD)
@@ -55,10 +56,30 @@ class SerieController: UIViewController, DialogModalDelegate {
         return itemView
     }()
     
+    // MARK: - Labels and buttons for Question view
+    
     lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.textColor = .white
+        label.textAlignment = .left
+        return label
+    }()
+
+    lazy var questionLevelSerieLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .white
+        label.textAlignment = .left
+        return label
+    }()
+    
+    lazy var questionNumberLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -71,6 +92,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 1
         return button
@@ -83,6 +105,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 2
         return button
@@ -95,10 +118,13 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 3
         return button
     }()
+    
+    // MARK: - Labels and buttons for Class View
     
     lazy var responseDescription: UILabel = {
         let label = UILabel()
@@ -213,6 +239,12 @@ class SerieController: UIViewController, DialogModalDelegate {
 
     func setControls(){
         //Main Stack View
+        let levelLabels = UIStackView()
+        levelLabels.axis = .horizontal
+        levelLabels.distribution = .equalSpacing
+        levelLabels.alignment = .fill
+        levelLabels.spacing = 10
+        
         let container   = UIStackView()
         container.axis  = .vertical
         container.distribution  = .equalSpacing
@@ -244,6 +276,17 @@ class SerieController: UIViewController, DialogModalDelegate {
         classView.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         
     }
+    
+    func getStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .equalSpacing
+        stack.alignment = .fill
+        stack.spacing = 10
+        
+        return stack
+    }
+    
     
     func setClassView(){
         //Main Stack View
@@ -318,10 +361,12 @@ class SerieController: UIViewController, DialogModalDelegate {
         if let serieItem = self.serie {
             let answers = serieItem.questions[currentQuestion].respuestas
             let answered = serieItem.questions[currentQuestion].respuestas[answerId]
-            sender.setTitleColor(.red, for: UIControlState())
+            sender.setTitleColor(UIColor(rgb: 0xC00000), for: UIControlState())
             if (answered.correcta == true) {
                 self.score += 1
-                sender.setTitleColor(.green, for: UIControlState())
+                sender.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
+            } else {
+                // Pregunta Incorrecta
             }
             
             var correct:Answer?
@@ -329,7 +374,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                 if element.correcta == true {
                     correct = element
                     if let btnCorrect = view.viewWithTag(index+1) as? UIButton {
-                        btnCorrect.setTitleColor(.green, for: UIControlState())
+                        btnCorrect.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
                     }
                 }
             }
@@ -368,7 +413,6 @@ class SerieController: UIViewController, DialogModalDelegate {
     
     func sendButtonClassFeedback(_ sender: AnyObject){
         classView.isHidden = true
-        
         if serieEnded == true {
             // Pantalla de fin de serie
             print("Fin de serie")
@@ -403,6 +447,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         }
     }
     
+    // Next Question    
     func nextQuestion() {
         currentQuestion += 1
         if (currentQuestion < (self.serie?.questions.count)!) {

@@ -89,7 +89,7 @@ class OAuth2Handler: RequestAdapter, RequestRetrier {
         let urlString = "\(baseURLString)/lft/oauth/token"
 
         let parameters: [String: Any] = [
-            "access_token": accessToken,
+            //"access_token": accessToken,
             "refresh_token": refreshToken,
             "grant_type": "refresh_token"
         ]
