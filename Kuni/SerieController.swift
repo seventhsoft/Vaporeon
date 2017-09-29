@@ -277,15 +277,15 @@ class SerieController: UIViewController, DialogModalDelegate {
         
     }
     
-    func getStackView() -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .equalSpacing
-        stack.alignment = .fill
-        stack.spacing = 10
-        
-        return stack
-    }
+//    func getStackView(orientation:UILayoutConstraintAxis, ) -> UIStackView {
+//        let stack = UIStackView()
+//        stack.axis = UILayoutConstraintAxis.horizontal
+//        stack.distribution = .equalSpacing
+//        stack.alignment = .fill
+//        stack.spacing = 10
+//        
+//        return stack
+//    }
     
     
     func setClassView(){
