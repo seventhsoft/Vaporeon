@@ -66,7 +66,7 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     @IBAction func showContestRules(_ sender: UIButton) {
         //Using a view controller
         let vc = ContestAndPrivacyController()
-        vc.file = "ContestRules"
+        vc.url = "http://about.juegakuni.mx/bases.html"
         vc.dialogTitle = "Bases del concurso"
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .overFullScreen
@@ -76,7 +76,7 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     @IBAction func showPrivacityPolicy(_ sender: UIButton) {
         //Using a view controller
         let vc = ContestAndPrivacyController()
-        vc.file = "PrivacityPolicy"
+        vc.url = "http://about.juegakuni.mx/privacidad.html"
         vc.dialogTitle = "Politica de privacidad"
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .overFullScreen

@@ -31,6 +31,10 @@ class MainNavigationController: UINavigationController {
         return UserDefaults.standard.isLoggedIn()
     }
 
+    fileprivate func hasSeenOnboarding() -> Bool {
+        return UserDefaults.standard.hasSeenOnboarding()
+    }
+    
     func showHomeController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let settingVC = storyboard.instantiateViewController(withIdentifier: "HomeRootController")
@@ -41,8 +45,9 @@ class MainNavigationController: UINavigationController {
     }
     
     func showLoginController() {
+        let homeVC = hasSeenOnboarding() ? "LoginNavigation" : "OnboardingNavigation"
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let settingVC = storyboard.instantiateViewController(withIdentifier: "OnboardingNavigation") as! UINavigationController
+        let settingVC = storyboard.instantiateViewController(withIdentifier: homeVC) as! UINavigationController
         self.present(settingVC, animated: true, completion: {
             UIApplication.shared.keyWindow?.rootViewController = settingVC
         })

@@ -16,8 +16,12 @@ protocol SerieModalDelegate {
 
 class SerieController: UIViewController, DialogModalDelegate {
     // MARK: - Context variables
+    
     var delegate: SerieModalDelegate? = nil
     var idJugadorNivel: Int?
+    var idConcurso: Int?
+    var idNivel: Int?
+    var idSerie: Int?
     var serie: Serie?
     var currentQuestion = 0
     var serieEnded = false
@@ -61,7 +65,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -70,7 +74,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionLevelSerieLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -79,9 +83,19 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionNumberLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .white
         label.textAlignment = .left
+        return label
+    }()
+    
+    lazy var questionCounter: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textColor = .white
+        label.text = "0"
+        label.textAlignment = .right
         return label
     }()
     
@@ -239,31 +253,26 @@ class SerieController: UIViewController, DialogModalDelegate {
 
     func setControls(){
         //Main Stack View
-        let levelLabels = UIStackView()
-        levelLabels.axis = .horizontal
-        levelLabels.distribution = .equalSpacing
-        levelLabels.alignment = .fill
-        levelLabels.spacing = 10
         
-        let container   = UIStackView()
-        container.axis  = .vertical
-        container.distribution  = .equalSpacing
-        container.alignment = .fill
-        container.spacing   = 16.0
+        let levelLabels = getStackView(orientation: .vertical, spacing: 3)
+        levelLabels.addArrangedSubview(questionLevelSerieLabel)
+        levelLabels.addArrangedSubview(questionNumberLabel)
+        
+        let header = getStackView(orientation: .horizontal, spacing: 1)
+        header.alignment = .top
+        header.addArrangedSubview(levelLabels)
+        header.addArrangedSubview(questionCounter)
+        
+        let container   = getStackView(orientation: .vertical, spacing: 16)
+        container.addArrangedSubview(header)
         container.addArrangedSubview(questionLabel)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 20, right: 20)
+        container.layoutMargins = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
         container.isLayoutMarginsRelativeArrangement = true
         
-        let buttons = UIStackView()
-        buttons.axis = .vertical
-        buttons.distribution = .equalSpacing
-        buttons.alignment = .fill
-        buttons.spacing = 10
+        let buttons = getStackView(orientation: .vertical, spacing: 10)
         buttons.addArrangedSubview(answer1)
         buttons.addArrangedSubview(answer2)
         buttons.addArrangedSubview(answer3)
-        buttons.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(container)
         view.addSubview(buttons)
@@ -277,34 +286,25 @@ class SerieController: UIViewController, DialogModalDelegate {
         
     }
     
-//    func getStackView(orientation:UILayoutConstraintAxis, ) -> UIStackView {
-//        let stack = UIStackView()
-//        stack.axis = UILayoutConstraintAxis.horizontal
-//        stack.distribution = .equalSpacing
-//        stack.alignment = .fill
-//        stack.spacing = 10
-//        
-//        return stack
-//    }
-    
+    func getStackView(orientation: UILayoutConstraintAxis, spacing: Int ) -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = orientation
+        stack.distribution = .equalSpacing
+        stack.alignment = .fill
+        stack.spacing = CGFloat(spacing)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }
     
     func setClassView(){
         //Main Stack View
-        let container   = UIStackView()
-        container.axis  = .vertical
-        container.distribution  = .equalSpacing
-        container.alignment = .fill
-        container.spacing   = 16.0
+        let container   = getStackView(orientation: .vertical, spacing: 16)
         container.addArrangedSubview(responseDescription)
         container.translatesAutoresizingMaskIntoConstraints = false
         container.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 20, right: 20)
         container.isLayoutMarginsRelativeArrangement = true
         
-        let main = UIStackView()
-        main.axis = .vertical
-        main.distribution = .equalSpacing
-        main.alignment = .fill
-        main.spacing = 10
+        let main = getStackView(orientation: .vertical, spacing: 10)
         main.addArrangedSubview(container)
         main.addArrangedSubview(classDescription)
         main.addArrangedSubview(nextQuestionButton)
@@ -337,6 +337,11 @@ class SerieController: UIViewController, DialogModalDelegate {
             answer1.setTitle(selectedQuestion.respuestas[0].descripcion, for: UIControlState())
             answer2.setTitle(selectedQuestion.respuestas[1].descripcion, for: UIControlState())
             answer3.setTitle(selectedQuestion.respuestas[2].descripcion, for: UIControlState())
+            if let idNivel = self.idNivel,
+                let idSerie = self.idSerie {
+                questionLevelSerieLabel.text = "Nivel \(idNivel)/ Serie \(idSerie)"
+                questionNumberLabel.text = "Pregunta \(questionId + 1)"
+            }
         }
     }
     
@@ -460,8 +465,8 @@ class SerieController: UIViewController, DialogModalDelegate {
     func endSerie() {
         serieEnded = true
         print("Serie terminada")
-        showEndedSerieDialog()
         classView.isHidden = true
+        showEndedSerieDialog()
     }
     
     func showEndedSerieDialog(){

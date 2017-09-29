@@ -48,8 +48,14 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         if let isActive = element.isActive {
             if isActive {
                 let sc = SerieController()
-                if let idJugador = gamerLevel?.idJugadorNivel {
+                if let idJugador = gamerLevel?.idJugadorNivel,
+                    let idConcurso = contestData?.idConcurso,
+                    let idNivel = gamerLevel?.dNivel,
+                    let idSerie = gamerLevel?.serieActual {
                     sc.idJugadorNivel = idJugador
+                    sc.idConcurso = idConcurso
+                    sc.idNivel = idNivel
+                    sc.idSerie = idSerie
                 }
                 sc.delegate = self
                 let nc = UINavigationController(rootViewController: sc)

@@ -200,6 +200,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
         let settingVC = storyboard.instantiateViewController(withIdentifier: "LoginNavigation") as! UINavigationController
         self.present(settingVC, animated: true, completion: {
             UIApplication.shared.keyWindow?.rootViewController = settingVC
+            UserDefaults.standard.setHasSeenOnboarding(value: true)
         })
         
     }

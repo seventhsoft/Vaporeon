@@ -78,7 +78,8 @@ class HomeMenuController: UIViewController, UITableViewDelegate, UITableViewData
     
     func showLoginController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let settingVC = storyboard.instantiateViewController(withIdentifier: "OnboardingNavigation") as! UINavigationController
+        let homeVC = UserDefaults.standard.hasSeenOnboarding() ? "LoginNavigation" : "OnboardingNavigation"
+        let settingVC = storyboard.instantiateViewController(withIdentifier: homeVC) as! UINavigationController
         self.present(settingVC, animated: true, completion: {
             UIApplication.shared.keyWindow?.rootViewController = settingVC
         })

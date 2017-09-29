@@ -12,6 +12,7 @@ import UIKit
 class ContestAndPrivacyController: UIViewController {
     var file: String?
     var dialogTitle: String?
+    var url: String?
     
     lazy var webView: UIWebView = {
         let wview = UIWebView()
@@ -44,6 +45,12 @@ class ContestAndPrivacyController: UIViewController {
                 let request = URLRequest(url: requesturl!)
                 webView.loadRequest(request)
             }
+        }
+        
+        if let urlAddress = url {
+            let requesturl = URL(string: urlAddress)
+            let request = URLRequest(url: requesturl!)
+            webView.loadRequest(request)
         }
         
         view.addSubview(webView)

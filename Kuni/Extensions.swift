@@ -280,6 +280,7 @@ extension UserDefaults {
     
     enum UserDefaultsKeys: String {
         case isLoggedIn
+        case hasSeenOnboarding
     }
     
     func setIsLoggedIn(value: Bool) {
@@ -291,6 +292,13 @@ extension UserDefaults {
         return bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
     }
     
+    func setHasSeenOnboarding(value: Bool){
+        set(value, forKey: UserDefaultsKeys.hasSeenOnboarding.rawValue)
+        synchronize()
+    }
+    func hasSeenOnboarding() -> Bool {
+        return bool(forKey: UserDefaultsKeys.hasSeenOnboarding.rawValue)
+    }
     
 }
 
