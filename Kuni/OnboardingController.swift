@@ -30,9 +30,10 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     let pages: [Page] = {
         let firstPage = Page(title: "", message: "¡Bienvenido a Kuni, el juego donde pones a prueba tus conocimientos!", imageName: "Onboarding1")
         let secondPage = Page(title: "", message: "Aquí encontrarás preguntas de deportes, historia, entretenimiento, arte y mucho más.", imageName: "Onboarding2")        
-        let thirdPage = Page(title: "", message: "En cada nivel podrás encontrar increibles premios. ¡Empieza ya¡", imageName: "Onboarding3")
+        //let thirdPage = Page(title: "", message: "En cada nivel podrás encontrar increibles premios. ¡Empieza ya¡", imageName: "Onboarding3")
         
-        return [firstPage, secondPage, thirdPage]
+        //return [firstPage, secondPage, thirdPage]
+        return [firstPage, secondPage]
     }()
     
     lazy var pageControl: UIPageControl = {

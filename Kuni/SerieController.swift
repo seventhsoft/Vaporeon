@@ -25,6 +25,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     var serie: Serie?
     var currentQuestion = 0
     var serieEnded = false
+    var isIncorrect = false
     var score = 0
     
     // MARK: - Context View
@@ -89,12 +90,15 @@ class SerieController: UIViewController, DialogModalDelegate {
         return label
     }()
     
-    lazy var questionCounter: UILabel = {
-        let label = UILabel()
+    lazy var questionCounter: EFCountingLabel = {
+        let label = EFCountingLabel()
         label.numberOfLines = 0
         label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textColor = .white
         label.text = "0"
+        label.format = "%d"
+        label.method = .linear
+        label.animationDuration = 5.0
         label.textAlignment = .right
         return label
     }()
@@ -139,6 +143,15 @@ class SerieController: UIViewController, DialogModalDelegate {
     }()
     
     // MARK: - Labels and buttons for Class View
+    lazy var responseLeyend: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .white
+        label.textAlignment = .left
+        label.text = "Respuesta correcta:"
+        return label
+    }()
     
     lazy var responseDescription: UILabel = {
         let label = UILabel()
@@ -299,6 +312,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     func setClassView(){
         //Main Stack View
         let container   = getStackView(orientation: .vertical, spacing: 16)
+        container.addArrangedSubview(responseLeyend)
         container.addArrangedSubview(responseDescription)
         container.translatesAutoresizingMaskIntoConstraints = false
         container.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 20, right: 20)
@@ -342,6 +356,13 @@ class SerieController: UIViewController, DialogModalDelegate {
                 questionLevelSerieLabel.text = "Nivel \(idNivel)/ Serie \(idSerie)"
                 questionNumberLabel.text = "Pregunta \(questionId + 1)"
             }
+            if let timeInterval = serieItem.tiempo {
+                // Start question counter
+                questionCounter.countFrom(CGFloat(timeInterval), to: 0, withDuration: 9.0)
+                questionCounter.completionBlock = { () in
+                    self.checkAnswer(timerHasFinished: true)
+                }
+            }
         }
     }
     
@@ -360,8 +381,16 @@ class SerieController: UIViewController, DialogModalDelegate {
         answer3.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
     }
     
+    func checkAnswer(timerHasFinished: Bool){
+        disableButtons()
+        if timerHasFinished {
+            showIncompleteSerieDialog()
+        }
+    }
+    
     func selectAnswer(_ sender:UIButton){
         let answerId = sender.tag - 1
+        questionCounter.stopCount()
         disableButtons()
         if let serieItem = self.serie {
             let answers = serieItem.questions[currentQuestion].respuestas
@@ -370,8 +399,9 @@ class SerieController: UIViewController, DialogModalDelegate {
             if (answered.correcta == true) {
                 self.score += 1
                 sender.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
+                isIncorrect = false
             } else {
-                // Pregunta Incorrecta
+                isIncorrect = true
             }
             
             var correct:Answer?
@@ -418,6 +448,11 @@ class SerieController: UIViewController, DialogModalDelegate {
     
     func sendButtonClassFeedback(_ sender: AnyObject){
         classView.isHidden = true
+        // Incorrect Question
+        if isIncorrect {
+            showIncompleteSerieDialog()
+            return
+        }
         if serieEnded == true {
             // Pantalla de fin de serie
             print("Fin de serie")
@@ -426,6 +461,8 @@ class SerieController: UIViewController, DialogModalDelegate {
             nextQuestion()
         }
     }
+    
+    
     func getClassImage(completionHandler: @escaping (UIImage, Bool?) -> ()) {
         fetchClassImage(completionHandler: completionHandler)
     }
@@ -467,6 +504,15 @@ class SerieController: UIViewController, DialogModalDelegate {
         print("Serie terminada")
         classView.isHidden = true
         showEndedSerieDialog()
+    }
+    
+    func showIncompleteSerieDialog(){
+        let dialog = DialogController()
+        dialog.message = "Ups! Fallaste en tu ultima respuesta. Deberás empezar la serie de nuevo"
+        dialog.imageName = "serieIncompleta"
+        dialog.delegate = self
+        dialog.modalPresentationStyle = .fullScreen
+        self.present(dialog, animated: true, completion: nil)
     }
     
     func showEndedSerieDialog(){

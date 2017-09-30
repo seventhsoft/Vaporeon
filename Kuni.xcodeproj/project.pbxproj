@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361DED5B1F7EBC7100B86600 /* EFCountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DED5A1F7EBC7100B86600 /* EFCountingLabel.swift */; };
+		361DED5D1F7EE3B900B86600 /* NoContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DED5C1F7EE3B900B86600 /* NoContentController.swift */; };
 		3635859C1F7DD0DE00C8A090 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635858A1F7DD0DE00C8A090 /* SF-Pro-Display-Black.otf */; };
 		3635859D1F7DD0DE00C8A090 /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635858B1F7DD0DE00C8A090 /* SF-Pro-Display-BlackItalic.otf */; };
 		3635859E1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635858C1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf */; };
@@ -74,6 +76,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		361DED5A1F7EBC7100B86600 /* EFCountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFCountingLabel.swift; sourceTree = "<group>"; };
+		361DED5C1F7EE3B900B86600 /* NoContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentController.swift; sourceTree = "<group>"; };
 		3635858A1F7DD0DE00C8A090 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
 		3635858B1F7DD0DE00C8A090 /* SF-Pro-Display-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-BlackItalic.otf"; sourceTree = "<group>"; };
 		3635858C1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				657D06B31F2EC4B10016A14F /* Validators.swift */,
 				657D06B51F2F81B50016A14F /* Form.swift */,
 				65E6C47A1F78802E0019A8D4 /* MaterialCard.swift */,
+				361DED5A1F7EBC7100B86600 /* EFCountingLabel.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				658FD4831F53A3CB0018FF6B /* Managers */,
 				65AE9BFD1F25C18900D67B02 /* Controller */,
 				65AE9BFC1F25C18300D67B02 /* Model */,
+				361DED5C1F7EE3B900B86600 /* NoContentController.swift */,
 				656412BA1F1D35690020DB54 /* GoogleService-Info.plist */,
 				65D86C461F15B3B4005501CF /* AppDelegate.swift */,
 				65D86C481F15B3B4005501CF /* ViewController.swift */,
@@ -544,6 +550,7 @@
 				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
 				65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */,
 				65CE9CCF1F76E5E800E239EA /* SerieController.swift in Sources */,
+				361DED5B1F7EBC7100B86600 /* EFCountingLabel.swift in Sources */,
 				651549F11F364DE100650E4C /* MainNavigationController.swift in Sources */,
 				65CBAD151F48DDE10083DD95 /* SettingsController.swift in Sources */,
 				65CBAD111F47F7AA0083DD95 /* OnboardingController.swift in Sources */,
@@ -566,6 +573,7 @@
 				65EBE2991F417770004715A2 /* HomeRootController.swift in Sources */,
 				3641FCA11F79567B00AE1252 /* DialogController.swift in Sources */,
 				658456D01F4BDD6B00A127CD /* EditProfileController.swift in Sources */,
+				361DED5D1F7EE3B900B86600 /* NoContentController.swift in Sources */,
 				65E6C47B1F78802E0019A8D4 /* MaterialCard.swift in Sources */,
 				651549E91F362AD000650E4C /* HomeController.swift in Sources */,
 				65C9B0071F2A0C210028D360 /* User.swift in Sources */,

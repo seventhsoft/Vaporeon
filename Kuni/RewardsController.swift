@@ -12,24 +12,27 @@ class RewardsController: UIViewController {
     
     var segmentedControl = UISegmentedControl(items: ["Mis premios", "Premios del consurso"])
     
-    private lazy var myRewardsController: MyRewardsController = {
+    //private lazy var myRewardsController: MyRewardsController = {
+    private lazy var myRewardsController: NoContentController = {
         // Instantiate View Controller
-        var viewController = MyRewardsController()
-        
+        // var viewController = MyRewardsController()
+        var vc = NoContentController()
+        vc.message = "Próximamente podras ganar atractivos premios, sigue jugando"
+
         // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
-        
-        return viewController
+        self.add(asChildViewController: vc)
+        return vc
     }()
 
-    private lazy var contestRewardsController: ContestRewardsController = {
+    //private lazy var contestRewardsController: ContestRewardsController = {
+    private lazy var contestRewardsController: NoContentController = {
         // Instantiate View Controller
-        var viewController = ContestRewardsController()
+        var vc = NoContentController()
+        vc.message = "Próximamente podras ganar atractivos premios, sigue jugando"
         
         // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
-        
-        return viewController
+        self.add(asChildViewController: vc)
+        return vc
     }()
     
     override func viewDidLoad() {
