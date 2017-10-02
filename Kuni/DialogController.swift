@@ -24,6 +24,7 @@ class DialogController: UIViewController {
         button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
         button.addTarget(self, action: #selector(goToDashboard(_:)), for: .touchUpInside)
         button.setTitle("Ir al tablero", for: UIControlState())
+        button.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
         button.tag = 1
         return button
     }()
@@ -35,6 +36,7 @@ class DialogController: UIViewController {
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(nextSerie(_:)), for: .touchUpInside)
         button.setTitle("Siguiente serie", for: UIControlState())
+        button.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
         button.tag = 2
         return button
     }()

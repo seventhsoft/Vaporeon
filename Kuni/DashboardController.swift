@@ -40,27 +40,35 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let levelCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LevelCell
         levelCell.level = levels[indexPath.item]
+        if levels[indexPath.item].isActive! == false {
+            levelCell.nameLabel.textColor = .black
+            levelCell.levelNumberLabel.textColor = .black
+            levelCell.rewardsLabel.textColor = .black
+        }
+        
         return levelCell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let element = levels[indexPath.item]
-        if let isActive = element.isActive {
-            if isActive {
-                let sc = SerieController()
-                if let idJugador = gamerLevel?.idJugadorNivel,
-                    let idConcurso = contestData?.idConcurso,
-                    let idNivel = gamerLevel?.dNivel,
-                    let idSerie = gamerLevel?.serieActual {
-                    sc.idJugadorNivel = idJugador
-                    sc.idConcurso = idConcurso
-                    sc.idNivel = idNivel
-                    sc.idSerie = idSerie
+        let levelCell = collectionView.cellForItem(at: indexPath) as! LevelCell
+        if let element = levelCell.level {
+            if let isActive = element.isActive {
+                if isActive {
+                    let sc = SerieController()
+                    if let idJugador = gamerLevel?.idJugadorNivel,
+                        let idConcurso = contestData?.idConcurso,
+                        let idNivel = gamerLevel?.dNivel,
+                        let idSerie = gamerLevel?.serieActual {
+                        sc.idJugadorNivel = idJugador
+                        sc.idConcurso = idConcurso
+                        sc.idNivel = idNivel
+                        sc.idSerie = idSerie
+                    }
+                    sc.delegate = self
+                    let nc = UINavigationController(rootViewController: sc)
+                    nc.modalPresentationStyle = .fullScreen
+                    self.present(nc, animated: true, completion: nil)
                 }
-                sc.delegate = self
-                let nc = UINavigationController(rootViewController: sc)
-                nc.modalPresentationStyle = .fullScreen
-                self.present(nc, animated: true, completion: nil)
             }
         }
     }
@@ -73,6 +81,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         return UIEdgeInsetsMake(16, 16, 16, 16)
     }
     
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -83,9 +92,8 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     func serieDialogCanceled(){
-
+        //collectionView?.collectionViewLayout.invalidateLayout()
         collectionView?.reloadData()
-        
     }
     
     // MARK: - Complement Functions
@@ -142,7 +150,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
                         item.series = series
                         item.seriesJugador = gamerSeries
                         item.tieneRecompensa = hasReward
-                        item.isActive = (id <= dNivel) ? true : false
+                        item.isActive = (id == dNivel) ? true : false
                     }
                     self.levels.append(item)
                 }
@@ -237,6 +245,8 @@ class LevelCell: UICollectionViewCell {
         layer.shadowRadius = 3
         layer.shadowOpacity = 0.4
         layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 3).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
         
         addSubview(nameLabel)
         addSubview(rewardsLabel)

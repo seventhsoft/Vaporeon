@@ -186,6 +186,26 @@ class Helpers {
     }
 }
 
+extension UIView {
+    
+    func addShadow(offset: CGSize, color: UIColor, radius: CGFloat, opacity: Float) {
+        let layer = self.layer
+        layer.masksToBounds = false
+        layer.shadowOffset = offset
+        layer.shadowColor = color.cgColor
+        layer.shadowRadius = radius
+        layer.shadowOpacity = opacity
+        //Optional, to improve performance:
+        //layer.shadowPath = UIBezierPath.init(roundedRect: layer.bounds, cornerRadius: layer.cornerRadius).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+        
+        let backgroundCGColor = self.backgroundColor?.cgColor
+        self.backgroundColor = nil
+        layer.backgroundColor =  backgroundCGColor
+    }
+}
+
 
 // MARK: Debug Helpers
 class Debug {

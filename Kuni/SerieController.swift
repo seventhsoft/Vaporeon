@@ -29,30 +29,23 @@ class SerieController: UIViewController, DialogModalDelegate {
     var score = 0
     
     // MARK: - Context View
-    private lazy var backgroundView: UIView = {
-        let bgView = UIView()
-        bgView.backgroundColor = UIColor(rgb: 0x3CBBBD)
-        bgView.layer.masksToBounds = false
-        bgView.layer.cornerRadius = 8
-        bgView.layer.shadowColor = UIColor.red.cgColor
-        bgView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        bgView.layer.shadowOpacity = 0.4
-        bgView.layer.shadowPath = UIBezierPath(roundedRect: bgView.bounds, cornerRadius: 3).cgPath
-        bgView.layer.shouldRasterize = true
-        return bgView
+    private var roundRect: UIView = {
+        let rect = UIView()
+        rect.backgroundColor = UIColor(rgb: 0x3CBBBD)
+        rect.layer.cornerRadius = 8
+        rect.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 3, opacity: 0.5)
+        rect.translatesAutoresizingMaskIntoConstraints = false
+        return rect
     }()
+
     
     private lazy var backgroundClass: UIView = {
-        let bgView = UIView()
-        bgView.backgroundColor = UIColor(rgb: 0x3CBBBD)
-        bgView.layer.masksToBounds = false
-        bgView.layer.cornerRadius = 8
-        bgView.layer.shadowColor = UIColor.red.cgColor
-        bgView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        bgView.layer.shadowOpacity = 0.4
-        bgView.layer.shadowPath = UIBezierPath(roundedRect: bgView.bounds, cornerRadius: 3).cgPath
-        bgView.layer.shouldRasterize = true
-        return bgView
+        let rect = UIView()
+        rect.backgroundColor = UIColor(rgb: 0x3CBBBD)
+        rect.layer.cornerRadius = 8
+        rect.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 3, opacity: 0.5)
+        rect.translatesAutoresizingMaskIntoConstraints = false
+        return rect
     }()
     
     private lazy var classView: UIView = {
@@ -266,7 +259,6 @@ class SerieController: UIViewController, DialogModalDelegate {
 
     func setControls(){
         //Main Stack View
-        
         let levelLabels = getStackView(orientation: .vertical, spacing: 3)
         levelLabels.addArrangedSubview(questionLevelSerieLabel)
         levelLabels.addArrangedSubview(questionNumberLabel)
@@ -276,25 +268,49 @@ class SerieController: UIViewController, DialogModalDelegate {
         header.addArrangedSubview(levelLabels)
         header.addArrangedSubview(questionCounter)
         
-        let container   = getStackView(orientation: .vertical, spacing: 16)
-        container.addArrangedSubview(header)
-        container.addArrangedSubview(questionLabel)
-        container.layoutMargins = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
-        container.isLayoutMarginsRelativeArrangement = true
-        
+        let cardQuestion   = getStackView(orientation: .vertical, spacing: 16)
+        cardQuestion.layoutMargins = UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
+        cardQuestion.isLayoutMarginsRelativeArrangement = true
+        cardQuestion.addArrangedSubview(header)
+        cardQuestion.addArrangedSubview(questionLabel)
+
         let buttons = getStackView(orientation: .vertical, spacing: 10)
         buttons.addArrangedSubview(answer1)
         buttons.addArrangedSubview(answer2)
         buttons.addArrangedSubview(answer3)
         
-        view.addSubview(container)
-        view.addSubview(buttons)
-        view.addSubview(classView)
-        pinBackground(backgroundView, to: container)
+        // Set Scroll View
+        let scrollView = UIScrollView(frame: view.bounds)
+        scrollView.isScrollEnabled = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Main subviews
+        self.view.addSubview(scrollView)
+        self.view.addSubview(classView)
         
         //Constraints
-        container.anchorWithConstantsToTop(view.topAnchor, left: view.leftAnchor, bottom: buttons.topAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 30, rightConstant: 20)
-        buttons.anchorWithConstantsToTop(nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        
+        roundRect.addSubview(cardQuestion)
+        scrollView.addSubview(roundRect)
+        scrollView.addSubview(buttons)
+    
+        roundRect.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
+        roundRect.heightAnchor.constraint(equalTo: cardQuestion.heightAnchor).isActive = true
+        
+        roundRect.anchorWithConstantsToTop(scrollView.topAnchor, left: scrollView.leftAnchor, bottom: buttons.topAnchor, right: scrollView.rightAnchor, topConstant: 20, leftConstant: 18, bottomConstant: 40, rightConstant: 18)
+        
+        cardQuestion.topAnchor.constraint(equalTo: roundRect.topAnchor, constant: 0).isActive = true
+        cardQuestion.leadingAnchor.constraint(equalTo: roundRect.leadingAnchor, constant: 0).isActive = true
+        cardQuestion.bottomAnchor.constraint(equalTo: roundRect.bottomAnchor, constant: 0).isActive = true
+        cardQuestion.trailingAnchor.constraint(equalTo: roundRect.trailingAnchor, constant: 0).isActive = true
+        
+        //Buttons constraints
+        buttons.anchorWithConstantsToTop(nil, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
+        // Class View Constraints
         classView.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         
     }
@@ -306,6 +322,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         stack.alignment = .fill
         stack.spacing = CGFloat(spacing)
         stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.isLayoutMarginsRelativeArrangement = true
         return stack
     }
     
@@ -318,18 +335,31 @@ class SerieController: UIViewController, DialogModalDelegate {
         container.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 20, right: 20)
         container.isLayoutMarginsRelativeArrangement = true
         
+        backgroundClass.addSubview(container)
+        
         let main = getStackView(orientation: .vertical, spacing: 10)
-        main.addArrangedSubview(container)
+        main.addArrangedSubview(backgroundClass)
         main.addArrangedSubview(classDescription)
         main.addArrangedSubview(nextQuestionButton)
         main.translatesAutoresizingMaskIntoConstraints = false
         
         classView.addSubview(main)
-        pinBackground(backgroundClass, to: container)
         
         //Constraints
         main.anchorWithConstantsToTop(classView.topAnchor, left: classView.leftAnchor, bottom: classView.bottomAnchor, right: classView.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
-        container.heightAnchor.constraint(equalTo: classView.heightAnchor, multiplier: 0.4).isActive = true
+        
+        //container.heightAnchor.constraint(equalTo: classView.heightAnchor, multiplier: 0.4).isActive = true
+        backgroundClass.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
+        backgroundClass.heightAnchor.constraint(equalTo: main.heightAnchor, multiplier: 0.4).isActive = true
+        
+        backgroundClass.anchorToTop(main.topAnchor, left: main.leftAnchor, bottom: nil, right: main.rightAnchor)
+        
+        container.topAnchor.constraint(equalTo: backgroundClass.topAnchor, constant: 0).isActive = true
+        container.leadingAnchor.constraint(equalTo: backgroundClass.leadingAnchor, constant: 0).isActive = true
+        container.bottomAnchor.constraint(equalTo: backgroundClass.bottomAnchor, constant: 0).isActive = true
+        container.trailingAnchor.constraint(equalTo: backgroundClass.trailingAnchor, constant: 0).isActive = true
+        
+        
     }
     
     func startSerie(){
@@ -384,7 +414,19 @@ class SerieController: UIViewController, DialogModalDelegate {
     func checkAnswer(timerHasFinished: Bool){
         disableButtons()
         if timerHasFinished {
-            showIncompleteSerieDialog()
+            if let serieItem = self.serie {
+                delayWithSeconds(2) {
+                    var correct:Answer?
+                    let answers = serieItem.questions[self.currentQuestion].respuestas
+                    for element in answers {
+                        if element.correcta == true {
+                            correct = element
+                        }
+                    }
+                    self.isIncorrect = true
+                    self.setClassFeedback(correct!, correct: correct)
+                }
+            }
         }
     }
     
@@ -399,9 +441,9 @@ class SerieController: UIViewController, DialogModalDelegate {
             if (answered.correcta == true) {
                 self.score += 1
                 sender.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
-                isIncorrect = false
+                self.isIncorrect = false
             } else {
-                isIncorrect = true
+                self.isIncorrect = true
             }
             
             var correct:Answer?
@@ -449,7 +491,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     func sendButtonClassFeedback(_ sender: AnyObject){
         classView.isHidden = true
         // Incorrect Question
-        if isIncorrect {
+        if self.isIncorrect {
             showIncompleteSerieDialog()
             return
         }
@@ -541,12 +583,6 @@ class SerieController: UIViewController, DialogModalDelegate {
             self.delegate?.serieDialogCanceled()
             self.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    private func pinBackground(_ view: UIView, to stackView: UIStackView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        stackView.insertSubview(view, at: 0)
-        view.pin(to: stackView)
     }
     
     //MARK: - Appear Functions
