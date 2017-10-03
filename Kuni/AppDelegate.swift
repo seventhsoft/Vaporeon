@@ -13,6 +13,7 @@ import FBSDKCoreKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var networkStatus = NetworkStatusManager.sharedInstance
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -25,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         window?.rootViewController = MainNavigationController()
-        
+        networkStatus.startNetworkReachabilityObserver()
+
         return true
     }
 
@@ -55,5 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func didFinishLaunchingWithOptions(_ application: UIApplication) {
         UIApplication.shared.statusBarStyle = .lightContent
     }
+    
+    
 }
 

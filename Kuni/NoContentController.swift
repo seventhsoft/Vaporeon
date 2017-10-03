@@ -39,7 +39,7 @@ class NoContentController: UIViewController {
             stack.addArrangedSubview(messageLabel)
             
             view.addSubview(stack)
-            stack.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+            stack.anchorWithConstantsToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30)
         }
     }
 }

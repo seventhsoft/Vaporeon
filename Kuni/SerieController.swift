@@ -438,10 +438,12 @@ class SerieController: UIViewController, DialogModalDelegate {
             let answers = serieItem.questions[currentQuestion].respuestas
             let answered = serieItem.questions[currentQuestion].respuestas[answerId]
             sender.setTitleColor(UIColor(rgb: 0xC00000), for: UIControlState())
+            
             if (answered.correcta == true) {
                 self.score += 1
                 sender.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
                 self.isIncorrect = false
+                sendAnswerData(answered: answered)
             } else {
                 self.isIncorrect = true
             }
@@ -504,6 +506,45 @@ class SerieController: UIViewController, DialogModalDelegate {
         }
     }
     
+    func sendAnswerData( answered: Answer? ){
+        let isPerfect = checkIsPerfect()
+        //let isPerfect = 1
+        if let answer = answered {
+            let params: Parameters = [
+                "idJugadorNivel": self.idJugadorNivel!,
+                "idRespuesta": answer.idRespuesta!,
+                "serie" : self.idSerie!,
+                "perfecta": isPerfect,
+                "idConcurso" : self.idConcurso!
+            ]
+            
+            ContestManager.sharedInstance.setAnswerData(params: params) { data, error in
+                debugPrint(data)
+                if let gamerLevel = data["jugadorNivel"].dictionary {
+                    if let idJugadorNivel = gamerLevel["idJugadorNivel"]?.int,
+                        let idConcurso = gamerLevel["idConcurso"]?.int,
+                        let idSerie = gamerLevel["serieActual"]?.int,
+                        let idNivel = gamerLevel["dNivel"]?.int {
+                        
+                        self.idJugadorNivel = idJugadorNivel
+                        self.idConcurso = idConcurso
+                        self.idSerie = idSerie
+                        self.idNivel = idNivel
+                    }
+                }
+                return
+            }
+        }
+    }
+    
+    func checkIsPerfect() -> Int{
+        var perfect = 0
+        if let serie = self.serie {
+            //print("Son \(serie.questions.count) preguntas y llevas un score de: \(score)")
+            perfect = (score == serie.questions.count) ? 1 : 0
+        }
+        return perfect
+    }
     
     func getClassImage(completionHandler: @escaping (UIImage, Bool?) -> ()) {
         fetchClassImage(completionHandler: completionHandler)
@@ -561,6 +602,15 @@ class SerieController: UIViewController, DialogModalDelegate {
         let dialog = DialogController()
         dialog.message = "¡Terminaste la serie!"
         dialog.imageName = "serieImage"
+        dialog.delegate = self
+        dialog.modalPresentationStyle = .fullScreen
+        self.present(dialog, animated: true, completion: nil)
+    }
+    
+    func showEndedLevelDialog(){
+        let dialog = DialogController()
+        dialog.message = "¡Terminaste el nivel!"
+        dialog.imageName = "nivelImage"
         dialog.delegate = self
         dialog.modalPresentationStyle = .fullScreen
         self.present(dialog, animated: true, completion: nil)

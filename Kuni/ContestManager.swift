@@ -76,5 +76,32 @@ class ContestManager: NSObject {
         }
     }
     
+    // MARK: - Set Answer Data
+    func setAnswerData(params: Parameters, completionHandler: @escaping (JSON, Error?) -> ()){
+        senderOfAnswerData(params: params, completionHandler: completionHandler)
+    }
+    
+    private func senderOfAnswerData(params: Parameters, completionHandler: @escaping (JSON, Error?) -> ()) {
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.request(KuniRouter.setAnswer(parameters: params))
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .success(let data):
+                    let resp = JSON(data)
+                    completionHandler(resp, nil)
+                    break
+                case .failure(let error):
+                    if let data = response.data {
+                        let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Failure Response: \(json!)")
+                    }
+                    debugPrint(error)
+                    completionHandler(false, error)
+                }
+        }
+    }
+    
+    
     
 }

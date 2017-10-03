@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		361DED5B1F7EBC7100B86600 /* EFCountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DED5A1F7EBC7100B86600 /* EFCountingLabel.swift */; };
 		361DED5D1F7EE3B900B86600 /* NoContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DED5C1F7EE3B900B86600 /* NoContentController.swift */; };
+		361DED5F1F82ADDF00B86600 /* NetworkStatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DED5E1F82ADDF00B86600 /* NetworkStatusManager.swift */; };
 		3635859C1F7DD0DE00C8A090 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635858A1F7DD0DE00C8A090 /* SF-Pro-Display-Black.otf */; };
 		3635859D1F7DD0DE00C8A090 /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635858B1F7DD0DE00C8A090 /* SF-Pro-Display-BlackItalic.otf */; };
 		3635859E1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635858C1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf */; };
@@ -78,6 +79,7 @@
 /* Begin PBXFileReference section */
 		361DED5A1F7EBC7100B86600 /* EFCountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFCountingLabel.swift; sourceTree = "<group>"; };
 		361DED5C1F7EE3B900B86600 /* NoContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentController.swift; sourceTree = "<group>"; };
+		361DED5E1F82ADDF00B86600 /* NetworkStatusManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStatusManager.swift; sourceTree = "<group>"; };
 		3635858A1F7DD0DE00C8A090 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
 		3635858B1F7DD0DE00C8A090 /* SF-Pro-Display-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-BlackItalic.otf"; sourceTree = "<group>"; };
 		3635858C1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				651549EE1F36489300650E4C /* Session.swift */,
 				651375531F55EE660034AC08 /* ContestManager.swift */,
 				3697FB7B1F5F5866009C7506 /* OAuthManager.swift */,
+				361DED5E1F82ADDF00B86600 /* NetworkStatusManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				65E6C47D1F7889920019A8D4 /* QuestionController.swift in Sources */,
 				65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */,
 				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
+				361DED5F1F82ADDF00B86600 /* NetworkStatusManager.swift in Sources */,
 				65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */,
 				65CE9CCF1F76E5E800E239EA /* SerieController.swift in Sources */,
 				361DED5B1F7EBC7100B86600 /* EFCountingLabel.swift in Sources */,

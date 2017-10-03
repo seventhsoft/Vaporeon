@@ -19,12 +19,13 @@ enum KuniRouter: URLRequestConvertible {
     case setProfile(parameters: Parameters)
     case loadConcurso
     case loadSerie(parameters: Parameters)
+    case setAnswer(parameters: Parameters)
 
     static let baseURLString = "http://qa.api.juegakuni.com.mx/lfs"    
 
     var method: HTTPMethod {
         switch self {
-        case .loginUser, .registerUser, .refreshToken, .closeSession, .lostPassword:
+        case .loginUser, .registerUser, .refreshToken, .closeSession, .lostPassword, .setAnswer:
             return .post
         case .getProfile, .loadConcurso, .loadSerie:
             return .get
@@ -53,6 +54,8 @@ enum KuniRouter: URLRequestConvertible {
             return "/jugador/concurso"
         case .loadSerie:
             return "/concurso/serie"
+        case .setAnswer:
+            return "/concurso/serie/preguntarespuesta"
         }
         
     }
@@ -63,7 +66,7 @@ enum KuniRouter: URLRequestConvertible {
         case .loginUser:
             hcontainer = [ "Authorization": "Basic bW9iaWxlQ2xpZW50OnNlY3JldE1vYmlsZQ==",
                            "Content-type": "application/x-www-form-urlencoded"]
-        case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso:
+        case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso, .setAnswer:
             hcontainer = [ "Content-type": "application/json; charset=utf-8" ]
         default:
             hcontainer = [ "Content-type": "application/x-www-form-urlencoded" ]
@@ -84,7 +87,7 @@ enum KuniRouter: URLRequestConvertible {
             switch self {
             case .loginUser, .loadSerie:
                 return URLEncoding.default
-            case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso:
+            case .registerUser, .lostPassword, .getProfile, .setProfile, .loadConcurso, .setAnswer:
                 return JSONEncoding.default
             default:
                 return JSONEncoding.default
@@ -96,6 +99,7 @@ enum KuniRouter: URLRequestConvertible {
              .registerUser(let parameters),
              .lostPassword(let parameters),
              .setProfile(let parameters),
+             .setAnswer(let parameters),
              .loadSerie(let parameters),
              .refreshToken(let parameters),
              .closeSession(let parameters):
