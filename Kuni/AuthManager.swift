@@ -34,41 +34,44 @@ class AuthManager: NSObject {
         super.init()
 
     }
+
+    // Completion handler to login
+    func login(params: Parameters, completionHandler: @escaping (Bool) -> ()) {
+        doLogin(params: params, completionHandler: completionHandler)
+    }
     
-    func login( params: Parameters, ref: LoginController) {
+    private func doLogin(params: Parameters, completionHandler: @escaping (Bool) -> ()) {
         let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
         let request = sessionManager.request(KuniRouter.loginUser(parameters: params))
             .validate()
             .responseJSON { response in
                 let _ = sessionManager // retain
-                Debug.printDebugInfo(response: response)
+                //Debug.printDebugInfo(response: response)
                 switch response.result {
                 case .success(let data):
                     var json = JSON(data)
                     let session = Session.sharedInstance
                     json = session.addUsername(data: json, username: params["username"] as! String)
                     session.setData(data: json)
-                    ref.finishLoggingIn()
-                    if let access = session.getValue(key: "access_token") {
-                        print(access)
-                    }
-                    
+                    completionHandler(true)
                 case .failure(let error):
-                    let alert = Helpers.displayAlertMessage(title: "Error de acceso", messageToDisplay: "Ocurrió un error al iniciar sesión, por favor revise que sus datos sean correctos.")
-                    ref.present(alert, animated: true, completion:nil)
-                    
                     if let data = response.data {
                         let json = String(data: data, encoding: String.Encoding.utf8)
                         print("Failure Response: \(JSON(json!))")
                     }
                     debugPrint(error)
+                    completionHandler(false)
                 }
         }
         debugPrint(request)
     }
     
+    // Completion handler to login
+    func signUp(params: Parameters, completionHandler: @escaping (Bool, Int) -> ()) {
+        doSignUp(params: params, completionHandler: completionHandler)
+    }
     
-    func signUp( params: Parameters, ref: UIViewController){
+    func doSignUp( params: Parameters, completionHandler: @escaping (Bool, Int) -> ()) {
         let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
         let request = sessionManager.request(KuniRouter.registerUser(parameters: params))
             .validate()
@@ -77,27 +80,16 @@ class AuthManager: NSObject {
                 switch response.result {
                 case .success(let JSON):
                     print(JSON)
-                    let alert = Helpers.displayAlertMessage(title: "¡Casi estás listo!", messageToDisplay: "Revisa tu correo electrónico y haz clic en el enlace que te aparece para confirmar tu cuenta")
-                    ref.present(alert, animated: true, completion:nil)
+                    completionHandler(true, 200)
                 case .failure:
                     if let object = response.response {
-                        if(object.statusCode == 412 || object.statusCode == 409){
-                            let alert = Helpers.displayAlertMessage(title: "Error de registro", messageToDisplay: "El correo que intentas registrar ya existe, por favor revisalo.")
-                            ref.present(alert, animated: true, completion:nil)
-                        }
+                        completionHandler(false, object.statusCode)
                     }
-//                    if let data = response.data {
-//                        let json = String(data: data, encoding: String.Encoding.utf8)
-//                        print("Failure Response: \(JSON(json!))")
-//                    }
                 }
         }
         debugPrint(request)
     }
     
-    func signUpFB(){
-    
-    }
     
     func lostPassword( params: Parameters, ref: UIViewController){
         let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)

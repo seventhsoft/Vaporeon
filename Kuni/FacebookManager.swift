@@ -88,21 +88,17 @@ class FacebookManager: NSObject {
      or logout, depending on the current status of the app.
      */
     
-    func handleUserAccess(){
+    func handleUserAccess(completionHandler: @escaping (Bool) -> ()) {
         // If the user is already connected, confirm the logout
         if (hasUserAccess()) {
             loginManager.logOut()
             // Notify observers that the user logged out of their Facebook account
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kFacebookLoggedOutNotification), object: nil)
-            print("Haciendo Login después de logout")
-            doLogin()
-        } else {
-            print("Haciendo Login sin acceso previo")
-            doLogin()
         }
+        doLogin(completionHandler: completionHandler)
     }
     
-    private func doLogin(){
+    private func doLogin(completionHandler: @escaping (Bool) -> ()) {
         // Present the user with the Facebook login screen
         // Ejecuta login
         self.loginManager.logIn(withReadPermissions: self.readPermissions, from: nil) {
@@ -117,12 +113,17 @@ class FacebookManager: NSObject {
                     self?.fetchCurrentUser(completionHandler: { (currentUser) -> Void in
                         if currentUser != nil {
                             self?.currentUser = currentUser
+                            completionHandler(true)
+                        } else {
+                            completionHandler(false)
                         }
                     })
                     
+                } else {
+                    completionHandler(true)
                 }
             }
-            
+            return
         }
     
     }
@@ -135,7 +136,6 @@ class FacebookManager: NSObject {
     private func fetchCurrentUser(completionHandler: @escaping (_ currentUser: FacebookUser?) -> Void) {
         // Initialize the request for the current user
         let request: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: self.currentUserPath, parameters: self.userParameters)
-        
         // Request the current user
         request.start(completionHandler: { [weak self] (connection, result, error) -> Void in
             
@@ -174,7 +174,6 @@ class FacebookManager: NSObject {
                     // Get the facebook user's picture URL
                     
                 }
-                print("Se obtuvieron los datos del usuario")
                 // Set the current user
                 //self?.currentUser = currentUser
                 completionHandler(currentUser)

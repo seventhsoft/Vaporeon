@@ -37,8 +37,25 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             "idPerfil" : 2
         ]        
         if validateFields() {
-            let auth = AuthManager.sharedInstance
-            auth.signUp(params: params, ref: self)
+            AuthManager.sharedInstance.signUp(params: params){ success, code in
+                if(success){
+                    let alert = Helpers.displayAlertMessage(
+                        title: "¡Casi estás listo!",
+                        messageToDisplay: "Revisa tu correo electrónico y haz clic en el enlace que te aparece para confirmar tu cuenta"
+                    )
+                    self.present(alert, animated: true, completion:nil)
+                } else {
+                    if(code == 412 || code == 409){
+                        let alert = Helpers.displayAlertMessage(
+                            title: "Error de registro",
+                            messageToDisplay: "El correo que intentas registrar ya existe, por favor revisalo."
+                        )
+                        self.present(alert, animated: true, completion:nil)
+                    }
+                }
+                return
+            }
+
         }
     }
 

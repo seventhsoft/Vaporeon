@@ -540,7 +540,6 @@ class SerieController: UIViewController, DialogModalDelegate {
     func checkIsPerfect() -> Int{
         var perfect = 0
         if let serie = self.serie {
-            //print("Son \(serie.questions.count) preguntas y llevas un score de: \(score)")
             perfect = (score == serie.questions.count) ? 1 : 0
         }
         return perfect

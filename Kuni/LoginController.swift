@@ -38,30 +38,59 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
         password.delegate = self     
     }
     
-    
+    //Login with email
     @IBAction func loginWithEmail(_ sender: UIButton) {
         // Validate fields in login form
         if validateFields() {
-            //Login with email
             print("Login with email")
-            let params: Parameters = [
-                "username": email.text!,
-                "client_id": "mobileClient",
-                "password" : password.text!,
-                "grant_type" : "password"
-            ]
-            
-            let auth = AuthManager.sharedInstance
-            auth.login(params: params, ref: self)
+            let params = ParamsManager.loginEmail(email: email.text!, passwd: password.text!).params
+            AuthManager.sharedInstance.login(params: params){ success in
+                if(success){
+                    self.finishLoggingIn()
+                } else {
+                    let alert = Helpers.displayAlertMessage(
+                        title: "Error de acceso",
+                        messageToDisplay: "Ocurrió un error al iniciar sesión, por favor revise que sus datos sean correctos."
+                    )
+                    self.present(alert, animated: true, completion:nil)
+                }
+                return
+            }
         }
     }
     
     
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        let fbMngr = FacebookManager.sharedInstance
-        fbMngr.handleUserAccess()
-        print("--- LAST ACTIVITY ---")
+        FacebookManager.sharedInstance.handleUserAccess(){ success in
+            if(success) {
+                if let user = FacebookManager.sharedInstance.getCurrentUser() {
+                    let params = ParamsManager.loginFacebook(email: user.email).params
+                    AuthManager.sharedInstance.login(params: params){ success in
+                        if(success){
+                            self.finishLoggingIn()
+                        } else {
+                            print("Comenzando registro FB")
+                            self.signUpWithFacebook(user: user)
+                        }
+                        return
+                    }
+                }
+            }
+            return
+        }
     }
+    
+    
+    func signUpWithFacebook(user: FacebookUser) {
+        let params = ParamsManager.signUpFacebook(user: user).params
+        AuthManager.sharedInstance.signUp(params: params){ success, code in
+            if(success){
+                self.finishLoggingIn()
+            }
+            return
+        }
+    }
+    
     
     @IBAction func showContestRules(_ sender: UIButton) {
         //Using a view controller
