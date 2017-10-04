@@ -615,22 +615,30 @@ class SerieController: UIViewController, DialogModalDelegate {
         self.present(dialog, animated: true, completion: nil)
     }
     
-    func dialogSerieClosed(showDashboard:Bool){
-        if(!showDashboard){
-            if let idGamer = idJugadorNivel {
-                getSerieData(id: idGamer)
-                startSerie()
-            }
+    //MARK: - Delegate Function
+    
+    func dialogNextSerie(){
+        if let idGamer = idJugadorNivel {
+            getSerieData(id: idGamer)
+            startSerie()
         }
     }
     
+    func dialogGoToDashboard(){
+        if(delegate != nil) {
+            self.dismiss(animated: false, completion: {
+                self.dismiss(animated: false, completion: {})
+                self.delegate?.serieDialogCanceled()
+            })
+        }
+    }
     
     //MARK: - Custom Function
     
     func dismissDialog(){
         if(delegate != nil) {
             self.delegate?.serieDialogCanceled()
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: {})
         }
     }
     

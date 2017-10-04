@@ -9,7 +9,8 @@
 import UIKit
 
 protocol DialogModalDelegate {
-    func dialogSerieClosed(showDashboard: Bool)
+    func dialogNextSerie()
+    func dialogGoToDashboard()
 }
 
 class DialogController: UIViewController {
@@ -107,22 +108,16 @@ class DialogController: UIViewController {
     }
     
     func goToDashboard(_ sender:UIButton){
-        dismissDialog(dashboard: true)
-    }
-    
-    func nextSerie(_ sender:UIButton){
-        dismissDialog(dashboard: false)
-    }
-    
-    func dismissDialog(dashboard:Bool){
         if(delegate != nil) {
-            self.delegate?.dialogSerieClosed(showDashboard: dashboard)
-            if(dashboard){
-                let pvc = self.presentingViewController
-                pvc?.presentingViewController?.dismiss(animated: false, completion: {})
-            }
+            self.delegate?.dialogGoToDashboard()
             self.dismiss(animated: true, completion: {})
         }
     }
     
+    func nextSerie(_ sender:UIButton){
+        if(delegate != nil) {
+            self.delegate?.dialogNextSerie()
+            self.dismiss(animated: true, completion: {})
+        }
+    }
 }
