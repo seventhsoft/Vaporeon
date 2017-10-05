@@ -31,6 +31,7 @@
 		363585AC1F7DD0DE00C8A090 /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635859A1F7DD0DE00C8A090 /* SF-Pro-Display-Ultralight.otf */; };
 		363585AD1F7DD0DE00C8A090 /* SF-Pro-Display-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3635859B1F7DD0DE00C8A090 /* SF-Pro-Display-UltralightItalic.otf */; };
 		3641FCA11F79567B00AE1252 /* DialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641FCA01F79567B00AE1252 /* DialogController.swift */; };
+		36494C6F1F855A0700BD9881 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36494C6E1F855A0700BD9881 /* ReachabilityManager.swift */; };
 		3697FB7C1F5F5866009C7506 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3697FB7B1F5F5866009C7506 /* OAuthManager.swift */; };
 		36AB952B1F75F466000E963A /* PrivacityPolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = 36AB952A1F75F466000E963A /* PrivacityPolicy.html */; };
 		5878F0E7E5D349B391911F69 /* Pods_Kuni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B22D021199AAB769E164D /* Pods_Kuni.framework */; };
@@ -103,6 +104,7 @@
 		3635859A1F7DD0DE00C8A090 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		3635859B1F7DD0DE00C8A090 /* SF-Pro-Display-UltralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-UltralightItalic.otf"; sourceTree = "<group>"; };
 		3641FCA01F79567B00AE1252 /* DialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogController.swift; sourceTree = "<group>"; };
+		36494C6E1F855A0700BD9881 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		3697FB7B1F5F5866009C7506 /* OAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		36AB952A1F75F466000E963A /* PrivacityPolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacityPolicy.html; sourceTree = "<group>"; };
 		63DE74B1429783EB44A75FCC /* Pods-Kuni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuni.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kuni/Pods-Kuni.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				3697FB7B1F5F5866009C7506 /* OAuthManager.swift */,
 				361DED5E1F82ADDF00B86600 /* NetworkStatusManager.swift */,
 				361DED621F844F3600B86600 /* ParamsManager.swift */,
+				36494C6E1F855A0700BD9881 /* ReachabilityManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				65D86C491F15B3B4005501CF /* ViewController.swift in Sources */,
 				651375541F55EE660034AC08 /* ContestManager.swift in Sources */,
 				65EBE2971F417554004715A2 /* DLHamburguerViewController.swift in Sources */,
+				36494C6F1F855A0700BD9881 /* ReachabilityManager.swift in Sources */,
 				361DED611F84005E00B86600 /* Reachability.swift in Sources */,
 				65CBAD091F47DAAD0083DD95 /* Contest.swift in Sources */,
 				65E6C47D1F7889920019A8D4 /* QuestionController.swift in Sources */,

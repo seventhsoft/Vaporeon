@@ -35,7 +35,9 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             "facebook" : false,
             "activo" : false,
             "idPerfil" : 2
-        ]        
+        ]
+        
+        
         if validateFields() {
             AuthManager.sharedInstance.signUp(params: params){ success, code in
                 if(success){

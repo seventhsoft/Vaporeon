@@ -64,7 +64,7 @@ enum ParamsManager {
             "usuario": user.email,
             "password" : "",
             "facebook" : true,
-            "activo" : true,
+            "activo" : false,
             "idPerfil" : 2
         ]
         return params
