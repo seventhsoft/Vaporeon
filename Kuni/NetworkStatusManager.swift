@@ -36,4 +36,11 @@ class NetworkStatusManager {
         }
         reachabilityManager?.startListening()
     }
+    
+    func stopNetworkReachabilityObserver(){
+        reachabilityManager?.stopListening()
+    
+    }
+    
+    
 }

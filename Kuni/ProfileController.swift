@@ -12,9 +12,9 @@ import SwiftIconFont
 class ProfileController: UITableViewController, EditProfileDelegate  {
     
     let sections = "Datos generales"
-    let items = ["Nombre", "Apellidos", "Correo electrónico"]
+    let items = ["Nombre", "Apellidos", "Correo electrónico", "Contraseña"]
     var profile:Profile?
-    let icons = ["user", "user", "envelope"]
+    let icons = ["user", "user", "envelope", "key"]
 
     convenience init() {
         self.init(style: .grouped)
@@ -37,6 +37,11 @@ class ProfileController: UITableViewController, EditProfileDelegate  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let profile = self.profile {
+            if(profile.facebook){
+                return items.count - 1
+            }
+        }
         return items.count
     }
     
@@ -50,30 +55,20 @@ class ProfileController: UITableViewController, EditProfileDelegate  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "Cell")
-
+        
+        if let profile = self.profile {
+            switch items[indexPath.row] {
+            case "Nombre": cell.detailTextLabel?.text = profile.name
+            case "Apellidos": cell.detailTextLabel?.text = profile.last_name
+            case "Correo electrónico": cell.detailTextLabel?.text = profile.email
+            case "Contraseña": cell.detailTextLabel?.text = String(profile.email.characters.map { _ in return "•" })
+            default: break
+            }
+        }
         cell.textLabel?.text = "fa:\(icons[indexPath.row]) \(items[indexPath.row])"
-        cell.textLabel?.textAlignment = .left
         cell.textLabel?.parseIcon()
+        cell.textLabel?.textAlignment = .left
         cell.textLabel?.numberOfLines = 0
-        
-        if let nombre = self.profile?.name {
-            if items[indexPath.row] == "Nombre" {
-                cell.detailTextLabel?.text = nombre
-            }
-        }
-
-        if let apellidos = self.profile?.last_name {
-            if items[indexPath.row] == "Apellidos" {
-                cell.detailTextLabel?.text = apellidos
-            }
-        }
-        
-        if let email = self.profile?.email {
-            if items[indexPath.row] == "Correo electrónico" {
-                cell.detailTextLabel?.text = email
-            }
-        }
-        
         return cell
     }
     

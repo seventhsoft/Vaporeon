@@ -33,7 +33,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             "usuario": email.text!,
             "password" : password.text!,
             "facebook" : false,
-            "activo" : false,
+            "activo" : true,
             "idPerfil" : 2
         ]
         

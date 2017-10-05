@@ -38,6 +38,7 @@ class Profile {
     var email: String
     var name: String
     var last_name: String
+    var facebook: Bool
     
     init(dictionary: JSON) {
         self.id = dictionary["idUsuario"].intValue
@@ -45,6 +46,6 @@ class Profile {
         self.email = dictionary["persona"]["correo"].stringValue
         self.name = dictionary["persona"]["nombre"].stringValue
         self.last_name = dictionary["persona"]["apaterno"].stringValue
-        
+        self.facebook = dictionary["facebook"].boolValue
     }
 }

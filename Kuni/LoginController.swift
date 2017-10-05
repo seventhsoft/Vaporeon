@@ -85,7 +85,13 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
         let params = ParamsManager.signUpFacebook(user: user).params
         AuthManager.sharedInstance.signUp(params: params){ success, code in
             if(success){
-                self.finishLoggingIn()
+                let params = ParamsManager.loginFacebook(email: user.email).params
+                AuthManager.sharedInstance.login(params: params){ success in
+                    if(success){
+                        self.finishLoggingIn()
+                    }
+                    return
+                }
             }
             return
         }

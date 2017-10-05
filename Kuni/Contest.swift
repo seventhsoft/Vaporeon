@@ -18,6 +18,7 @@ class Level {
     var tieneRecompensa: Bool?
     var recompensasDisponibles: Int?
     var isActive: Bool?
+    var isEnabled: Bool?
 }
 
 class ContestData {

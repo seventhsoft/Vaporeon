@@ -19,8 +19,8 @@ class EditProfileController: UITableViewController {
     
     let sections = "Datos generales"
     var profile:Profile?
-    let items = ["Nombre", "Apellidos", "Correo electrónico"]
-    let icons = ["user", "user", "envelope"]
+    let items = ["Nombre", "Apellidos", "Correo electrónico", "Contraseña actual", "Nueva contraseña"]
+    let icons = ["user", "user", "envelope", "key", "key"]
     var delegate: EditProfileDelegate? = nil
     
     convenience init() {
@@ -74,6 +74,14 @@ class EditProfileController: UITableViewController {
                     switch cell.tag {
                     case 0: params["nombre"] = cell.textfield.text!; break
                     case 1: params["apaterno"] = cell.textfield.text!; break
+                    case 3:
+                        if(cell.textfield.text! != ""){
+                            params["passwordAnterior"] = cell.textfield.text!
+                        }
+                    case 4:
+                        if(cell.textfield.text! != ""){
+                            params["password"] = cell.textfield.text!
+                        }
                     default: break
                     }
                 }
@@ -96,6 +104,11 @@ class EditProfileController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let profile = self.profile {
+            if profile.facebook {
+                return 3
+            }
+        }
         return items.count
     }
     
@@ -110,30 +123,31 @@ class EditProfileController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! customCell
-        cell.label = "fa:\(icons[indexPath.row]) \(items[indexPath.row])"
-        
-        if let nombre = self.profile?.name {
-            if items[indexPath.row] == "Nombre" {
-                cell.data = nombre
+
+        if let profile = self.profile {
+            switch items[indexPath.row] {
+            case "Nombre":
+                cell.data = profile.name
                 cell.tag = 0
-            }
-        }
-        
-        if let apellidos = self.profile?.last_name {
-            if items[indexPath.row] == "Apellidos" {
-                cell.data = apellidos
+            case "Apellidos":
+                cell.data = profile.last_name
                 cell.tag = 1
-            }
-        }
-        
-        if let email = self.profile?.email {
-            if items[indexPath.row] == "Correo electrónico" {
-                cell.data = email
+            case "Correo electrónico":
+                cell.data = profile.email
                 cell.tag = 2
                 cell.textfield.isUserInteractionEnabled = false
+            case "Contraseña actual":
+                cell.data = ""
+                cell.tag = 3
+            case "Nueva contraseña":
+                cell.data = ""
+                cell.tag = 4
+            default: break
             }
         }
         
+        
+        cell.label = "fa:\(icons[indexPath.row]) \(items[indexPath.row])"
         return cell
     }
     

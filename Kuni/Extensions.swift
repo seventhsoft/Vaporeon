@@ -328,3 +328,16 @@ extension UICollectionView {
         return self.indexPathForItem(at: originInCollectioView)! as NSIndexPath
     }
 }
+
+class Utility {
+    
+    /// Logs all available fonts from iOS SDK and installed custom font
+    class func logAllAvailableFonts() {
+        for family in UIFont.familyNames {
+            print("\(family)")
+            for name in UIFont.fontNames(forFamilyName: family) {
+                print("   \(name)")
+            }
+        }
+    }
+}

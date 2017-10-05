@@ -40,7 +40,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let levelCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LevelCell
         levelCell.level = levels[indexPath.item]
-        if levels[indexPath.item].isActive! == false {
+        if levels[indexPath.item].isEnabled! == false {
             levelCell.nameLabel.textColor = .black
             levelCell.levelNumberLabel.textColor = .black
             levelCell.rewardsLabel.textColor = .black
@@ -151,6 +151,7 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
                         item.seriesJugador = gamerSeries
                         item.tieneRecompensa = hasReward
                         item.isActive = (id == dNivel) ? true : false
+                        item.isEnabled = (id <= dNivel) ? true : false
                     }
                     self.levels.append(item)
                 }
@@ -173,10 +174,10 @@ class LevelCell: UICollectionViewCell {
                 let levelNumber = level?.number,
                 let seriesJugador = level?.seriesJugador,
                 let series = level?.series,
-                let active = level?.isActive {
+                let enabled = level?.isEnabled {
 
                 var imgURL = "http://images.juegakuni.com.mx/images/bg_lv\(levelNumber)_unstarted.png"
-                if active {
+                if enabled {
                     imgURL = "http://images.juegakuni.com.mx/images/bg_lv\(levelNumber)_started.png"
                     nameLabel.textColor = .white
                     levelNumberLabel.textColor = .white
