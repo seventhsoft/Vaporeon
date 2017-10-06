@@ -92,8 +92,9 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     func serieDialogCanceled(){
-        //collectionView?.collectionViewLayout.invalidateLayout()
-        collectionView?.reloadData()
+        levels = [Level]()
+        loadLevels()        
+        //collectionView?.reloadData()
     }
     
     // MARK: - Complement Functions
