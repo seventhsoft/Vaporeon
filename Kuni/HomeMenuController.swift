@@ -13,7 +13,8 @@ class HomeMenuController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     // data
-    let segues = ["Ajustes", "Legales", "Salir"]
+    //let segues = ["Ajustes", "Legales", "Salir"]
+    let segues = ["Legales", "Salir"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

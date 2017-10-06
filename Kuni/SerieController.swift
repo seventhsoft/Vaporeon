@@ -24,6 +24,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     var idSerie: Int?
     var serie: Serie?
     var currentQuestion = 0
+    var hasChangedLevel = false
     var serieEnded = false
     var isIncorrect = false
     var score = 0
@@ -104,6 +105,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.lineBreakMode = .byWordWrapping
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 1
         return button
@@ -117,6 +119,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.lineBreakMode = .byWordWrapping
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 2
         return button
@@ -130,6 +133,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.lineBreakMode = .byWordWrapping
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 3
         return button
@@ -365,6 +369,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     func startSerie(){
         // Set global markers by serie
         serieEnded = false
+        hasChangedLevel = false
         score = 0
         currentQuestion = 0
         classView.isHidden = true
@@ -443,11 +448,10 @@ class SerieController: UIViewController, DialogModalDelegate {
                 self.score += 1
                 sender.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
                 self.isIncorrect = false
-                sendAnswerData(answered: answered)
             } else {
                 self.isIncorrect = true
             }
-            
+
             var correct:Answer?
             for (index,element) in answers.enumerated() {
                 if element.correcta == true {
@@ -457,6 +461,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                     }
                 }
             }
+            sendAnswerData(answered: answered)
             
             delayWithSeconds(2) {
                 self.setClassFeedback(answered, correct: correct)
@@ -517,7 +522,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                 "perfecta": isPerfect,
                 "idConcurso" : self.idConcurso!
             ]
-            
+            //print(params)
             ContestManager.sharedInstance.setAnswerData(params: params) { data, error in
                 debugPrint(data)
                 if let gamerLevel = data["jugadorNivel"].dictionary {
@@ -526,6 +531,9 @@ class SerieController: UIViewController, DialogModalDelegate {
                         let idSerie = gamerLevel["serieActual"]?.int,
                         let idNivel = gamerLevel["dNivel"]?.int {
                         
+                        if (idNivel > self.idNivel!){
+                            self.hasChangedLevel = true
+                        }
                         self.idJugadorNivel = idJugadorNivel
                         self.idConcurso = idConcurso
                         self.idSerie = idSerie
@@ -540,6 +548,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     func checkIsPerfect() -> Int{
         var perfect = 0
         if let serie = self.serie {
+            //print("Score: \(score)  Questions: \(serie.questions.count)")
             perfect = (score == serie.questions.count) ? 1 : 0
         }
         return perfect
@@ -585,7 +594,12 @@ class SerieController: UIViewController, DialogModalDelegate {
         serieEnded = true
         print("Serie terminada")
         classView.isHidden = true
-        showEndedSerieDialog()
+        
+        if(self.hasChangedLevel){
+            showEndedLevelDialog()
+        } else {
+            showEndedSerieDialog()
+        }
     }
     
     func showIncompleteSerieDialog(){

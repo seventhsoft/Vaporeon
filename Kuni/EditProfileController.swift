@@ -138,9 +138,11 @@ class EditProfileController: UITableViewController {
                 cell.textfield.isUserInteractionEnabled = false
             case "Contraseña actual":
                 cell.data = ""
+                cell.textfield.isSecureTextEntry = true
                 cell.tag = 3
             case "Nueva contraseña":
                 cell.data = ""
+                cell.textfield.isSecureTextEntry = true
                 cell.tag = 4
             default: break
             }
@@ -211,7 +213,7 @@ class customCell: UITableViewCell, UITextFieldDelegate {
     
     let textfield: UITextField = {
         let text = UITextField()
-        text.placeholder = "Texto a ingresar"
+        text.placeholder = ""
         text.font = UIFont.systemFont(ofSize: 13)
         text.autocorrectionType = .no
         text.autocapitalizationType = .none
