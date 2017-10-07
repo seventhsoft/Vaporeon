@@ -103,9 +103,10 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.backgroundColor = .clear
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
-        button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
+        button.setTitleColor(Color.answerNormal.value, for: UIControlState())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 1
         return button
@@ -117,9 +118,10 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.backgroundColor = .clear
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
-        button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
+        button.setTitleColor(Color.answerNormal.value, for: UIControlState())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 2
         return button
@@ -131,9 +133,10 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.backgroundColor = .clear
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
-        button.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
+        button.setTitleColor(Color.answerNormal.value,  for: UIControlState())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
         button.tag = 3
         return button
@@ -480,17 +483,27 @@ class SerieController: UIViewController, DialogModalDelegate {
             if let item = correct {
                 responseDescription.text = item.descripcion
                 classDescription.text = serie.questions[currentQuestion].clase
+                // Draw standar Class Image
+                if let classImage = UIImage(named: "defaultClassImage") {
+                    drawImageInClassContainer(image: classImage )
+                }
                 self.getClassImage() { image, error in
-                    let usedImage = (error == false) ? image : UIImage(named: "defaultClassImage")
-                    UIGraphicsBeginImageContext(self.backgroundClass.frame.size)
-                    usedImage?.draw(in: self.backgroundClass.bounds)
-                    let otherImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-                    UIGraphicsEndImageContext()
-                    self.backgroundClass.backgroundColor = UIColor(patternImage: otherImage)
+                    if (error == false) {
+                        self.drawImageInClassContainer(image: image)
+                    }
                     return
                 }
             }
             classView.isHidden = false
+        }
+    }
+    
+    func drawImageInClassContainer(image: UIImage){
+        UIGraphicsBeginImageContext(self.backgroundClass.frame.size)
+        image.draw(in: self.backgroundClass.bounds)
+        if let bgImage: UIImage = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.backgroundClass.backgroundColor = UIColor(patternImage: bgImage)
         }
     }
     
@@ -522,9 +535,8 @@ class SerieController: UIViewController, DialogModalDelegate {
                 "perfecta": isPerfect,
                 "idConcurso" : self.idConcurso!
             ]
-            //print(params)
+            
             ContestManager.sharedInstance.setAnswerData(params: params) { data, error in
-                debugPrint(data)
                 if let gamerLevel = data["jugadorNivel"].dictionary {
                     if let idJugadorNivel = gamerLevel["idJugadorNivel"]?.int,
                         let idConcurso = gamerLevel["idConcurso"]?.int,
@@ -548,7 +560,6 @@ class SerieController: UIViewController, DialogModalDelegate {
     func checkIsPerfect() -> Int{
         var perfect = 0
         if let serie = self.serie {
-            //print("Score: \(score)  Questions: \(serie.questions.count)")
             perfect = (score == serie.questions.count) ? 1 : 0
         }
         return perfect
@@ -629,7 +640,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         self.present(dialog, animated: true, completion: nil)
     }
     
-    //MARK: - Delegate Function
+    //MARK: - Delegate Functions
     
     func dialogNextSerie(){
         if let idGamer = idJugadorNivel {
@@ -647,7 +658,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         }
     }
     
-    //MARK: - Custom Function
+    //MARK: - Custom Functions
     
     func dismissDialog(){
         if(delegate != nil) {

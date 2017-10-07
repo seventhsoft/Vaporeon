@@ -296,6 +296,22 @@ extension UIImageView {
     }
 }
 
+
+extension UIView {
+    func backgroundImage(named: String) {
+        let backgroundImage = UIImageView(frame: self.frame)
+        backgroundImage.image = UIImage(named: named)
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.center = self.center
+        backgroundImage.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+        
+        self.insertSubview(backgroundImage, at: 0)
+        self.sendSubview(toBack: backgroundImage)
+    }
+}
+
+
 extension UserDefaults {
     
     enum UserDefaultsKeys: String {
@@ -329,15 +345,3 @@ extension UICollectionView {
     }
 }
 
-class Utility {
-    
-    /// Logs all available fonts from iOS SDK and installed custom font
-    class func logAllAvailableFonts() {
-        for family in UIFont.familyNames {
-            print("\(family)")
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print("   \(name)")
-            }
-        }
-    }
-}

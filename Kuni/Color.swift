@@ -24,6 +24,11 @@ enum Color {
     case lightBackground
     case intermidiateBackground
     
+    
+    case answerNormal
+    case answerCorrect
+    case answerFail
+    
     case darkText
     case lightText
     case intermidiateText
@@ -36,6 +41,7 @@ enum Color {
     func withAlpha(_ alpha: Double) -> UIColor {
         return self.value.withAlphaComponent(CGFloat(alpha))
     }
+
 }
 
 extension Color {
@@ -68,7 +74,18 @@ extension Color {
             instanceColor = UIColor(hexString: "#ff3300")
         case .custom(let hexValue, let opacity):
             instanceColor = UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
+
+            
+            
+        case .answerNormal:
+            instanceColor = UIColor(hexString: "#505050")
+        case .answerFail:
+            instanceColor = UIColor(hexString: "#c8c6c9")
+        case .answerCorrect:
+            instanceColor = UIColor(hexString: "#c8c6c9")
+            
         }
+
         return instanceColor
     }
 }

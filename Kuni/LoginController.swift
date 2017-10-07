@@ -29,12 +29,12 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "LoginImage")?.draw(in: self.view.bounds)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        self.view.backgroundColor = UIColor(patternImage: image)
-        
+//        UIGraphicsBeginImageContext(self.view.frame.size)
+//        UIImage(named: "LoginImage")?.draw(in: self.view.bounds)
+//        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
+//        self.view.backgroundColor = UIColor(patternImage: image)
+        self.view.backgroundImage(named: "LoginImage")
         password.delegate = self     
     }
     
