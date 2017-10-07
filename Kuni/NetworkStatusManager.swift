@@ -63,23 +63,20 @@ class NetworkStatusManager {
     ///
     /// - returns: network status
     func checkInternetConnection() -> Bool {
-        switch reachabilityManager?.networkReachabilityStatus {
-        case NetworkReachabilityManager.NetworkReachabilityStatus.notReachable, NetworkReachabilityManager.NetworkReachabilityStatus.unknown:
-            return false
-        default:
-            return true
-        }
+        return (reachabilityManager?.isReachable)!
     }
     
-    /// check internet connection (throws)
-    ///
-    /// - throws: in the absence of network
-    func checkConnection() throws {
-        switch reachabilityManager?.networkReachabilityStatus {
-        case NetworkReachabilityManager.NetworkReachabilityStatus.notReachable,
-             NetworkReachabilityManager.NetworkReachabilityStatus.unknown:
-            throw ReachabilityManagerError.notReachable
-        default: return
-        }
-    }
+//    /// check internet connection (throws)
+//    ///
+//    /// - throws: in the absence of network
+//    func checkConnection() throws {
+//        switch reachabilityManager?.networkReachabilityStatus {
+//        case NetworkReachabilityManager.NetworkReachabilityStatus.notReachable,
+//             NetworkReachabilityManager.NetworkReachabilityStatus.unknown:
+//            throw ReachabilityManagerError.notReachable
+//        default: return
+//        }
+//    }
+    
+    
 }
