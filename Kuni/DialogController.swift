@@ -20,9 +20,9 @@ class DialogController: UIViewController {
     
     lazy var btnDashboard: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
+        button.backgroundColor = Color.dialogBtnDashboard.value
         button.cornerRadius = 4
-        button.setTitleColor(UIColor(rgb: 0x505050), for: UIControlState())
+        button.setTitleColor(Color.dialogBtnDashboardText.value, for: UIControlState())
         button.addTarget(self, action: #selector(goToDashboard(_:)), for: .touchUpInside)
         button.setTitle("Ir al tablero", for: UIControlState())
         button.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
@@ -32,9 +32,9 @@ class DialogController: UIViewController {
     
     lazy var btnNextSerie: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(rgb: 0x97BA52)
+        button.backgroundColor = Color.dialogBtnNextSerie.value
         button.cornerRadius = 4
-        button.setTitleColor(.white, for: UIControlState())
+        button.setTitleColor(Color.dialogBtnNextSerieText.value, for: UIControlState())
         button.addTarget(self, action: #selector(nextSerie(_:)), for: .touchUpInside)
         button.setTitle("Siguiente serie", for: UIControlState())
         button.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
@@ -58,8 +58,8 @@ class DialogController: UIViewController {
         //Main Stack View
         let container   = UIStackView()
         container.axis  = .vertical
-        container.distribution  = .equalSpacing
-        container.alignment = .fill
+        container.distribution  = .fill
+        container.alignment = .center
         container.spacing   = 16.0
         container.addArrangedSubview(lblMessage)
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ class DialogController: UIViewController {
 
         let main = UIStackView()
         main.axis = .vertical
-        main.distribution = .fillProportionally
+        main.distribution = .equalSpacing
         main.alignment = .fill
         main.spacing = 0
         main.addArrangedSubview(container)
@@ -84,16 +84,14 @@ class DialogController: UIViewController {
         
         view.addSubview(main)
         view.backgroundColor = .white
+        
         if let image = imageName {
-            UIGraphicsBeginImageContext(self.view.frame.size)
-            UIImage(named: image)?.draw(in: self.view.bounds)
-            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            self.view.backgroundColor = UIColor(patternImage: image)
+            self.view.backgroundImage(named: image)
+            
         }
         
         //Constraints
-        main.anchorWithConstantsToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
+        main.anchorWithConstantsToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 30, rightConstant: 20)
         container.anchorToTop(main.topAnchor, left: main.leftAnchor, bottom: buttons.topAnchor, right: main.rightAnchor)
         buttons.anchorToTop(nil, left: main.leftAnchor, bottom: main.bottomAnchor, right: main.rightAnchor)
     }

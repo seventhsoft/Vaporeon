@@ -23,12 +23,12 @@ class ContestAndPrivacyController: UIViewController {
         super.viewDidLoad()
         
         //Set the Background color of the view.
-        view.backgroundColor = UIColor(rgb: 0xE6F1FC)
+        view.backgroundColor = Color.popupDialogBackground.value
         let navBar = self.navigationController?.navigationBar
         navBar?.tintColor = .white
         navBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navBar?.barTintColor = UIColor(rgb: 0x3E8489)
-        navBar?.backgroundColor = UIColor(rgb: 0x3E8489)
+        navBar?.barTintColor = Color.popupTitleBarColor.value
+        navBar?.backgroundColor = Color.popupTitleBarColor.value
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = false
         

@@ -32,7 +32,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     // MARK: - Context View
     private var roundRect: UIView = {
         let rect = UIView()
-        rect.backgroundColor = UIColor(rgb: 0x3CBBBD)
+        rect.backgroundColor = Color.questionBackground.value
         rect.layer.cornerRadius = 8
         rect.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 3, opacity: 0.5)
         rect.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     
     private lazy var backgroundClass: UIView = {
         let rect = UIView()
-        rect.backgroundColor = UIColor(rgb: 0x3CBBBD)
+        rect.backgroundColor = Color.classBackground.value
         rect.layer.cornerRadius = 8
         rect.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 3, opacity: 0.5)
         rect.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     
     private lazy var classView: UIView = {
         let itemView = UIView()
-        itemView.backgroundColor = UIColor(rgb: 0xEFEFF4)
+        itemView.backgroundColor = Color.mainDialogBackground.value
         return itemView
     }()
     
@@ -166,14 +166,14 @@ class SerieController: UIViewController, DialogModalDelegate {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = UIColor(rgb: 0x505050)
+        label.textColor = Color.textColor.value
         label.textAlignment = .center
         return label
     }()
     
     lazy var nextQuestionButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(rgb: 0x8FBA47)
+        button.backgroundColor = Color.classNextQuestion.value
         button.setTitleColor(.white, for: UIControlState())
         button.setTitle("Siguiente", for: UIControlState())
         button.layer.cornerRadius = 4
@@ -186,10 +186,10 @@ class SerieController: UIViewController, DialogModalDelegate {
 
         // Transparent Navigation Bar
         let navBar = self.navigationController?.navigationBar
-        navBar?.tintColor = UIColor(rgb: 0xE81A8D)
+        navBar?.tintColor = Color.mainTintColor.value
         navBar?.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightHeavy),
-            NSForegroundColorAttributeName : UIColor(rgb: 0xE81A8D)
+            NSForegroundColorAttributeName : Color.titleColor.value
         ]
         navBar?.barTintColor = .white
         navBar?.backgroundColor = .white
@@ -199,7 +199,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         let btnCancel = UIBarButtonItem(title: "Abandonar", style: .done, target: self, action: #selector(dismissDialog))
         self.navigationItem.leftBarButtonItem = btnCancel
         
-        view.backgroundColor = UIColor(rgb: 0xEFEFF4)
+        view.backgroundColor = Color.mainDialogBackground.value
         self.title = "KUNI"
         
         if let idGamer = idJugadorNivel {
@@ -412,11 +412,11 @@ class SerieController: UIViewController, DialogModalDelegate {
     
     func enableButtons() -> Void {
         answer1.isEnabled = true
-        answer1.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
+        answer1.setTitleColor(Color.answerNormal.value,  for: UIControlState())
         answer2.isEnabled = true
-        answer2.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
+        answer2.setTitleColor(Color.answerNormal.value,  for: UIControlState())
         answer3.isEnabled = true
-        answer3.setTitleColor(UIColor(rgb: 0x505050),  for: UIControlState())
+        answer3.setTitleColor(Color.answerNormal.value,  for: UIControlState())
     }
     
     func checkAnswer(timerHasFinished: Bool){
@@ -445,11 +445,11 @@ class SerieController: UIViewController, DialogModalDelegate {
         if let serieItem = self.serie {
             let answers = serieItem.questions[currentQuestion].respuestas
             let answered = serieItem.questions[currentQuestion].respuestas[answerId]
-            sender.setTitleColor(UIColor(rgb: 0xC00000), for: UIControlState())
+            sender.setTitleColor(Color.answerFail.value, for: UIControlState())
             
             if (answered.correcta == true) {
                 self.score += 1
-                sender.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
+                sender.setTitleColor(Color.answerCorrect.value, for: UIControlState())
                 self.isIncorrect = false
             } else {
                 self.isIncorrect = true
@@ -460,7 +460,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                 if element.correcta == true {
                     correct = element
                     if let btnCorrect = view.viewWithTag(index+1) as? UIButton {
-                        btnCorrect.setTitleColor(UIColor(rgb: 0x86CD00), for: UIControlState())
+                        btnCorrect.setTitleColor(Color.answerCorrect.value, for: UIControlState())
                     }
                 }
             }

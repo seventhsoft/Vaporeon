@@ -23,12 +23,12 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightHeavy),
-            NSForegroundColorAttributeName : UIColor(rgb: 0xE81A8D)
+            NSForegroundColorAttributeName : Color.titleColor.value
         ]
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.alwaysBounceVertical = true
-        collectionView?.backgroundColor = UIColor(rgb: 0xEFEFF4)
+        collectionView?.backgroundColor = Color.mainDialogBackground.value
         collectionView?.register(LevelCell.self, forCellWithReuseIdentifier: cellId)
         self.navigationItem.leftBarButtonItem = addMenuButton()
     }

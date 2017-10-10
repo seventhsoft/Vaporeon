@@ -27,7 +27,7 @@ class PageCell: UICollectionViewCell {
             let color = UIColor(white: 0.2, alpha: 1)
             
             let attributedText = NSMutableAttributedString(string: page.title, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightMedium), NSForegroundColorAttributeName: color])
-            attributedText.append(NSAttributedString(string: "\(page.message)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold), NSForegroundColorAttributeName: UIColor(rgb: 0xA1AAB2) ]))
+            attributedText.append(NSAttributedString(string: "\(page.message)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold), NSForegroundColorAttributeName: Color.onboardingTextColor.value ]))
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center

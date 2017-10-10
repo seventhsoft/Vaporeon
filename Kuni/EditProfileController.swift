@@ -31,8 +31,8 @@ class EditProfileController: UITableViewController {
         super.viewDidLoad()
         
         let navBar = self.navigationController?.navigationBar
-        navBar?.tintColor = UIColor(rgb: 0xE81A8D)
-        navBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(rgb: 0xE81A8D) ]
+        navBar?.tintColor = Color.mainTintColor.value
+        navBar?.titleTextAttributes = [NSForegroundColorAttributeName : Color.titleColor.value ]
         navBar?.barTintColor = .white
         navBar?.backgroundColor = .white
         navBar?.shadowImage = UIImage()

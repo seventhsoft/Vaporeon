@@ -20,7 +20,7 @@ class HomeMenuController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = .clear
-        tableView.separatorColor = UIColor(rgb: 0xDCDCDC)
+        tableView.separatorColor = Color.menuSeparator.value
         
         // Do any additional setup after loading the view.
     }

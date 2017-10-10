@@ -16,28 +16,43 @@ import UIKit
 
 enum Color {
     
-    case theme
-    case border
-    case shadow
+    case tabbar
+    case navigationBar
+    case navigationBatTint
+    case textColor
+    case titleColor
     
-    case darkBackground
-    case lightBackground
-    case intermidiateBackground
-    
-    
+    case questionBackground
+    case classNextQuestion
+    case classBackground
     case answerNormal
     case answerCorrect
     case answerFail
     
-    case darkText
-    case lightText
-    case intermidiateText
+    case mainTintColor
+    case mainDialogBackground
     
-    case affirmation
-    case negation
+    case secondaryTintColor
+    case secondaryBackgroundColor
+    
+    case menuSeparator
+    case tabbarTopBorder
+    
+    case popupDialogBackground
+    case popupTitleBarColor
+    
+    case onboardingTextColor
+    case onboardingNextColor
+    case onboardingNormalPage
+    case onboardingCurrentPage
+    
+    case dialogBtnDashboard
+    case dialogBtnDashboardText
+    case dialogBtnNextSerie
+    case dialogBtnNextSerieText
+    
     
     case custom(hexString: String, alpha: Double)
-    
     func withAlpha(_ alpha: Double) -> UIColor {
         return self.value.withAlphaComponent(CGFloat(alpha))
     }
@@ -50,41 +65,67 @@ extension Color {
         var instanceColor = UIColor.clear
         
         switch self {
-        case .border:
-            instanceColor = UIColor(hexString: "#333333")
-        case .theme:
-            instanceColor = UIColor(hexString: "#ffcc00")
-        case .shadow:
-            instanceColor = UIColor(hexString: "#ccccc")
-        case .darkBackground:
-            instanceColor = UIColor(hexString: "#999966")
-        case .lightBackground:
-            instanceColor = UIColor(hexString: "#cccc66")
-        case .intermidiateBackground:
-            instanceColor = UIColor(hexString: "#cccc99")
-        case .darkText:
-            instanceColor = UIColor(hexString: "#333333")
-        case .intermidiateText:
-            instanceColor = UIColor(hexString: "#999999")
-        case .lightText:
-            instanceColor = UIColor(hexString: "#cccccc")
-        case .affirmation:
-            instanceColor = UIColor(hexString: "#00ff66")
-        case .negation:
-            instanceColor = UIColor(hexString: "#ff3300")
+            
         case .custom(let hexValue, let opacity):
             instanceColor = UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
 
+        case .tabbar:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .navigationBar:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .navigationBatTint:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .dialogBtnDashboard:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .dialogBtnDashboardText:
+            instanceColor = UIColor(hexString: "#505050")
+        case .dialogBtnNextSerie:
+            instanceColor = UIColor(hexString: "#97BA52")
+        case .dialogBtnNextSerieText:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .onboardingNextColor:
+            instanceColor = UIColor(hexString: "#A1AAB2")
+        case .onboardingTextColor:
+            instanceColor = UIColor(hexString: "#A1AAB2")
+        case .onboardingCurrentPage:
+            instanceColor = UIColor(hexString: "#8FBA47")
+        case .onboardingNormalPage:
+            instanceColor = UIColor(hexString: "#A6A6A6")
+        case .popupTitleBarColor:
+            instanceColor = UIColor(hexString: "#3E8489")
+        case .menuSeparator:
+            instanceColor = UIColor(hexString: "#DCDCDC")
+        case .textColor:
+            instanceColor = UIColor(hexString: "#5C5C5B")
+        case .titleColor:
+            instanceColor = UIColor(hexString: "#E81A8D")
+        case .mainTintColor:
+            instanceColor = UIColor(hexString: "#E81A8D")
+        case .popupDialogBackground:
+            instanceColor = UIColor(hexString: "#E6F1FC")
+        case .mainDialogBackground:
+            instanceColor = UIColor(hexString: "#EFEFF4")
+        case .tabbarTopBorder:
+            instanceColor = UIColor(hexString: "#D0D0D0")
+        case .secondaryTintColor:
+            instanceColor = UIColor(hexString: "#1F8689")
+        case .secondaryBackgroundColor:
+            instanceColor = UIColor(hexString: "#1F8689")
             
-            
+        case .questionBackground:
+            instanceColor = UIColor(hexString: "#3CBBBD")
+        case .classBackground:
+            instanceColor = UIColor(hexString: "#3CBBBD")
+        case .classNextQuestion:
+            instanceColor = UIColor(hexString: "#8FBA47")
         case .answerNormal:
             instanceColor = UIColor(hexString: "#505050")
         case .answerFail:
-            instanceColor = UIColor(hexString: "#c8c6c9")
+            instanceColor = UIColor(hexString: "#C00000")
         case .answerCorrect:
-            instanceColor = UIColor(hexString: "#c8c6c9")
-            
+            instanceColor = UIColor(hexString: "#86CD00")
         }
+        
 
         return instanceColor
     }

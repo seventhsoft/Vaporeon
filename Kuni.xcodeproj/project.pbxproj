@@ -72,7 +72,6 @@
 		65D86C4E1F15B3B4005501CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4D1F15B3B4005501CF /* Assets.xcassets */; };
 		65D86C511F15B3B4005501CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D86C4F1F15B3B4005501CF /* LaunchScreen.storyboard */; };
 		65E6C47B1F78802E0019A8D4 /* MaterialCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C47A1F78802E0019A8D4 /* MaterialCard.swift */; };
-		65E6C47D1F7889920019A8D4 /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6C47C1F7889920019A8D4 /* QuestionController.swift */; };
 		65EBE2901F4049FC004715A2 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE28F1F4049FC004715A2 /* FacebookManager.swift */; };
 		65EBE2931F417533004715A2 /* DLHamburguerContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */; };
 		65EBE2951F417543004715A2 /* DLHamburguerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */; };
@@ -150,7 +149,6 @@
 		65D86C501F15B3B4005501CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65D86C521F15B3B4005501CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65E6C47A1F78802E0019A8D4 /* MaterialCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialCard.swift; sourceTree = "<group>"; };
-		65E6C47C1F7889920019A8D4 /* QuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
 		65EBE28F1F4049FC004715A2 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		65EBE2921F417533004715A2 /* DLHamburguerContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerContainerViewController.swift; sourceTree = "<group>"; };
 		65EBE2941F417543004715A2 /* DLHamburguerNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLHamburguerNavigationController.swift; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				65CE9CCE1F76E5E800E239EA /* SerieController.swift */,
-				65E6C47C1F7889920019A8D4 /* QuestionController.swift */,
 				3641FCA01F79567B00AE1252 /* DialogController.swift */,
 			);
 			name = Contest;
@@ -565,7 +562,6 @@
 				36494C6F1F855A0700BD9881 /* ReachabilityManager.swift in Sources */,
 				361DED611F84005E00B86600 /* Reachability.swift in Sources */,
 				65CBAD091F47DAAD0083DD95 /* Contest.swift in Sources */,
-				65E6C47D1F7889920019A8D4 /* QuestionController.swift in Sources */,
 				65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */,
 				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
 				361DED5F1F82ADDF00B86600 /* NetworkStatusManager.swift in Sources */,

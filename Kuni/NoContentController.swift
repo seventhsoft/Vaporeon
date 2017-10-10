@@ -14,7 +14,7 @@ class NoContentController: UIViewController {
     
     lazy var messageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(rgb: 0x5C5C5B)
+        label.textColor = Color.textColor.value
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
@@ -32,7 +32,7 @@ class NoContentController: UIViewController {
         stack.alignment = .fill
         stack.spacing = 30
         stack.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(rgb: 0xEFEFF4)
+        view.backgroundColor = Color.mainDialogBackground.value
         
         if let messageVC = self.message {
             messageLabel.text = messageVC

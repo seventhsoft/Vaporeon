@@ -18,13 +18,13 @@ class HomeController: UITabBarController {
         let navBar = self.navigationController?.navigationBar
         navBar?.tintColor = .white
         navBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        navBar?.barTintColor = UIColor(rgb: 0x1F8689)
-        navBar?.backgroundColor = UIColor(rgb: 0x1F8689)
+        navBar?.barTintColor = Color.secondaryTintColor.value
+        navBar?.backgroundColor = Color.secondaryBackgroundColor.value
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = false
         
-        self.tabBar.tintColor = UIColor(rgb: 0xCF368E)
-        self.tabBar.backgroundColor = UIColor(rgb: 0xFFFFFF)
+        self.tabBar.tintColor = Color.mainTintColor.value
+        self.tabBar.backgroundColor = Color.tabbar.value
     
         let dashboardNav = setViewController(viewController: DashboardController(collectionViewLayout: UICollectionViewFlowLayout()), title: "KUNI", tabTitle: "Inicio", iconCode: "ios-home")
         let rewardsNav = setViewController(viewController: RewardsController(), title: "Premios", tabTitle: "Premios", iconCode: "trophy")
@@ -33,7 +33,7 @@ class HomeController: UITabBarController {
         
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
-        topBorder.backgroundColor = UIColor(rgb: 0xD0D0D0).cgColor
+        topBorder.backgroundColor = Color.tabbarTopBorder.value.cgColor
         
         tabBar.layer.addSublayer(topBorder)
         tabBar.isTranslucent = false
@@ -46,10 +46,10 @@ class HomeController: UITabBarController {
         viewController.tabBarItem.icon(from: .Ionicon, code: iconCode, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
         viewController.tabBarItem.title = tabTitle
         let nav = UINavigationController(rootViewController: viewController)
-        nav.navigationBar.tintColor = UIColor(rgb: 0xCF368E)
-        nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(rgb: 0xCF368E)]
-        nav.navigationBar.barTintColor = UIColor(rgb: 0xFFFFFF)
-        nav.navigationBar.backgroundColor = UIColor(rgb: 0xFFFFFF)
+        nav.navigationBar.tintColor = Color.mainTintColor.value
+        nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : Color.titleColor.value]
+        nav.navigationBar.barTintColor = Color.navigationBar.value
+        nav.navigationBar.backgroundColor = Color.navigationBatTint.value
         nav.navigationBar.shadowImage = UIImage()
         nav.navigationBar.isTranslucent = false
         return nav
