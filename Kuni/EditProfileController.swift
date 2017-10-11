@@ -139,7 +139,7 @@ class EditProfileController: UITableViewController {
             case "Contraseña actual":
                 cell.data = ""
                 cell.textfield.isSecureTextEntry = true
-                cell.textfield.placeholder = "Escribe tu contraseña anterior"
+                cell.textfield.placeholder = "Escribe tu contraseña actual"
                 cell.tag = 3
             case "Nueva contraseña":
                 cell.data = ""

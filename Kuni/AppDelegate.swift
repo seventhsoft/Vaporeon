@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var networkStatus = NetworkStatusManager.sharedInstance
-    private let view = UIView()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -27,20 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.rootViewController = MainNavigationController()
 
-        window?.rootViewController?.showMessage("Some Text...", type: .success, options: [
-            .animation(.slide),
-            .animationDuration(0.3),
-            .autoHide(false),
-            .autoHideDelay(3.0),
-            .height(44.0),
-            .hideOnTap(false),
-            .position(.top),
-            .textAlignment(.center),
-            .textColor(.white),
-            .textNumberOfLines(1),
-            .textPadding(30.0)
-            ])
-        
         return true
     }
 

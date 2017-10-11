@@ -9,16 +9,15 @@
 import UIKit
 
 @IBDesignable
-class SwiftIconLabel: UILabel {
+public class SwiftIconLabel: UILabel {
     @IBInspectable var Icon: String = "" {
         didSet {
             self.text = Icon
-            print("icon:", self.Icon)
             self.parseIcon()
         }
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         self.parseIcon()
     }
 }

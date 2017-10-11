@@ -16,7 +16,6 @@ enum ReachabilityManagerError: Error {
 
 class NetworkStatusManager {
     static let sharedInstance = NetworkStatusManager()
-    private let view = UIView()
     
     private init() {}
     
@@ -27,20 +26,30 @@ class NetworkStatusManager {
     
     func startNetworkReachabilityObserver() {
         reachabilityManager?.listener = { status in
-
+            let win = UIApplication.shared.keyWindow!
             switch status {
             case .notReachable, .unknown:
-                print("Sin red")
-                
+                win.showMessage("Sin conexión a Internet", type: .error , options: [
+                    .animation(.slide),
+                    .animationDuration(0.3),
+                    .autoHide(false),
+                    .autoHideDelay(3.0),
+                    .height(60.0),
+                    .hideOnTap(false),
+                    .position(.top),
+                    .textAlignment(.center),
+                    .textColor(.white),
+                    .textNumberOfLines(1),
+                    .textPadding(40.0)
+                    ])
+
             case .reachable(.ethernetOrWiFi), .reachable(.wwan):
-                self.view.hideMessage()
+                win.hideMessage()
             }
-            
             
             NotificationCenter.default.post(name: self.listenerStatus,
                                             object: nil,
                                             userInfo: ["NetworkStatus": status])
-            
             
         }
         reachabilityManager?.startListening()

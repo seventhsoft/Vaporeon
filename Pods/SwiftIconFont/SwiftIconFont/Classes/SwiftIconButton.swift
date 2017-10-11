@@ -9,18 +9,17 @@
 import UIKit
 
 @IBDesignable
-class SwiftIconButton: UIButton {    
+class SwiftIconButton: UIButton {
     @IBInspectable var Icon: String = "" {
         didSet {
-            self.titleLabel?.text = Icon
             self.parseIcon()
+            self.setTitle(Icon, for: .normal)
         }
     }
     
     override func awakeFromNib() {
         self.parseIcon()
     }
-
 }
 
 

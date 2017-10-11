@@ -43,7 +43,11 @@ class HomeController: UITabBarController {
     
     func setViewController(viewController: UIViewController, title: String, tabTitle: String, iconCode: String) -> UINavigationController {
         viewController.title = title
-        viewController.tabBarItem.icon(from: .Ionicon, code: iconCode, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
+        viewController.tabBarItem.icon(from: .Ionicon,
+                                       code: iconCode,
+                                       iconColor: Color.mainTintColor.value,
+                                       imageSize: CGSize(width: 20, height: 20),
+                                       ofSize: 20)
         viewController.tabBarItem.title = tabTitle
         let nav = UINavigationController(rootViewController: viewController)
         nav.navigationBar.tintColor = Color.mainTintColor.value

@@ -212,7 +212,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     func getSerieData(id: Int){
         let params: Parameters = [ "idJugadorNivel": id ]
         ContestManager.sharedInstance.getSerieData(params: params){ data, error in
-            if data != JSON.null {
+            if data.count > 0 {
                 let serieItem = Serie()
                 if let tiempoPregunta = data["tiempoPregunta"].int {
                     serieItem.tiempo = tiempoPregunta

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GSMessages.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Kuni.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,12 +47,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05909B6D82728F06F3AFD3CA03867936</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>44CAD6CE523055ED339E87154473A254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5874AEDCA729AA4465662B9BD62AEB5D</key>
+		<key>4DCCAFFCEA9106D35BEE3F2754317B8F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74E83D7AC24144593A2B5B11D85F2439</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>80A1AAD476BC6D0D87976DE91984E49D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,16 +83,6 @@
 			<true/>
 		</dict>
 		<key>BEF7E6E85DB5CDE5D7A18F4F2EB8494B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C6C994D38EFA3620FF36072542BDFB44</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C9452B2E0620F7E1F402070B6CF1BAA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
