@@ -176,8 +176,9 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.backgroundColor = Color.classNextQuestion.value
         button.setTitleColor(.white, for: UIControlState())
         button.setTitle("Siguiente", for: UIControlState())
-        button.layer.cornerRadius = 4
+        button.layer.cornerRadius = 6
         button.addTarget(self, action: #selector(sendButtonClassFeedback(_:)), for: .touchUpInside)
+        button.frame.size.height = 60.0
         return button
     }()
     
@@ -204,9 +205,8 @@ class SerieController: UIViewController, DialogModalDelegate {
         
         if let idGamer = idJugadorNivel {
             getSerieData(id: idGamer)
-        } else {
-            print("No hay idJugadorNivel")
         }
+        
     }
 
     func getSerieData(id: Int){

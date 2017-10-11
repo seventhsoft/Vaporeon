@@ -6,8 +6,9 @@
 //  Copyright © 2017 Promotora Digital de Cultura. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
+import GSMessages
 
 enum ReachabilityManagerError: Error {
     case notReachable
@@ -15,6 +16,7 @@ enum ReachabilityManagerError: Error {
 
 class NetworkStatusManager {
     static let sharedInstance = NetworkStatusManager()
+    private let view = UIView()
     
     private init() {}
     
@@ -25,20 +27,13 @@ class NetworkStatusManager {
     
     func startNetworkReachabilityObserver() {
         reachabilityManager?.listener = { status in
+
             switch status {
+            case .notReachable, .unknown:
+                print("Sin red")
                 
-            case .notReachable:
-                print("The network is not reachable")
-                
-            case .unknown :
-                print("It is unknown whether the network is reachable")
-                
-            case .reachable(.ethernetOrWiFi):
-                print("The network is reachable over the WiFi connection")
-                
-            case .reachable(.wwan):
-                print("The network is reachable over the WWAN connection")
-                
+            case .reachable(.ethernetOrWiFi), .reachable(.wwan):
+                self.view.hideMessage()
             }
             
             
@@ -65,18 +60,4 @@ class NetworkStatusManager {
     func checkInternetConnection() -> Bool {
         return (reachabilityManager?.isReachable)!
     }
-    
-//    /// check internet connection (throws)
-//    ///
-//    /// - throws: in the absence of network
-//    func checkConnection() throws {
-//        switch reachabilityManager?.networkReachabilityStatus {
-//        case NetworkReachabilityManager.NetworkReachabilityStatus.notReachable,
-//             NetworkReachabilityManager.NetworkReachabilityStatus.unknown:
-//            throw ReachabilityManagerError.notReachable
-//        default: return
-//        }
-//    }
-    
-    
 }

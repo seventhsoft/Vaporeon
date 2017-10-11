@@ -6,11 +6,11 @@ target 'Kuni' do
   use_frameworks!
  
   # Pods other
-  #pod 'ChameleonFramework/Swift'
   pod 'SwiftIconFont'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
- 
+  pod 'GSMessages', '< 1.3.5'
+
   # Pods for Facebook
   pod 'Bolts'
   pod 'FBSDKCoreKit'

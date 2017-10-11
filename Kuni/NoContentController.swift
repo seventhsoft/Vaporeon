@@ -18,7 +18,7 @@ class NoContentController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont(name: "SF Pro Display", size: 16 )
+        label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(22.0)).instance
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

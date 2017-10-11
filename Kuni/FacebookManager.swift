@@ -137,7 +137,7 @@ class FacebookManager: NSObject {
         // Initialize the request for the current user
         let request: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: self.currentUserPath, parameters: self.userParameters)
         // Request the current user
-        request.start(completionHandler: { [weak self] (connection, result, error) -> Void in
+        request.start(completionHandler: { (connection, result, error) -> Void in
             
             // Logged an error if we have one
             if let error = error {

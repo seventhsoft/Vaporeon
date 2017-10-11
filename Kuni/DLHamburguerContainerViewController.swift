@@ -312,10 +312,16 @@ class DLHamburguerContainerViewController: UIViewController {
     }
     
     // iOS7 Rotation legacy support.
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        super.willAnimateRotation(to: toInterfaceOrientation, duration: duration)
-        self.fixLayoutWithDuration(duration)
+//    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+//        super.willAnimateRotation(to: toInterfaceOrientation, duration: duration)
+//        self.fixLayoutWithDuration(duration)
+//    }
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
     }
+    
     
     // iOS 8 Transition.
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

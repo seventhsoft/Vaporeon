@@ -39,18 +39,24 @@ struct Font {
         }
     }
     enum FontName: String {
-        case RobotoBlack            = "Roboto-Black"
-        case RobotoBlackItalic      = "Roboto-BlackItalic"
-        case RobotoBold             = "Roboto-Bold"
-        case RobotoBoldItalic       = "Roboto-BoldItalic"
-        case RobotoItalic           = "Roboto-Italic"
-        case RobotoLight            = "Roboto_Light"
-        case RobotoLightItalic      = "Roboto-LightItalic"
-        case RobotoMedium           = "Roboto-Medium"
-        case RobotoMediumItalic     = "Roboto-MediumItalic"
-        case RobotoRegular          = "Roboto-Regular"
-        case RobotoThin             = "Roboto-Thin"
-        case RobotoThinItalic       = "Roboto-ThinItalic"
+        case SFProDisplayHeavyItalic = "SFProDisplay-HeavyItalic"
+        case SFProDisplayThinItalic  = "SFProDisplay-ThinItalic"
+        case SFProDisplayUltralight  = "SFProDisplay-Ultralight"
+        case SFProDisplayHeavy = "SFProDisplay-Heavy"
+        case SFProDisplayBoldItalic  = "SFProDisplay-BoldItalic"
+        case SFProDisplaySemiboldItalic = "SFProDisplay-SemiboldItalic"
+        case SFProDisplayRegular  = "SFProDisplay-Regular"
+        case SFProDisplayBold  = "SFProDisplay-Bold"
+        case SFProDisplayMediumItalic   = "SFProDisplay-MediumItalic"
+        case SFProDisplayThin  = "SFProDisplay-Thin"
+        case SFProDisplaySemibold = "SFProDisplay-Semibold"
+        case SFProDisplayBlackItalic = "SFProDisplay-BlackItalic"
+        case SFProDisplayLight = "SFProDisplay-Light"
+        case SFProDisplayUltralightItalic  = "SFProDisplay-UltralightItalic"
+        case SFProDisplayItalic   = "SFProDisplay-Italic"
+        case SFProDisplayLightItalic = "SFProDisplay-LightItalic"
+        case SFProDisplayBlack = "SFProDisplay-Black"
+        case SFProDisplayMediumcase  = "SFProDisplay-Mediumcase"
     }
     enum StandardSize: Double {
         case h1 = 20.0

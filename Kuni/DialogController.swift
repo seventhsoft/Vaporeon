@@ -58,7 +58,7 @@ class DialogController: UIViewController {
         //Main Stack View
         let container   = UIStackView()
         container.axis  = .vertical
-        container.distribution  = .fill
+        container.distribution  = .equalSpacing
         container.alignment = .center
         container.spacing   = 16.0
         container.addArrangedSubview(lblMessage)
@@ -75,7 +75,7 @@ class DialogController: UIViewController {
 
         let main = UIStackView()
         main.axis = .vertical
-        main.distribution = .equalSpacing
+        main.distribution = .fillProportionally
         main.alignment = .fill
         main.spacing = 0
         main.addArrangedSubview(container)

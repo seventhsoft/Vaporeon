@@ -240,21 +240,21 @@ class DLHamburguerViewController: UIViewController {
     
     // MARK: - Rotation legacy support (iOS 7)
     
-    override var shouldAutorotate : Bool { return self.contentViewController.shouldAutorotate }
-    
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        // call super and inform delegate
-        super.willAnimateRotation(to: toInterfaceOrientation, duration: duration)
-        self.delegate?.hamburguerViewController?(self, willAnimateRotationToInterfaceOrientation: toInterfaceOrientation, duration: duration)
-        // adjust size of menu if visible only.
-        self.containerViewController.setContainerFrame(self.menuViewController.view.frame)
-    }
-    
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        super.didRotate(from: fromInterfaceOrientation)
-        if !self.menuVisible { self.actualMenuViewSize = CGSize.zero }
-        adjustMenuSize(true)
-    }
+//    override var shouldAutorotate : Bool { return self.contentViewController.shouldAutorotate }
+//    
+//    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+//        // call super and inform delegate
+//        super.willAnimateRotation(to: toInterfaceOrientation, duration: duration)
+//        self.delegate?.hamburguerViewController?(self, willAnimateRotationToInterfaceOrientation: toInterfaceOrientation, duration: duration)
+//        // adjust size of menu if visible only.
+//        self.containerViewController.setContainerFrame(self.menuViewController.view.frame)
+//    }
+//    
+//    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+//        super.didRotate(from: fromInterfaceOrientation)
+//        if !self.menuVisible { self.actualMenuViewSize = CGSize.zero }
+//        adjustMenuSize(true)
+//    }
     
     // MARK: - Rotation (iOS 8)
     
