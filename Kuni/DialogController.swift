@@ -25,6 +25,8 @@ class DialogController: UIViewController {
         button.setTitleColor(Color.dialogBtnDashboardText.value, for: UIControlState())
         button.addTarget(self, action: #selector(goToDashboard(_:)), for: .touchUpInside)
         button.setTitle("Ir al tablero", for: UIControlState())
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Medium"), size: .custom(16.0)).instance
+        button.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0)
         button.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
         button.tag = 1
         return button
@@ -37,6 +39,8 @@ class DialogController: UIViewController {
         button.setTitleColor(Color.dialogBtnNextSerieText.value, for: UIControlState())
         button.addTarget(self, action: #selector(nextSerie(_:)), for: .touchUpInside)
         button.setTitle("Siguiente serie", for: UIControlState())
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Medium"), size: .custom(16.0)).instance
+        button.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0)
         button.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
         button.tag = 2
         return button
@@ -45,7 +49,7 @@ class DialogController: UIViewController {
     lazy var lblMessage: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(24.0)).instance
         label.textColor = .white
         label.textAlignment = .center
         return label

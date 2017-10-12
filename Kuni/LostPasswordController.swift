@@ -12,9 +12,14 @@ import SwiftyJSON
 
 class LostPasswordController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var recuperarButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        recuperarButton.titleLabel?.font = Font(.custom("SFProDisplay-Medium"), size: .custom(16.0)).instance
+        recuperarButton.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0)
+        recuperarButton.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
         email.delegate = self
         
     }

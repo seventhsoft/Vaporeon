@@ -22,6 +22,7 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginFBButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
     
     var fbButtonAnchor: NSLayoutConstraint?
 
@@ -30,6 +31,14 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
         super.viewDidLoad()
         
         self.view.backgroundImage(named: "LoginImage")
+        loginFBButton.titleLabel?.font = Font(.custom("SFProDisplay-Medium"), size: .custom(16.0)).instance
+        loginFBButton.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0)
+        loginFBButton.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
+        
+        emailButton.titleLabel?.font = Font(.custom("SFProDisplay-Medium"), size: .custom(16.0)).instance
+        emailButton.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0)
+        emailButton.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
+        
         password.delegate = self     
     }
     

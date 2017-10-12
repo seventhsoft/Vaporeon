@@ -41,9 +41,9 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
         let levelCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LevelCell
         levelCell.level = levels[indexPath.item]
         if levels[indexPath.item].isEnabled! == false {
-            levelCell.nameLabel.textColor = .black
-            levelCell.levelNumberLabel.textColor = .black
-            levelCell.rewardsLabel.textColor = .black
+            levelCell.nameLabel.textColor = Color.dashboardLevelInactive.value
+            levelCell.levelNumberLabel.textColor = Color.dashboardLevelInactive.value
+            levelCell.rewardsLabel.textColor = Color.dashboardLevelInactive.value
         }
         
         return levelCell
@@ -218,15 +218,15 @@ class LevelCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .black
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(17.0)).instance
+        label.textColor = Color.dashboardLevelInactive.value
         return label
     }()
     
     let rewardsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textColor = .black
+        label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(11.0)).instance
+        label.textColor = Color.dashboardLevelInactive.value
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -234,8 +234,8 @@ class LevelCell: UICollectionViewCell {
     
     let levelNumberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 13)
-        label.textColor = .black
+        label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(12.0)).instance
+        label.textColor = Color.dashboardLevelInactive.value
         label.numberOfLines = 0
         return label
     }()

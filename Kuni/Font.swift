@@ -56,7 +56,7 @@ struct Font {
         case SFProDisplayItalic   = "SFProDisplay-Italic"
         case SFProDisplayLightItalic = "SFProDisplay-LightItalic"
         case SFProDisplayBlack = "SFProDisplay-Black"
-        case SFProDisplayMediumcase  = "SFProDisplay-Mediumcase"
+        case SFProDisplayMedium  = "SFProDisplay-Medium"
     }
     enum StandardSize: Double {
         case h1 = 20.0

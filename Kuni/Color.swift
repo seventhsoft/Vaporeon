@@ -22,6 +22,9 @@ enum Color {
     case textColor
     case titleColor
     
+    case dashboardLevelInactive
+    case dashboardLevelActive
+    
     case questionBackground
     case classNextQuestion
     case classBackground
@@ -72,6 +75,10 @@ extension Color {
         case .tabbar:
             instanceColor = UIColor(hexString: "#FFFFFF")
         case .navigationBar:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .dashboardLevelInactive:
+            instanceColor = UIColor(hexString: "#5E5E5E")
+        case .dashboardLevelActive:
             instanceColor = UIColor(hexString: "#FFFFFF")
         case .navigationBatTint:
             instanceColor = UIColor(hexString: "#FFFFFF")

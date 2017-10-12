@@ -48,7 +48,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedText = NSMutableAttributedString(string: "Siguiente",
-                                                       attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold),
+                                                       attributes: [NSFontAttributeName: Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance,
                                                                     NSForegroundColorAttributeName: Color.onboardingNextColor.value ]
         )
         button.setAttributedTitle(attributedText, for: .normal)
@@ -92,7 +92,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
         view.addSubview(nextButton)
         
         pageControlBottomAnchor = pageControl.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)[1]
-        nextButtonTopAnchor = nextButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 20, widthConstant: 80, heightConstant: 50).first
+        nextButtonTopAnchor = nextButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 16, leftConstant: 0, bottomConstant: 0, rightConstant: 20, widthConstant: 100, heightConstant: 50).first
         
         //use autolayout instead
         collectionView.anchorToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)

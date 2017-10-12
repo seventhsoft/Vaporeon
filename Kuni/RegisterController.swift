@@ -16,10 +16,16 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var createButton: UIButton!
     
     
     override func viewDidLoad() {        
         super.viewDidLoad()
+
+        createButton.titleLabel?.font = Font(.custom("SFProDisplay-Medium"), size: .custom(16.0)).instance
+        createButton.contentEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0)
+        createButton.addShadow(offset: CGSize(width: -1, height: 1), color: UIColor.black, radius: 2, opacity: 0.5)
+        
         password.delegate = self
         
     }

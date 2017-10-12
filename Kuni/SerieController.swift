@@ -60,7 +60,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(30.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -69,7 +69,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionLevelSerieLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(13.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -78,7 +78,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionNumberLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(13.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -87,7 +87,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionCounter: EFCountingLabel = {
         let label = EFCountingLabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(30.0)).instance
         label.textColor = .white
         label.text = "0"
         label.format = "%d"
@@ -104,7 +104,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(Color.answerNormal.value, for: UIControlState())
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
@@ -119,7 +119,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(Color.answerNormal.value, for: UIControlState())
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
@@ -134,7 +134,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(Color.answerNormal.value,  for: UIControlState())
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
@@ -146,7 +146,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var responseLeyend: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(14.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         label.text = "Respuesta correcta:"
@@ -156,7 +156,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var responseDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(26.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -165,20 +165,18 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var classDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
         label.textColor = Color.textColor.value
         label.textAlignment = .center
         return label
     }()
     
-    lazy var nextQuestionButton: UIButton = {
-        let button = UIButton()
+    lazy var nextQuestionButton: KuniButton = {
+        let button = KuniButton()
         button.backgroundColor = Color.classNextQuestion.value
         button.setTitleColor(.white, for: UIControlState())
         button.setTitle("Siguiente", for: UIControlState())
-        button.layer.cornerRadius = 6
         button.addTarget(self, action: #selector(sendButtonClassFeedback(_:)), for: .touchUpInside)
-        button.frame.size.height = 60.0
         return button
     }()
     
@@ -339,7 +337,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         container.addArrangedSubview(responseLeyend)
         container.addArrangedSubview(responseDescription)
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 20, right: 20)
+        container.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 30, right: 20)
         container.isLayoutMarginsRelativeArrangement = true
         
         backgroundClass.addSubview(container)
@@ -353,7 +351,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         classView.addSubview(main)
         
         //Constraints
-        main.anchorWithConstantsToTop(classView.topAnchor, left: classView.leftAnchor, bottom: classView.bottomAnchor, right: classView.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
+        main.anchorWithConstantsToTop(classView.topAnchor, left: classView.leftAnchor, bottom: classView.bottomAnchor, right: classView.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 30, rightConstant: 20)
         
         //container.heightAnchor.constraint(equalTo: classView.heightAnchor, multiplier: 0.4).isActive = true
         backgroundClass.widthAnchor.constraint(equalTo: main.widthAnchor).isActive = true
