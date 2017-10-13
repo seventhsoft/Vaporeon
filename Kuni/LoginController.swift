@@ -96,6 +96,8 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
                     }
                     return
                 }
+            } else {
+                self.sameUserAlert(code: code)
             }
             return
         }
@@ -123,7 +125,13 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
         
     }
     
-    
+    func sameUserAlert( code: Int){
+        if(code == 412 || code == 409){
+            let alert = Helpers.displayAlertMessage(title: "Error de acceso",
+                                                    messageToDisplay: "El correo con el que se intenta iniciar sesión en Facebook ya fue registrado para otra cuenta Kuni.")
+            self.present(alert, animated: true, completion:nil)
+        }
+    }
     
     // Validate fields
     func validateFields() -> Bool {

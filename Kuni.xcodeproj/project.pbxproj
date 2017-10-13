@@ -47,7 +47,6 @@
 		654396B71F3E332500DC947F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654396B61F3E332500DC947F /* AuthManager.swift */; };
 		654CC1281F85F68E0010DBD9 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654CC1271F85F68E0010DBD9 /* Font.swift */; };
 		654CC12A1F85F69D0010DBD9 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654CC1291F85F69D0010DBD9 /* Color.swift */; };
-		656412BB1F1D35690020DB54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656412BA1F1D35690020DB54 /* GoogleService-Info.plist */; };
 		657D06A01F2C30D50016A14F /* ContestRules.html in Resources */ = {isa = PBXBuildFile; fileRef = 657D069F1F2C30D50016A14F /* ContestRules.html */; };
 		657D06A21F2C5CFE0016A14F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06A11F2C5CFE0016A14F /* RegisterController.swift */; };
 		657D06AF1F2E7E040016A14F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06AE1F2E7E040016A14F /* Router.swift */; };
@@ -122,7 +121,6 @@
 		654396B61F3E332500DC947F /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		654CC1271F85F68E0010DBD9 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		654CC1291F85F69D0010DBD9 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		656412BA1F1D35690020DB54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		657D069F1F2C30D50016A14F /* ContestRules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ContestRules.html; sourceTree = "<group>"; };
 		657D06A11F2C5CFE0016A14F /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		657D06AD1F2E44E20016A14F /* Kuni.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kuni.entitlements; sourceTree = "<group>"; };
@@ -363,7 +361,6 @@
 				65AE9BFD1F25C18900D67B02 /* Controller */,
 				65AE9BFC1F25C18300D67B02 /* Model */,
 				361DED5C1F7EE3B900B86600 /* NoContentController.swift */,
-				656412BA1F1D35690020DB54 /* GoogleService-Info.plist */,
 				65D86C461F15B3B4005501CF /* AppDelegate.swift */,
 				65D86C481F15B3B4005501CF /* ViewController.swift */,
 				65D86C4D1F15B3B4005501CF /* Assets.xcassets */,
@@ -478,7 +475,6 @@
 				363585AD1F7DD0DE00C8A090 /* SF-Pro-Display-UltralightItalic.otf in Resources */,
 				363585AA1F7DD0DE00C8A090 /* SF-Pro-Display-Thin.otf in Resources */,
 				363585A11F7DD0DE00C8A090 /* SF-Pro-Display-HeavyItalic.otf in Resources */,
-				656412BB1F1D35690020DB54 /* GoogleService-Info.plist in Resources */,
 				65D86C4E1F15B3B4005501CF /* Assets.xcassets in Resources */,
 				65D86C4C1F15B3B4005501CF /* Main.storyboard in Resources */,
 				363585A61F7DD0DE00C8A090 /* SF-Pro-Display-Regular.otf in Resources */,

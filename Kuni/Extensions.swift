@@ -299,15 +299,32 @@ extension UIImageView {
 
 extension UIView {
     func backgroundImage(named: String) {
-        let backgroundImage = UIImageView(frame: self.frame)
-        backgroundImage.image = UIImage(named: named)
-        backgroundImage.contentMode = .scaleAspectFill
-        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImage.center = self.center
-        backgroundImage.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+        // setup the UIImageView
+        let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImageView.image = UIImage(named: named)
+        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.insertSubview(backgroundImage, at: 0)
-        self.sendSubview(toBack: backgroundImage)
+        self.addSubview(backgroundImageView)
+        self.sendSubview(toBack: backgroundImageView)
+        
+        // adding NSLayoutConstraints
+        let leadingConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        let trailingConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        //        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        //        backgroundImage.image = UIImage(named: named)
+        //        backgroundImage.backgroundColor = .orange
+        //        backgroundImage.contentMode = .scaleAspectFill
+        //        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        //        backgroundImage.center = self.center
+        //        backgroundImage.clipsToBounds = true
+        //        backgroundImage.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin, .flexibleHeight, .flexibleWidth]
+        //        self.insertSubview(backgroundImage, at: 0)
+        //        self.sendSubview(toBack: backgroundImage)
     }
 }
 

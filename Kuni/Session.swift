@@ -50,6 +50,7 @@ class Session: NSObject {
         defaults.removeObject(forKey: "scope")
         defaults.removeObject(forKey: "idUsuario")
         defaults.removeObject(forKey: "username")
+        print("Data removed!")
         defaults.synchronize()
     }
     

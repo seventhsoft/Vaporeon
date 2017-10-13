@@ -73,10 +73,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="9wx-yq-fY3">
-                                <rect key="frame" x="16" y="180" width="343" height="344"/>
+                                <rect key="frame" x="16" y="180" width="343" height="339"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="awb-dQ-8BV">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="199"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="196"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo electrónico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3RW-rY-1iC" customClass="TextField" customModule="Kuni" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -99,7 +99,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7g-ko-NN2">
-                                                <rect key="frame" x="0.0" y="84" width="343" height="32"/>
+                                                <rect key="frame" x="0.0" y="84" width="343" height="31"/>
                                                 <color key="backgroundColor" red="0.75271546840000003" green="0.24559773500000001" blue="0.54909658429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                                                 <state key="normal" title="Iniciar sesión">
@@ -116,7 +116,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6B-Ma-r79" customClass="SwiftIconButton" customModule="SwiftIconFont">
-                                                <rect key="frame" x="0.0" y="128" width="343" height="32"/>
+                                                <rect key="frame" x="0.0" y="127" width="343" height="31"/>
                                                 <color key="backgroundColor" red="0.098624818030000005" green="0.4425467253" blue="0.79134821889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,7 +131,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftu-Qg-hk5">
-                                                <rect key="frame" x="0.0" y="172" width="343" height="27"/>
+                                                <rect key="frame" x="0.0" y="170" width="343" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                                 <state key="normal" title="¿Olvidaste tu contraseña?">
                                                     <color key="titleColor" red="0.21971692139999999" green="0.2197113782" blue="0.21971245110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -143,7 +143,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kXB-rQ-nI5">
-                                        <rect key="frame" x="0.0" y="230" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="227" width="343" height="29"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ktY-oQ-Y7R">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
@@ -158,10 +158,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mMT-OK-UIT">
-                                        <rect key="frame" x="0.0" y="290" width="343" height="54"/>
+                                        <rect key="frame" x="0.0" y="287" width="343" height="52"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grf-PN-HGs">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                                 <state key="normal" title="Bases del concurso">
                                                     <color key="titleColor" red="0.21971692139999999" green="0.2197113782" blue="0.21971245110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -171,7 +171,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-yi-usV">
-                                                <rect key="frame" x="0.0" y="27" width="343" height="27"/>
+                                                <rect key="frame" x="0.0" y="26" width="343" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                                 <state key="normal" title="Aviso de Privacidad">
                                                     <color key="titleColor" red="0.21971692139999999" green="0.2197113782" blue="0.21971245110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -343,19 +343,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4v-jZ-DZL" userLabel="FormView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="176.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JtD-BM-J6r">
-                                                <rect key="frame" x="20" y="49" width="335" height="127.5"/>
+                                                <rect key="frame" x="20" y="49" width="335" height="126"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7p-Ni-N9c">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="33"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                         <color key="textColor" red="0.21971692139999999" green="0.2197113782" blue="0.21971245110000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo electrónico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JXo-Tm-SZx" customClass="TextField" customModule="Kuni" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="49.5" width="335" height="30"/>
+                                                        <rect key="frame" x="0.0" y="49" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
@@ -369,7 +369,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6J-6b-tuW">
-                                                        <rect key="frame" x="0.0" y="95.5" width="335" height="32"/>
+                                                        <rect key="frame" x="0.0" y="95" width="335" height="31"/>
                                                         <color key="backgroundColor" red="0.75271546840000003" green="0.24559773500000001" blue="0.54909658429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                                                         <state key="normal" title="Recuperar">

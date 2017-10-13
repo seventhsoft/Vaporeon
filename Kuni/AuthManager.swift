@@ -41,11 +41,9 @@ class AuthManager: NSObject {
     }
     
     private func doLogin(params: Parameters, completionHandler: @escaping (Bool) -> ()) {
-        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
-        let request = sessionManager.request(KuniRouter.loginUser(parameters: params))
+        let request = defaultManager.request(KuniRouter.loginUser(parameters: params))
             .validate()
             .responseJSON { response in
-                let _ = sessionManager // retain
                 //Debug.printDebugInfo(response: response)
                 switch response.result {
                 case .success(let data):
@@ -59,10 +57,12 @@ class AuthManager: NSObject {
                         let json = String(data: data, encoding: String.Encoding.utf8)
                         print("Failure Response: \(JSON(json!))")
                     }
+                    print("Error Login")
                     debugPrint(error)
                     completionHandler(false)
                 }
         }
+        print("Request Login")
         debugPrint(request)
     }
     
@@ -72,21 +72,29 @@ class AuthManager: NSObject {
     }
     
     func doSignUp( params: Parameters, completionHandler: @escaping (Bool, Int) -> ()) {
-        let sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
-        let request = sessionManager.request(KuniRouter.registerUser(parameters: params))
+        let request = defaultManager.request(KuniRouter.registerUser(parameters: params))
             .validate()
             .responseData { response in
-                let _ = sessionManager // retain
                 switch response.result {
                 case .success(let JSON):
                     print(JSON)
                     completionHandler(true, 200)
-                case .failure:
+                case .failure(let error):
+                    if let data = response.data {
+                        let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Failure Response: \(json!)")
+                    }
+                    print("Error?")
+                    debugPrint(error)
+                    
                     if let object = response.response {
                         completionHandler(false, object.statusCode)
                     }
+                    print("Response: ")
+                    debugPrint(response)
                 }
         }
+        print("Request: ")
         debugPrint(request)
     }
     
@@ -126,6 +134,7 @@ class AuthManager: NSObject {
         defaultManager.request(KuniRouter.refreshToken(parameters: params))
             .validate()
             .responseString { response in
+                let _ = self.defaultManager // retain
                 switch response.result {
                 case .success:
                     print("Revoque token done.")
@@ -147,6 +156,7 @@ class AuthManager: NSObject {
         defaultManager.request(KuniRouter.refreshToken(parameters: params))
             .validate()
             .responseString { response in
+                let _ = self.defaultManager // retain
                 switch response.result {
                 case .success:
                     print("Refresh token done.")

@@ -92,6 +92,7 @@ class FacebookManager: NSObject {
         // If the user is already connected, confirm the logout
         if (hasUserAccess()) {
             loginManager.logOut()
+            currentUser = nil
             // Notify observers that the user logged out of their Facebook account
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: kFacebookLoggedOutNotification), object: nil)
         }
