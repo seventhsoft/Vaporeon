@@ -394,7 +394,7 @@ class SerieController: UIViewController, DialogModalDelegate {
             }
             if let timeInterval = serieItem.tiempo {
                 // Start question counter
-                questionCounter.countFrom(CGFloat(timeInterval), to: 0, withDuration: 9.0)
+                questionCounter.countFrom(CGFloat(timeInterval), to: 0, withDuration: Double(timeInterval))
                 questionCounter.completionBlock = { () in
                     self.checkAnswer(timerHasFinished: true)
                 }
@@ -419,21 +419,30 @@ class SerieController: UIViewController, DialogModalDelegate {
     
     func checkAnswer(timerHasFinished: Bool){
         disableButtons()
-        if timerHasFinished {
-            if let serieItem = self.serie {
-                delayWithSeconds(2) {
-                    var correct:Answer?
-                    let answers = serieItem.questions[self.currentQuestion].respuestas
-                    for element in answers {
-                        if element.correcta == true {
-                            correct = element
-                        }
+        if timerHasFinished {            
+            let correct = highlightCorrectAnswer()
+            delayWithSeconds(2) {
+                self.isIncorrect = true
+                self.setClassFeedback(correct!, correct: correct)
+            }
+            
+        }
+    }
+    
+    func highlightCorrectAnswer() -> Answer? {
+        var correct:Answer?
+        if let serieItem = self.serie {
+            let answers = serieItem.questions[currentQuestion].respuestas
+            for (index,element) in answers.enumerated() {
+                if element.correcta == true {
+                    correct = element
+                    if let btnCorrect = view.viewWithTag(index+1) as? UIButton {
+                        btnCorrect.setTitleColor(Color.answerCorrect.value, for: UIControlState())
                     }
-                    self.isIncorrect = true
-                    self.setClassFeedback(correct!, correct: correct)
                 }
             }
         }
+        return correct
     }
     
     func selectAnswer(_ sender:UIButton){
@@ -441,7 +450,6 @@ class SerieController: UIViewController, DialogModalDelegate {
         questionCounter.stopCount()
         disableButtons()
         if let serieItem = self.serie {
-            let answers = serieItem.questions[currentQuestion].respuestas
             let answered = serieItem.questions[currentQuestion].respuestas[answerId]
             sender.setTitleColor(Color.answerFail.value, for: UIControlState())
             
@@ -453,15 +461,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                 self.isIncorrect = true
             }
 
-            var correct:Answer?
-            for (index,element) in answers.enumerated() {
-                if element.correcta == true {
-                    correct = element
-                    if let btnCorrect = view.viewWithTag(index+1) as? UIButton {
-                        btnCorrect.setTitleColor(Color.answerCorrect.value, for: UIControlState())
-                    }
-                }
-            }
+            let correct = highlightCorrectAnswer()
             sendAnswerData(answered: answered)
             
             delayWithSeconds(2) {
