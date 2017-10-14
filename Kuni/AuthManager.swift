@@ -86,15 +86,15 @@ class AuthManager: NSObject {
                     }
                     print("Error?")
                     debugPrint(error)
-                    
+                 
                     if let object = response.response {
                         completionHandler(false, object.statusCode)
                     }
-                    print("Response: ")
-                    debugPrint(response)
+//                    print("Response: ")
+//                    debugPrint(response)
                 }
         }
-        print("Request: ")
+        //print("Request: ")
         debugPrint(request)
     }
     

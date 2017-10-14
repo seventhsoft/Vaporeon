@@ -56,7 +56,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                     if(code == 412 || code == 409){
                         let alert = Helpers.displayAlertMessage(
                             title: "Error de registro",
-                            messageToDisplay: "El correo que intentas registrar ya existe, por favor revisalo."
+                            messageToDisplay: "El correo con el que te intentas registrar ya fue asignado a otra cuenta Kuni."
                         )
                         self.present(alert, animated: true, completion:nil)
                     }

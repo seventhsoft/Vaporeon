@@ -60,7 +60,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(30.0)).instance
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(24.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -104,7 +104,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(Color.answerNormal.value, for: UIControlState())
-        button.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
@@ -119,7 +119,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(Color.answerNormal.value, for: UIControlState())
-        button.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
@@ -134,7 +134,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         button.contentMode = .scaleToFill
         button.setBackgroundImage(image, for: UIControlState())
         button.setTitleColor(Color.answerNormal.value,  for: UIControlState())
-        button.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
+        button.titleLabel?.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(selectAnswer(_:)), for: .touchUpInside)
@@ -156,7 +156,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     lazy var responseDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(26.0)).instance
+        label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(24.0)).instance
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -385,8 +385,11 @@ class SerieController: UIViewController, DialogModalDelegate {
             let selectedQuestion : Question = serieItem.questions[questionId]
             questionLabel.text = selectedQuestion.descripcion
             answer1.setTitle(selectedQuestion.respuestas[0].descripcion, for: UIControlState())
+            answer1.titleLabel?.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
             answer2.setTitle(selectedQuestion.respuestas[1].descripcion, for: UIControlState())
+            answer2.titleLabel?.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
             answer3.setTitle(selectedQuestion.respuestas[2].descripcion, for: UIControlState())
+            answer3.titleLabel?.font = Font(.custom("SFProDisplay-Regular"), size: .custom(18.0)).instance
             if let idNivel = self.idNivel,
                 let idSerie = self.idSerie {
                 questionLevelSerieLabel.text = "Nivel \(idNivel)/ Serie \(idSerie)"
@@ -420,7 +423,7 @@ class SerieController: UIViewController, DialogModalDelegate {
     func checkAnswer(timerHasFinished: Bool){
         disableButtons()
         if timerHasFinished {            
-            let correct = highlightCorrectAnswer()
+            let correct = highlightCorrectAnswer(correctInBold: true)
             delayWithSeconds(2) {
                 self.isIncorrect = true
                 self.setClassFeedback(correct!, correct: correct)
@@ -429,7 +432,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         }
     }
     
-    func highlightCorrectAnswer() -> Answer? {
+    func highlightCorrectAnswer(correctInBold: Bool) -> Answer? {
         var correct:Answer?
         if let serieItem = self.serie {
             let answers = serieItem.questions[currentQuestion].respuestas
@@ -438,6 +441,9 @@ class SerieController: UIViewController, DialogModalDelegate {
                     correct = element
                     if let btnCorrect = view.viewWithTag(index+1) as? UIButton {
                         btnCorrect.setTitleColor(Color.answerCorrect.value, for: UIControlState())
+                        if correctInBold {
+                            btnCorrect.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
+                        }
                     }
                 }
             }
@@ -452,7 +458,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         if let serieItem = self.serie {
             let answered = serieItem.questions[currentQuestion].respuestas[answerId]
             sender.setTitleColor(Color.answerFail.value, for: UIControlState())
-            
+            sender.titleLabel?.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance
             if (answered.correcta == true) {
                 self.score += 1
                 sender.setTitleColor(Color.answerCorrect.value, for: UIControlState())
@@ -461,7 +467,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                 self.isIncorrect = true
             }
 
-            let correct = highlightCorrectAnswer()
+            let correct = highlightCorrectAnswer(correctInBold: false)
             sendAnswerData(answered: answered)
             
             delayWithSeconds(2) {
