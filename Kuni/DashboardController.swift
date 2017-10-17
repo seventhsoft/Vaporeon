@@ -74,7 +74,9 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: ((view.frame.width-48)/2), height: 140)
+        let device = UIDevice.current.userInterfaceIdiom
+        let side = (device == .pad) ?  ((view.frame.width-52)/3) : ((view.frame.width-48)/2)
+        return CGSize(width: side, height: side - 32)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -220,6 +222,7 @@ class LevelCell: UICollectionViewCell {
         label.textAlignment = .center
         label.font = Font(.custom("SFProDisplay-Heavy"), size: .custom(17.0)).instance
         label.textColor = Color.dashboardLevelInactive.value
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -227,6 +230,7 @@ class LevelCell: UICollectionViewCell {
         let label = UILabel()
         label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(11.0)).instance
         label.textColor = Color.dashboardLevelInactive.value
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -236,6 +240,7 @@ class LevelCell: UICollectionViewCell {
         let label = UILabel()
         label.font = Font(.custom("SFProDisplay-Regular"), size: .custom(12.0)).instance
         label.textColor = Color.dashboardLevelInactive.value
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
@@ -254,24 +259,26 @@ class LevelCell: UICollectionViewCell {
         addSubview(rewardsLabel)
         addSubview(levelNumberLabel)
 
-        addConstraintsWithFormat("V:|-10-[v0(16)]-4-[v1(12)]-55-[v2]-10-|", views: nameLabel, rewardsLabel, levelNumberLabel)
-        addConstraintsWithFormat("H:|[v0]|", views: nameLabel)
-        addConstraintsWithFormat("H:|[v0]|", views: rewardsLabel)
-        addConstraintsWithFormat("H:|-10-[v0]-10-|", views: levelNumberLabel)
+        addConstraintsWithFormat("V:|-10-[v0(16@1000)]-4-[v1(12@1000)]-|", views: nameLabel, rewardsLabel, options: [])
+        addConstraintsWithFormat("H:|-10-[v0]-10-|", views: nameLabel, options: [])
+        addConstraintsWithFormat("H:|-10-[v0]-10-|", views: rewardsLabel, options: [])
+        
+        addConstraintsWithFormat("V:|-[v0(13@1000)]-10-|", views: levelNumberLabel, options: .alignAllBottom )
+        addConstraintsWithFormat("H:|-10@1000-[v0]-|", views: levelNumberLabel, options: [])
 
     }
 }
 
 
 extension UIView {
-    func addConstraintsWithFormat(_ format: String, views: UIView...) {
+    func addConstraintsWithFormat(_ format: String, views: UIView..., options: NSLayoutFormatOptions ) {
         var viewsDictionary = [String: UIView]()
         for (index, view) in views.enumerated() {
             let key = "v\(index)"
             viewsDictionary[key] = view
             view.translatesAutoresizingMaskIntoConstraints = false
         }
-        let constraint = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary)
+        let constraint = NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: nil, views: viewsDictionary)
         //constraint.
         addConstraints(constraint)
     }
