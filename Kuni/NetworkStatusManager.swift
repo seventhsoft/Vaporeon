@@ -25,6 +25,7 @@ class NetworkStatusManager {
     
     
     func startNetworkReachabilityObserver() {
+        GSMessage.errorBackgroundColor   = Color.custom(hexString: "#123edd", alpha: 1).value
         reachabilityManager?.listener = { status in
             let win = UIApplication.shared.keyWindow!
             switch status {
@@ -41,7 +42,7 @@ class NetworkStatusManager {
                     .textColor(.white),
                     .textNumberOfLines(1),
                     .textPadding(40.0)
-                    ])
+                ])
 
             case .reachable(.ethernetOrWiFi), .reachable(.wwan):
                 win.hideMessage()

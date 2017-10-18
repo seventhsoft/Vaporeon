@@ -75,8 +75,10 @@ class DashboardController: UICollectionViewController, UICollectionViewDelegateF
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let device = UIDevice.current.userInterfaceIdiom
-        let side = (device == .pad) ?  ((view.frame.width-52)/3) : ((view.frame.width-48)/2)
-        return CGSize(width: side, height: side - 32)
+//        let insets = (collectionView.contentInset.left * 3)
+        let width = view.frame.width
+        let side = (device == .pad) ?  ((width - 52) / 3) : ((width - 48) / 2)
+        return CGSize(width: side, height: side - 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -258,14 +260,13 @@ class LevelCell: UICollectionViewCell {
         addSubview(nameLabel)
         addSubview(rewardsLabel)
         addSubview(levelNumberLabel)
-
-        addConstraintsWithFormat("V:|-10-[v0(16@1000)]-4-[v1(12@1000)]-|", views: nameLabel, rewardsLabel, options: [])
+        
         addConstraintsWithFormat("H:|-10-[v0]-10-|", views: nameLabel, options: [])
         addConstraintsWithFormat("H:|-10-[v0]-10-|", views: rewardsLabel, options: [])
+        addConstraintsWithFormat("H:|-10-[v0]", views: levelNumberLabel, options: [])
         
-        addConstraintsWithFormat("V:|-[v0(13@1000)]-10-|", views: levelNumberLabel, options: .alignAllBottom )
-        addConstraintsWithFormat("H:|-10@1000-[v0]-|", views: levelNumberLabel, options: [])
-
+        addConstraintsWithFormat("V:|-10-[v0(16@999)]-4-[v1(12@999)]", views: nameLabel, rewardsLabel, options: [])
+        addConstraintsWithFormat("V:[v0]-10-|", views: levelNumberLabel, options: [.alignAllBottom] )
     }
 }
 

@@ -294,19 +294,15 @@ class SerieController: UIViewController, DialogModalDelegate {
         self.view.addSubview(classView)
         
         //Constraints
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        scrollView.anchorWithConstantsToTop(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 0, rightConstant: 20)
         
         roundRect.addSubview(cardQuestion)
         scrollView.addSubview(roundRect)
         scrollView.addSubview(buttons)
-    
-        roundRect.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
-        roundRect.heightAnchor.constraint(equalTo: cardQuestion.heightAnchor).isActive = true
         
-        roundRect.anchorWithConstantsToTop(scrollView.topAnchor, left: scrollView.leftAnchor, bottom: buttons.topAnchor, right: scrollView.rightAnchor, topConstant: 20, leftConstant: 18, bottomConstant: 40, rightConstant: 18)
+        roundRect.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        roundRect.heightAnchor.constraint(equalTo: cardQuestion.heightAnchor, constant: 0).isActive = true
+        roundRect.anchorWithConstantsToTop(scrollView.topAnchor, left: scrollView.leftAnchor, bottom: buttons.topAnchor, right: scrollView.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 40, rightConstant: 0)
         
         cardQuestion.topAnchor.constraint(equalTo: roundRect.topAnchor, constant: 0).isActive = true
         cardQuestion.leadingAnchor.constraint(equalTo: roundRect.leadingAnchor, constant: 0).isActive = true
