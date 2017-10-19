@@ -25,7 +25,7 @@ class NetworkStatusManager {
     
     
     func startNetworkReachabilityObserver() {
-        GSMessage.errorBackgroundColor   = Color.custom(hexString: "#123edd", alpha: 1).value
+        GSMessage.errorBackgroundColor   = Color.custom(hexString: "#D55C56", alpha: 1).value
         reachabilityManager?.listener = { status in
             let win = UIApplication.shared.keyWindow!
             switch status {
