@@ -15,10 +15,6 @@ class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
-        if FBSDKAccessToken.current() != nil {
-        
-        }                
         
         if isLoggedIn() {
             perform(#selector(showHomeController), with: nil, afterDelay: 0.01)

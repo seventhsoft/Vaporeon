@@ -39,6 +39,11 @@ class HomeController: UITabBarController {
         tabBar.isTranslucent = false
         tabBar.clipsToBounds = true
         
+        
+        //Using a view controller
+        let vc = WalkthroughtController()
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     func setViewController(viewController: UIViewController, title: String, tabTitle: String, iconCode: String) -> UINavigationController {

@@ -66,7 +66,6 @@ class ProfileController: UITableViewController, EditProfileDelegate  {
             }
         }
         cell.textLabel?.text = "fa:\(icons[indexPath.row]) \(items[indexPath.row])"
-        cell.textLabel?.borderColor = .clear
         cell.textLabel?.parseIcon()
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.numberOfLines = 0

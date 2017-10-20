@@ -299,6 +299,7 @@ extension UIImageView {
 
 extension UIView {
     func backgroundImage(named: String) {
+        print(named)
         // setup the UIImageView
         let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         backgroundImageView.image = UIImage(named: named)
