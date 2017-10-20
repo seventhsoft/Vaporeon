@@ -299,7 +299,6 @@ extension UIImageView {
 
 extension UIView {
     func backgroundImage(named: String) {
-        print(named)
         // setup the UIImageView
         let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         backgroundImageView.image = UIImage(named: named)
@@ -319,17 +318,6 @@ extension UIView {
         backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         
-        
-        //        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        //        backgroundImage.image = UIImage(named: named)
-        //        backgroundImage.backgroundColor = .orange
-        //        backgroundImage.contentMode = .scaleAspectFill
-        //        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        //        backgroundImage.center = self.center
-        //        backgroundImage.clipsToBounds = true
-        //        backgroundImage.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin, .flexibleHeight, .flexibleWidth]
-        //        self.insertSubview(backgroundImage, at: 0)
-        //        self.sendSubview(toBack: backgroundImage)
     }
 }
 
@@ -339,6 +327,7 @@ extension UserDefaults {
     enum UserDefaultsKeys: String {
         case isLoggedIn
         case hasSeenOnboarding
+        case hasSeenWalkthrought
     }
     
     func setIsLoggedIn(value: Bool) {
@@ -348,6 +337,14 @@ extension UserDefaults {
     
     func isLoggedIn() -> Bool {
         return bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
+    }
+    
+    func setHasSeenWalkthrought(value: Bool){
+        set(value, forKey: UserDefaultsKeys.hasSeenWalkthrought.rawValue)
+        synchronize()
+    }
+    func hasSeenWalkthrought() -> Bool {
+        return bool(forKey: UserDefaultsKeys.hasSeenWalkthrought.rawValue)
     }
     
     func setHasSeenOnboarding(value: Bool){

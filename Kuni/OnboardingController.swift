@@ -38,7 +38,7 @@ class OnboardingController: UIViewController, UICollectionViewDataSource, UIColl
     
     lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
-        pc.pageIndicatorTintColor = Color.onboardingCurrentPage.value
+        pc.pageIndicatorTintColor = Color.onboardingNormalPage.value
         pc.currentPageIndicatorTintColor = Color.onboardingCurrentPage.value
         pc.numberOfPages = self.pages.count
         return pc

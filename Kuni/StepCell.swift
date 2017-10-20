@@ -19,12 +19,8 @@ class StepCell: UICollectionViewCell {
             
             let image = page.imageName
             
-            print(page.title)
-            print(page.imageName)
-            imageView.image = UIImage(named: image)
-            
             self.backgroundColor = UIColor(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: 1.0)
-            let attributedText = NSMutableAttributedString(string: "\(page.message)", attributes: [NSFontAttributeName: Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance, NSForegroundColorAttributeName: Color.onboardingTextColor.value ])
+            let attributedText = NSMutableAttributedString(string: "\(page.message)", attributes: [NSFontAttributeName: Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance, NSForegroundColorAttributeName: Color.walkthroughtTextColor.value ])
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             
@@ -32,7 +28,7 @@ class StepCell: UICollectionViewCell {
             attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: length))
             
             textView.attributedText = attributedText
-            backgroundImage(named: image)
+            background.image = UIImage(named: image)
         }
     }
     
@@ -41,14 +37,17 @@ class StepCell: UICollectionViewCell {
         setupViews()
     }
     
-    let imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .center
-        iv.backgroundColor = .white
-        iv.image = UIImage(named: "page1")
-        iv.clipsToBounds = true
-        return iv
+    let background: UIImageView = {
+        let bg = UIImageView(frame: UIScreen.main.bounds)
+        bg.image = UIImage(named: "step1")
+        bg.backgroundColor = .white
+        bg.contentMode = .scaleAspectFit
+        bg.translatesAutoresizingMaskIntoConstraints = false
+        bg.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin, .flexibleHeight, .flexibleWidth]
+        bg.clipsToBounds = true
+        return bg
     }()
+    
     
     let textView: UITextView = {
         let tv = UITextView()
@@ -59,23 +58,19 @@ class StepCell: UICollectionViewCell {
         return tv
     }()
     
-    let lineSeparatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    
     func setupViews() {
-        addSubview(imageView)
         addSubview(textView)
-        addSubview(lineSeparatorView)
-        
-        imageView.anchorToTop(topAnchor, left: leftAnchor, bottom: textView.topAnchor, right: rightAnchor)
+        addSubview(background)
+        sendSubview(toBack: background)
         
         textView.anchorWithConstantsToTop(nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 16, bottomConstant: 0, rightConstant: 16)
         textView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
-        lineSeparatorView.anchorToTop(nil, left: leftAnchor, bottom: textView.topAnchor, right: rightAnchor)
-        lineSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
+        // adding NSLayoutConstraints
+        background.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        background.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        background.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        background.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

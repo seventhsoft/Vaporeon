@@ -39,11 +39,9 @@ class HomeController: UITabBarController {
         tabBar.isTranslucent = false
         tabBar.clipsToBounds = true
         
-        
-        //Using a view controller
-        let vc = WalkthroughtController()
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true, completion: nil)
+        if(!UserDefaults.standard.hasSeenWalkthrought()){
+            showWalkthrought()
+        }
     }
     
     func setViewController(viewController: UIViewController, title: String, tabTitle: String, iconCode: String) -> UINavigationController {
@@ -88,6 +86,13 @@ class HomeController: UITabBarController {
         // Show the navigation bar on other view controllers
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    func showWalkthrought(){
+        //Using a view controller
+        let vc = WalkthroughtController()
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
 }

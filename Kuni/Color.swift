@@ -49,6 +49,10 @@ enum Color {
     case onboardingNormalPage
     case onboardingCurrentPage
     
+    case walkthroughtTextColor
+    case walkthroughtNormalStep
+    case walkthroughtCurrentStep
+    
     case dialogBtnDashboard
     case dialogBtnDashboardText
     case dialogBtnNextSerie
@@ -118,6 +122,13 @@ extension Color {
             instanceColor = UIColor(hexString: "#1F8689")
         case .secondaryBackgroundColor:
             instanceColor = UIColor(hexString: "#1F8689")
+        
+        case .walkthroughtTextColor:
+            instanceColor = UIColor(hexString: "#FFFFFF")
+        case .walkthroughtNormalStep:
+            instanceColor = UIColor(hexString: "#545454")
+        case .walkthroughtCurrentStep:
+            instanceColor = UIColor(hexString: "#FFFFFF")
             
         case .questionBackground:
             instanceColor = UIColor(hexString: "#3CBBBD")

@@ -18,7 +18,8 @@ class WalkthroughtController: UIViewController, UICollectionViewDataSource, UICo
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
         cv.dataSource = self
         cv.delegate = self
         cv.isPagingEnabled = true
@@ -28,18 +29,18 @@ class WalkthroughtController: UIViewController, UICollectionViewDataSource, UICo
     let cellId = "cellIdWalk"
     
     let pages: [Page] = {
-        let page1 = Page(title: "Pagina 1", message: "Responde preguntas correctamente", imageName: "step1")
-        let page2 = Page(title: "Pagina 2", message: "Cada serie se compone de seis respuestas correctas", imageName: "step2")
-        let page3 = Page(title: "Pagina 3", message: "Para subir de nivel tienes que completar cierto número de series", imageName: "step3")
-        let page4 = Page(title: "Pagina 4", message: "Si te equivocas en alguna respuesta, deberás empezar de nuevo la serie", imageName: "step4")
-        
-        return [page1, page2, page3, page4]
+        var pages = [Page]()
+        pages.append(Page(title: "Pagina 1", message: "Responde preguntas correctamente", imageName: "step1") )
+        pages.append(Page(title: "Pagina 2", message: "Cada serie se compone de seis respuestas correctas", imageName: "step2"))
+        pages.append(Page(title: "Pagina 3", message: "Para subir de nivel tienes que completar cierto número de series", imageName: "step3"))
+        pages.append(Page(title: "Pagina 4", message: "Si te equivocas en alguna respuesta, deberás empezar de nuevo la serie", imageName: "step4"))
+        return pages
     }()
     
     lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
-        pc.pageIndicatorTintColor = Color.onboardingCurrentPage.value
-        pc.currentPageIndicatorTintColor = Color.onboardingCurrentPage.value
+        pc.pageIndicatorTintColor = Color.walkthroughtNormalStep.value
+        pc.currentPageIndicatorTintColor = Color.walkthroughtCurrentStep.value
         pc.numberOfPages = self.pages.count
         return pc
     }()
@@ -49,31 +50,39 @@ class WalkthroughtController: UIViewController, UICollectionViewDataSource, UICo
         let button = UIButton(type: .system)
         let attributedText = NSMutableAttributedString(string: "Comenzar",
                                                        attributes: [NSFontAttributeName: Font(.custom("SFProDisplay-Heavy"), size: .custom(18.0)).instance,
-                                                                    NSForegroundColorAttributeName: Color.onboardingNextColor.value ]
+                                                                    NSForegroundColorAttributeName: Color.walkthroughtTextColor.value ]
         )
         button.setAttributedTitle(attributedText, for: .normal)
-        button.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(endWalkthrought), for: .touchUpInside)
         return button
     }()
     
+    func endWalkthrought(){
+        UserDefaults.standard.setHasSeenWalkthrought(value: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func nextPage() {
         //we are on the last page
-        if pageControl.currentPage == pages.count {
+        if pageControl.currentPage == pages.count - 1 {
             return
         }
         
-        //second last page
-        if pageControl.currentPage == pages.count - 1 {
-            moveControlConstraintsOffScreen()
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-//            sendToLogin()
-        } else {
-            let indexPath = IndexPath(item: pageControl.currentPage + 1, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            pageControl.currentPage += 1
-        }
+        pageControl.currentPage += 1
+        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.view.layoutIfNeeded()
+        
+        
+//        //second last page
+//        if pageControl.currentPage == pages.count - 1 {
+//            moveControlConstraintsOffScreen()
+//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+//                self.view.layoutIfNeeded()
+//            }, completion: nil)
+////            sendToLogin()
+//        }
         
     }
     
@@ -161,7 +170,7 @@ class WalkthroughtController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height + 20)
+        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -179,14 +188,10 @@ class WalkthroughtController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Hide the navigation bar on the this view controller
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Show the navigation bar on other view controllers
-        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     

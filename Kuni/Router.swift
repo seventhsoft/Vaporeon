@@ -21,7 +21,8 @@ enum KuniRouter: URLRequestConvertible {
     case loadSerie(parameters: Parameters)
     case setAnswer(parameters: Parameters)
 
-    static let baseURLString = "http://qa.api.juegakuni.com.mx/lfs"    
+    static let baseURLString = "http://qa.api.juegakuni.com.mx/lfs"
+    //static let baseURLString = "http://api.juegakuni.com.mx/lfs"
 
     var method: HTTPMethod {
         switch self {
