@@ -13,6 +13,7 @@ target 'Kuni' do
 
   # Pods for Facebook
   pod 'Bolts'
+  #pod 'HYParentalGate'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
 end

@@ -54,6 +54,12 @@
 		657D06B41F2EC4B10016A14F /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06B31F2EC4B10016A14F /* Validators.swift */; };
 		657D06B61F2F81B50016A14F /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D06B51F2F81B50016A14F /* Form.swift */; };
 		658456D01F4BDD6B00A127CD /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658456CF1F4BDD6B00A127CD /* EditProfileController.swift */; };
+		65AF180B1FC55A9F00F33A43 /* HYParentalGateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65AF18041FC55A9F00F33A43 /* HYParentalGateViewController.xib */; };
+		65AF180C1FC55A9F00F33A43 /* HYLocalization.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65AF18051FC55A9F00F33A43 /* HYLocalization.plist */; };
+		65AF180D1FC55A9F00F33A43 /* HYParentalGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF18061FC55A9F00F33A43 /* HYParentalGateViewController.swift */; };
+		65AF180E1FC55A9F00F33A43 /* HYParentalGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF18071FC55A9F00F33A43 /* HYParentalGate.swift */; };
+		65AF180F1FC55A9F00F33A43 /* HYLocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF18081FC55A9F00F33A43 /* HYLocalizationHelper.swift */; };
+		65AF18101FC55A9F00F33A43 /* HYCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF18091FC55A9F00F33A43 /* HYCheckBox.swift */; };
 		65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9B0041F28EE8A0028D360 /* LoginController.swift */; };
 		65C9B0071F2A0C210028D360 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9B0061F2A0C210028D360 /* User.swift */; };
 		65C9B0091F2BA4CB0028D360 /* ContestAndPrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9B0081F2BA4CB0028D360 /* ContestAndPrivacyController.swift */; };
@@ -129,6 +135,13 @@
 		657D06B31F2EC4B10016A14F /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		657D06B51F2F81B50016A14F /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
 		658456CF1F4BDD6B00A127CD /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		65AF18041FC55A9F00F33A43 /* HYParentalGateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HYParentalGateViewController.xib; sourceTree = "<group>"; };
+		65AF18051FC55A9F00F33A43 /* HYLocalization.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HYLocalization.plist; sourceTree = "<group>"; };
+		65AF18061FC55A9F00F33A43 /* HYParentalGateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYParentalGateViewController.swift; sourceTree = "<group>"; };
+		65AF18071FC55A9F00F33A43 /* HYParentalGate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYParentalGate.swift; sourceTree = "<group>"; };
+		65AF18081FC55A9F00F33A43 /* HYLocalizationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYLocalizationHelper.swift; sourceTree = "<group>"; };
+		65AF18091FC55A9F00F33A43 /* HYCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYCheckBox.swift; sourceTree = "<group>"; };
+		65AF180A1FC55A9F00F33A43 /* HYParentalGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYParentalGate.h; sourceTree = "<group>"; };
 		65C9B0041F28EE8A0028D360 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		65C9B0061F2A0C210028D360 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65C9B0081F2BA4CB0028D360 /* ContestAndPrivacyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestAndPrivacyController.swift; sourceTree = "<group>"; };
@@ -292,6 +305,20 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		65AF17F21FC55A1500F33A43 /* ParentalGate */ = {
+			isa = PBXGroup;
+			children = (
+				65AF18041FC55A9F00F33A43 /* HYParentalGateViewController.xib */,
+				65AF18051FC55A9F00F33A43 /* HYLocalization.plist */,
+				65AF18061FC55A9F00F33A43 /* HYParentalGateViewController.swift */,
+				65AF18071FC55A9F00F33A43 /* HYParentalGate.swift */,
+				65AF18081FC55A9F00F33A43 /* HYLocalizationHelper.swift */,
+				65AF18091FC55A9F00F33A43 /* HYCheckBox.swift */,
+				65AF180A1FC55A9F00F33A43 /* HYParentalGate.h */,
+			);
+			name = ParentalGate;
+			sourceTree = "<group>";
+		};
 		65CBACFC1F475DE30083DD95 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +388,7 @@
 		65D86C451F15B3B4005501CF /* Kuni */ = {
 			isa = PBXGroup;
 			children = (
+				65AF17F21FC55A1500F33A43 /* ParentalGate */,
 				363585891F7DCFAB00C8A090 /* Fonts */,
 				657D06AD1F2E44E20016A14F /* Kuni.entitlements */,
 				657D06AA1F2D26AB0016A14F /* Storyboards */,
@@ -473,6 +501,7 @@
 				363585A91F7DD0DE00C8A090 /* SF-Pro-Display-SemiboldItalic.otf in Resources */,
 				36AB952B1F75F466000E963A /* PrivacityPolicy.html in Resources */,
 				363585A51F7DD0DE00C8A090 /* SF-Pro-Display-MediumItalic.otf in Resources */,
+				65AF180C1FC55A9F00F33A43 /* HYLocalization.plist in Resources */,
 				363585A21F7DD0DE00C8A090 /* SF-Pro-Display-Light.otf in Resources */,
 				3635859E1F7DD0DE00C8A090 /* SF-Pro-Display-Bold.otf in Resources */,
 				363585A31F7DD0DE00C8A090 /* SF-Pro-Display-LightItalic.otf in Resources */,
@@ -483,6 +512,7 @@
 				363585AD1F7DD0DE00C8A090 /* SF-Pro-Display-UltralightItalic.otf in Resources */,
 				363585AA1F7DD0DE00C8A090 /* SF-Pro-Display-Thin.otf in Resources */,
 				363585A11F7DD0DE00C8A090 /* SF-Pro-Display-HeavyItalic.otf in Resources */,
+				65AF180B1FC55A9F00F33A43 /* HYParentalGateViewController.xib in Resources */,
 				65D86C4E1F15B3B4005501CF /* Assets.xcassets in Resources */,
 				65D86C4C1F15B3B4005501CF /* Main.storyboard in Resources */,
 				363585A61F7DD0DE00C8A090 /* SF-Pro-Display-Regular.otf in Resources */,
@@ -539,7 +569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EFB57BA3620B3F1C471B08B6 /* [CP] Copy Pods Resources */ = {
@@ -567,12 +597,14 @@
 				65EBE2931F417533004715A2 /* DLHamburguerContainerViewController.swift in Sources */,
 				65D86C491F15B3B4005501CF /* ViewController.swift in Sources */,
 				651375541F55EE660034AC08 /* ContestManager.swift in Sources */,
+				65AF180E1FC55A9F00F33A43 /* HYParentalGate.swift in Sources */,
 				65EBE2971F417554004715A2 /* DLHamburguerViewController.swift in Sources */,
 				65CBAD091F47DAAD0083DD95 /* Contest.swift in Sources */,
 				65C9B0051F28EE8A0028D360 /* LoginController.swift in Sources */,
 				65CBAD051F47A0680083DD95 /* DashboardController.swift in Sources */,
 				361DED5F1F82ADDF00B86600 /* NetworkStatusManager.swift in Sources */,
 				65CBAD031F4787ED0083DD95 /* ContestRewardsController.swift in Sources */,
+				65AF180D1FC55A9F00F33A43 /* HYParentalGateViewController.swift in Sources */,
 				65CE9CCF1F76E5E800E239EA /* SerieController.swift in Sources */,
 				361DED5B1F7EBC7100B86600 /* EFCountingLabel.swift in Sources */,
 				651549F11F364DE100650E4C /* MainNavigationController.swift in Sources */,
@@ -591,6 +623,7 @@
 				651549EB1F3645DC00650E4C /* ProfileController.swift in Sources */,
 				36EFF9FF1F8EF5B0008B9DF9 /* TextField.swift in Sources */,
 				3645A4CD1F992C5200314B06 /* StepCell.swift in Sources */,
+				65AF18101FC55A9F00F33A43 /* HYCheckBox.swift in Sources */,
 				654396B71F3E332500DC947F /* AuthManager.swift in Sources */,
 				654CC1281F85F68E0010DBD9 /* Font.swift in Sources */,
 				65EBE2951F417543004715A2 /* DLHamburguerNavigationController.swift in Sources */,
@@ -611,6 +644,7 @@
 				361DED631F844F3600B86600 /* ParamsManager.swift in Sources */,
 				65CBAD011F4787930083DD95 /* MyRewardsController.swift in Sources */,
 				657D06B61F2F81B50016A14F /* Form.swift in Sources */,
+				65AF180F1FC55A9F00F33A43 /* HYLocalizationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

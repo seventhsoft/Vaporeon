@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>en</key>
+	<dict>
+		<key>adults_only</key>
+		<string>For adults only!</string>
+		<key>enter_numbers</key>
+		<string>Enter the numbers, please:</string>
+		<key>1</key>
+		<string>One</string>
+		<key>2</key>
+		<string>Two</string>
+		<key>3</key>
+		<string>Three</string>
+		<key>4</key>
+		<string>Four</string>
+		<key>5</key>
+		<string>Five</string>
+		<key>6</key>
+		<string>Six</string>
+		<key>7</key>
+		<string>Seven</string>
+		<key>8</key>
+		<string>Eight</string>
+		<key>9</key>
+		<string>Nine</string>
+		<key>0</key>
+		<string>Zero</string>
+	</dict>
+	<key>es</key>
+	<dict>
+		<key>adults_only</key>
+		<string>Antes de continuar...</string>
+		<key>enter_numbers</key>
+		<string>Introduce los siguiente números:</string>
+		<key>1</key>
+		<string>Uno</string>
+		<key>2</key>
+		<string>Dos</string>
+		<key>3</key>
+		<string>Tres</string>
+		<key>4</key>
+		<string>Cuatro</string>
+		<key>5</key>
+		<string>Cinco</string>
+		<key>6</key>
+		<string>Seis</string>
+		<key>7</key>
+		<string>Siete</string>
+		<key>8</key>
+		<string>Ocho</string>
+		<key>9</key>
+		<string>Nueve</string>
+		<key>0</key>
+		<string>Cero</string>
+	</dict>
+	<key>uk</key>
+	<dict>
+		<key>adults_only</key>
+		<string>Тільки для дорослих!</string>
+		<key>enter_numbers</key>
+		<string>Будь ласка, введіть цифри:</string>
+		<key>1</key>
+		<string>Один</string>
+		<key>2</key>
+		<string>Два</string>
+		<key>3</key>
+		<string>Три</string>
+		<key>4</key>
+		<string>Чотири</string>
+		<key>5</key>
+		<string>П&apos;ять</string>
+		<key>6</key>
+		<string>Шість</string>
+		<key>7</key>
+		<string>Сім</string>
+		<key>8</key>
+		<string>Вісім</string>
+		<key>9</key>
+		<string>Дев&apos;ять</string>
+		<key>0</key>
+		<string>Нуль</string>
+	</dict>
+</dict>
+</plist>

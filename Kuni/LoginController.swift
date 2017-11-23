@@ -11,7 +11,6 @@ import FBSDKLoginKit
 import Alamofire
 import SwiftyJSON
 
-
 protocol LoginControllerDelegate: class {
     func finishLoggingIn()
 }
@@ -65,23 +64,27 @@ class LoginController: UIViewController, UITextFieldDelegate, LoginControllerDel
     
     
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        FacebookManager.sharedInstance.handleUserAccess(){ success in
-            if(success) {
-                if let user = FacebookManager.sharedInstance.getCurrentUser() {
-                    let params = ParamsManager.loginFacebook(email: user.email).params
-                    AuthManager.sharedInstance.login(params: params){ success in
-                        if(success){
-                            self.finishLoggingIn()
-                        } else {
-                            print("Comenzando registro FB")
-                            self.signUpWithFacebook(user: user)
+        let parentalGate = HYParentalGate.sharedGate
+        parentalGate.languageCode = "es"
+        parentalGate.show(successHandler: {
+            FacebookManager.sharedInstance.handleUserAccess(){ success in
+                if(success) {
+                    if let user = FacebookManager.sharedInstance.getCurrentUser() {
+                        let params = ParamsManager.loginFacebook(email: user.email).params
+                        AuthManager.sharedInstance.login(params: params){ success in
+                            if(success){
+                                self.finishLoggingIn()
+                            } else {
+                                print("Comenzando registro FB")
+                                self.signUpWithFacebook(user: user)
+                            }
+                            return
                         }
-                        return
                     }
                 }
+                return
             }
-            return
-        }
+        })
     }
     
     
