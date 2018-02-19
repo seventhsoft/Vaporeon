@@ -30,6 +30,7 @@ class ContestManager: NSObject {
     }
     
     private func loadSerieData(params: Parameters, completionHandler: @escaping (JSON, Error?) -> ()) {
+        print("Getting serie data")
         let sessionManager = Alamofire.SessionManager.default
         sessionManager.request(KuniRouter.loadSerie(parameters: params))
             .validate()

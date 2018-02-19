@@ -202,6 +202,7 @@ class SerieController: UIViewController, DialogModalDelegate {
         self.title = "KUNI"
         
         if let idGamer = idJugadorNivel {
+            print("Coincide el idJugadorNivel")
             getSerieData(id: idGamer)
         }
         
@@ -210,6 +211,8 @@ class SerieController: UIViewController, DialogModalDelegate {
     func getSerieData(id: Int){
         let params: Parameters = [ "idJugadorNivel": id ]
         ContestManager.sharedInstance.getSerieData(params: params){ data, error in
+            print("Número de datos \(data.count)")
+            debugPrint(data)
             if data.count > 0 {
                 let serieItem = Serie()
                 if let tiempoPregunta = data["tiempoPregunta"].int {
@@ -217,7 +220,9 @@ class SerieController: UIViewController, DialogModalDelegate {
                 }
                 
                 if let questions = data["preguntas"].array {
+                    print("Iterando en preguntas")
                     for question in questions {
+                        print("Iterando en pregunta")
                         let questionItem = Question()
                         if let idPregunta = question["idPregunta"].int,
                         let descripcion = question["descripcion"].string,
@@ -248,9 +253,8 @@ class SerieController: UIViewController, DialogModalDelegate {
                                 }
                                 questionItem.respuestas.append(respItem)
                             }
-                            
-                            serieItem.questions.append(questionItem)
                         }
+                        serieItem.questions.append(questionItem)
                     }
                 
                 }
