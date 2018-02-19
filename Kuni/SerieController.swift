@@ -202,7 +202,6 @@ class SerieController: UIViewController, DialogModalDelegate {
         self.title = "KUNI"
         
         if let idGamer = idJugadorNivel {
-            print("Coincide el idJugadorNivel")
             getSerieData(id: idGamer)
         }
         
@@ -211,8 +210,6 @@ class SerieController: UIViewController, DialogModalDelegate {
     func getSerieData(id: Int){
         let params: Parameters = [ "idJugadorNivel": id ]
         ContestManager.sharedInstance.getSerieData(params: params){ data, error in
-            print("Número de datos \(data.count)")
-            debugPrint(data)
             if data.count > 0 {
                 let serieItem = Serie()
                 if let tiempoPregunta = data["tiempoPregunta"].int {
@@ -228,14 +225,14 @@ class SerieController: UIViewController, DialogModalDelegate {
                         let descripcion = question["descripcion"].string,
                         let ruta = question["ruta"].string,
                         let clase = question["clase"].string,
-                        let banner = question["bannerPregunta"].string,
+                        //let banner = question["bannerPregunta"].string,
                         let activo = question["activo"].bool,
                         let respuestas = question["respuestaList"].array {
                             questionItem.idPregunta = idPregunta
                             questionItem.descripcion = descripcion
                             questionItem.ruta = ruta
                             questionItem.clase = clase
-                            questionItem.banner = banner
+                            //questionItem.banner = banner
                             questionItem.activo = activo
                             
                             for resp in respuestas {
@@ -253,8 +250,9 @@ class SerieController: UIViewController, DialogModalDelegate {
                                 }
                                 questionItem.respuestas.append(respItem)
                             }
+                           
+                            serieItem.questions.append(questionItem)
                         }
-                        serieItem.questions.append(questionItem)
                     }
                 
                 }
