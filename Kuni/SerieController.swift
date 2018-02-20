@@ -217,9 +217,7 @@ class SerieController: UIViewController, DialogModalDelegate {
                 }
                 
                 if let questions = data["preguntas"].array {
-                    print("Iterando en preguntas")
                     for question in questions {
-                        print("Iterando en pregunta")
                         let questionItem = Question()
                         if let idPregunta = question["idPregunta"].int,
                         let descripcion = question["descripcion"].string,

@@ -1,0 +1,114 @@
+
+/* Class = "UITextField"; placeholder = "Correo electrónico"; ObjectID = "3RW-rY-1iC"; */
+"3RW-rY-1iC.placeholder" = "Correo electrónico";
+
+/* Class = "UIViewController"; title = "HomeMenuController"; ObjectID = "4XL-tm-a7r"; */
+"4XL-tm-a7r.title" = "HomeMenuController";
+
+/* Class = "UILabel"; text = "Introduce tus datos para crear una cuenta en Kuni a continuación."; ObjectID = "4e7-kv-4hC"; */
+"4e7-kv-4hC.text" = "Introduce tus datos para crear una cuenta en Kuni a continuación.";
+
+/* Class = "UINavigationController"; title = "OnboardingNavigation"; ObjectID = "6fC-3o-RLq"; */
+"6fC-3o-RLq.title" = "OnboardingNavigation";
+
+/* Class = "UILabel"; text = "Al crear tu cuenta, aceptas las condiciones de uso y la política de privacidad de Kuni."; ObjectID = "8L8-M0-P42"; */
+"8L8-M0-P42.text" = "Al crear tu cuenta, aceptas las condiciones de uso y la política de privacidad de Kuni.";
+
+/* Class = "UIButton"; normalTitle = "Crear cuenta"; ObjectID = "Af6-lS-IpZ"; */
+"Af6-lS-IpZ.normalTitle" = "Crear cuenta";
+
+/* Class = "UIViewController"; title = "Legales"; ObjectID = "EJi-Sh-dTZ"; */
+"EJi-Sh-dTZ.title" = "Legales";
+
+/* Class = "UITabBarController"; title = "HomeController"; ObjectID = "F5p-PI-xuz"; */
+"F5p-PI-xuz.title" = "HomeController";
+
+/* Class = "UIButton"; normalTitle = "fa:facebook  Ingresar con Facebook"; ObjectID = "G6B-Ma-r79"; */
+"G6B-Ma-r79.normalTitle" = "fa:facebook  Ingresar con Facebook";
+
+/* Class = "UILabel"; text = "KUNI"; ObjectID = "Gm8-f8-npr"; */
+"Gm8-f8-npr.text" = "KUNI";
+
+/* Class = "UITextField"; placeholder = "Correo electrónico"; ObjectID = "JXo-Tm-SZx"; */
+"JXo-Tm-SZx.placeholder" = "Correo electrónico";
+
+/* Class = "UIBarButtonItem"; title = "Salir"; ObjectID = "M4L-6n-eYS"; */
+"M4L-6n-eYS.title" = "Salir";
+
+/* Class = "UITextField"; placeholder = "Apellido(s)"; ObjectID = "PSi-f9-8T2"; */
+"PSi-f9-8T2.placeholder" = "Apellido(s)";
+
+/* Class = "UIBarButtonItem"; title = "Menu"; ObjectID = "QLY-SN-Atb"; */
+"QLY-SN-Atb.title" = "Menu";
+
+/* Class = "UITextField"; placeholder = "Nombre (s)"; ObjectID = "Qre-hH-gUD"; */
+"Qre-hH-gUD.placeholder" = "Nombre (s)";
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "TkG-IM-d0i"; */
+"TkG-IM-d0i.placeholder" = "Contraseña";
+
+/* Class = "UINavigationItem"; title = "Restablecer contraseña"; ObjectID = "Uky-FN-V4j"; */
+"Uky-FN-V4j.title" = "Restablecer contraseña";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "UvJ-hw-696"; */
+"UvJ-hw-696.text" = "Title";
+
+/* Class = "UINavigationController"; title = "HomeNavigationController"; ObjectID = "Vvh-fa-3gh"; */
+"Vvh-fa-3gh.title" = "HomeNavigationController";
+
+/* Class = "UITextField"; placeholder = "Correo electrónico"; ObjectID = "aUT-QR-Wz5"; */
+"aUT-QR-Wz5.placeholder" = "Correo electrónico";
+
+/* Class = "UIBarButtonItem"; title = "Regresar"; ObjectID = "aZT-0R-sDE"; */
+"aZT-0R-sDE.title" = "Regresar";
+
+/* Class = "UIButton"; normalTitle = "Aviso de Privacidad"; ObjectID = "aeK-yi-usV"; */
+"aeK-yi-usV.normalTitle" = "Aviso de Privacidad";
+
+/* Class = "UIViewController"; title = "HomeRootController"; ObjectID = "du3-kv-BNM"; */
+"du3-kv-BNM.title" = "HomeRootController";
+
+/* Class = "UIButton"; normalTitle = "¿Olvidaste tu contraseña?"; ObjectID = "ftu-Qg-hk5"; */
+"ftu-Qg-hk5.normalTitle" = "¿Olvidaste tu contraseña?";
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "g9d-yN-H56"; */
+"g9d-yN-H56.placeholder" = "Contraseña";
+
+/* Class = "UIButton"; normalTitle = "Bases del concurso"; ObjectID = "grf-PN-HGs"; */
+"grf-PN-HGs.normalTitle" = "Bases del concurso";
+
+/* Class = "UIViewController"; title = "Oboarding"; ObjectID = "hnv-co-qpW"; */
+"hnv-co-qpW.title" = "Oboarding";
+
+/* Class = "UINavigationItem"; title = "Registrar"; ObjectID = "kHR-gQ-qSM"; */
+"kHR-gQ-qSM.title" = "Registrar";
+
+/* Class = "UIButton"; normalTitle = "No tengo cuenta, registrarme"; ObjectID = "ktY-oQ-Y7R"; */
+"ktY-oQ-Y7R.normalTitle" = "No tengo cuenta, registrarme";
+
+/* Class = "UIBarButtonItem"; title = "Regresar"; ObjectID = "loC-PX-w2g"; */
+"loC-PX-w2g.title" = "Regresar";
+
+/* Class = "UIBarButtonItem"; title = "Regresar"; ObjectID = "pXQ-ED-ve0"; */
+"pXQ-ED-ve0.title" = "Regresar";
+
+/* Class = "UILabel"; text = "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña"; ObjectID = "q7p-Ni-N9c"; */
+"q7p-Ni-N9c.text" = "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña";
+
+/* Class = "UINavigationController"; title = "LoginNavigation"; ObjectID = "qa1-eA-6bW"; */
+"qa1-eA-6bW.title" = "LoginNavigation";
+
+/* Class = "UINavigationItem"; title = "KUNI"; ObjectID = "t5R-qT-sJc"; */
+"t5R-qT-sJc.title" = "KUNI";
+
+/* Class = "UIButton"; normalTitle = "Recuperar"; ObjectID = "u6J-6b-tuW"; */
+"u6J-6b-tuW.normalTitle" = "Recuperar";
+
+/* Class = "UIViewController"; title = "Ajustes"; ObjectID = "uDj-eY-IYv"; */
+"uDj-eY-IYv.title" = "Ajustes";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "xzz-Fj-MgH"; */
+"xzz-Fj-MgH.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Iniciar sesión"; ObjectID = "z7g-ko-NN2"; */
+"z7g-ko-NN2.normalTitle" = "Iniciar sesión";
