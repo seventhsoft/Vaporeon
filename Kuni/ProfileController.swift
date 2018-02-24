@@ -61,7 +61,7 @@ class ProfileController: UITableViewController, EditProfileDelegate  {
             case "Nombre": cell.detailTextLabel?.text = profile.name
             case "Apellidos": cell.detailTextLabel?.text = profile.last_name
             case "Correo electrónico": cell.detailTextLabel?.text = profile.email
-            case "Contraseña": cell.detailTextLabel?.text = String(profile.email.characters.map { _ in return "•" })
+            case "Contraseña": cell.detailTextLabel?.text = String(profile.email.map { _ in return "•" })
             default: break
             }
         }

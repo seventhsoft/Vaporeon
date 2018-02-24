@@ -34,7 +34,7 @@ class Validators {
     }
     
     static func isMin(data: String, min: Int) -> Bool {
-        let length = data.characters.count
+        let length = data.count
         if (length < min){
             return true
         } else {

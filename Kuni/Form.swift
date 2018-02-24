@@ -73,7 +73,7 @@ class FormItem: FormValidable {
     // MARK: FormValidable
     func checkValidity() {
         if self.isMandatory {
-            self.isValid = self.value != nil && self.value?.characters.isEmpty == false
+            self.isValid = self.value != nil && self.value?.isEmpty == false
             
             switch self.type {
             case "email":

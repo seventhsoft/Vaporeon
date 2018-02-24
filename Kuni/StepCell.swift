@@ -24,7 +24,7 @@ class StepCell: UICollectionViewCell {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             
-            let length = attributedText.string.characters.count
+            let length = attributedText.string.count
             attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: length))
             
             textView.attributedText = attributedText

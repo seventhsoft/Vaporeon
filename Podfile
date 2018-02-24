@@ -6,7 +6,7 @@ target 'Kuni' do
   use_frameworks!
  
   # Pods other
-  pod 'SwiftIconFont'
+  pod 'SwiftIconFont', '< 2.7.2'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
   pod 'GSMessages', '< 1.3.5'
